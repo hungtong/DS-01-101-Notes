@@ -1,0 +1,1084 @@
+---
+toc: true
+toc-depth: 3
+echo: true
+eval: false
+output: false
+---
+
+# 2B: More on Vector
+
+## Readings
+
+From **R Coding Basics: An Introduction to the Basics of Coding in R** by Dr. Gaston Sanchez:
+
+-   [First Contact with Vectors](https://www.gastonsanchez.com/R-coding-basics/1-01-vectors-intro.html)
+
+-   [Properties of Vectors](https://www.gastonsanchez.com/R-coding-basics/1-02-vectors-properties.html)
+
+-   [Creating Vectors](https://www.gastonsanchez.com/R-coding-basics/1-03-vectors-creation.html)
+
+-   [More about Vectors](https://www.gastonsanchez.com/R-coding-basics/1-04-vectors-concepts.html)
+
+## Topics
+
+-   Implicit and explicit coercion
+
+-   Vectorization and recycling
+
+-   Working with logical vectors
+
+-   Subsetting: numeric and logical indexing
+
+-   Useful functions for vectors
+
+## Implicit coercion
+
+-   Broadly speaking, **implicit coercion** is how R decides what type the output should be when combining or performing operations on different atomic types.
+
+-   Implicit coercion is most commonly found in calculations with logical values and in vector creation using the combine `c()` function.
+
+### Calculations with logical values
+
+-   Logical values are automatically coerced to numeric when used in calculations.
+
+```{r}
+#| eval: true
+#| output: true
+
+# TRUE becomes 1 so 1 + 5 = 6
+TRUE + 5     
+
+# FALSE becomes 0 so 0 + 5 = 5
+FALSE + 5    
+
+# 1 + 0 + 1 = 2
+v <- c(TRUE, FALSE, TRUE)
+sum(v)    
+```
+
+💻 **Hands-On**
+
+Guess the output in the following R code. Try the code to confirm your guess.
+
+```{r}
+
+TRUE * 2
+
+FALSE * 2
+
+v1 <- c(TRUE, TRUE, FALSE, FALSE, TRUE, FALSE, FALSE)
+sum(v1)
+
+v2 <- c(F, T, F, F, T, F, T)
+sum(v2)
+```
+
+::: {.callout-tip collapse="true"}
+## Answer
+
+```{r}
+#| eval: true
+#| output: true
+
+# TRUE becomes 1 so 1 * 2 = 2
+TRUE * 2
+
+# FALSE becomes 0 so 0 * 2 = 0
+FALSE * 2
+
+# 1 + 1 + 0 + 0 + 1 + 0 + 0 = 3
+v1 <- c(TRUE, TRUE, FALSE, FALSE, TRUE, FALSE, FALSE)
+sum(v1)
+
+# 0 + 1 + 0 + 0 + 1 + 0 + 1 = 3
+v2 <- c(F, T, F, F, T, F, T)
+sum(v2)
+```
+:::
+
+### Combining values with `c()`
+
+-   Implicit coercion also occurs when we combine different atomic types into a single vector.
+
+-   In this case, all elements are converted to the most complex type (character).
+
+$$
+\text{Character} \, > \, \text{Double} \, > \, \text{Integer} \, > \, \text{Logical}
+$$
+
+```{r}
+#| eval: true
+#| output: true
+
+# integer > logical
+c(4L, TRUE, TRUE, FALSE)                   
+ 
+# double > integer > logical
+c(7.3, 4L, TRUE, TRUE, FALSE)              
+
+# character > double > integer > logical
+c("eagles", 7.3, 4L, TRUE, TRUE, FALSE)    
+```
+
+💻 **Hands-On**
+
+Guess the output in the following R code. Try the code to confirm your guess.
+
+```{r}
+
+v1 <- c(TRUE, 3.5, FALSE, 1L)
+sum(v1)
+
+v2 <- c(FALSE, TRUE, 2, 3, "4", 5L)
+sum(v2)
+```
+
+::: {.callout-tip collapse="true"}
+## Answer
+
+```{r}
+#| eval: true
+#| output: true
+#| error: true
+
+# Coercion gives c(1.0, 3.5, 0.0, 1.0)
+v1 <- c(TRUE, 3.5, FALSE, 1L)
+sum(v1)
+
+# Coercion gives c("FALSE", "TRUE", "2", "3", "4", "5") so sum() gives an error
+v2 <- c(FALSE, TRUE, 2, 3, "4", 5L)
+sum(v2)
+```
+:::
+
+## Explicit coercion
+
+-   **Explicit coercion** directly forces one atomic type to become another.
+
+```{r}
+
+as.logical()      # to logical type
+
+as.integer()      # to integer type
+as.double()       # to double type
+as.numeric()      # to numeric type
+
+as.character()    # to character type
+```
+
+## Vectorization
+
+-   In R, **vectorization** means when we apply a function or operation on a vector, it will be done element by element automatically.
+
+-   This means we do not need to loop through the vector.
+
+```{r}
+#| eval: true
+#| output: true
+
+#       x:      4        8         25         49
+# sqrt(x): sqrt(4)  sqrt(8)   sqrt(25)   sqrt(49)
+#  output:      2        3          5          7
+
+x <- c(4, 9, 25, 49)
+sqrt(x)
+```
+
+-   Vectorization also implies that an operation on two vectors will be done in an element-wise manner.
+
+```{r}
+#| eval: true
+#| output: true
+
+#      x:  1  2  3  4
+#          +  +  +  +
+#      y:  3  5  6  2
+# output:  4  7  9  6
+
+x <- c(1, 2, 3, 4)
+y <- c(3, 5, 6, 2)
+x + y
+```
+
+💻 **Hands-On**
+
+Verify the properties of vectorization with the following code
+
+```{r}
+
+x <- c(1, 2, 3, 4)
+y <- c(3, 5, 6, 2)
+
+x - y
+
+x * y
+
+y / x
+
+log(y)
+
+sin(x)
+```
+
+::: {.callout-tip collapse="true"}
+## Answer
+
+Due to vectorization, R will perform operations on corresponding elements.
+
+```{r}
+x <- c(1, 2, 3, 4)
+y <- c(3, 5, 6, 2)
+```
+
+See the following
+
+```{r}
+#| eval: true
+#| output: true
+
+x - y
+
+x * y
+
+y / x
+
+log(y)
+
+sin(x)
+```
+:::
+
+## Recycling
+
+-   When performing operations on two vectors are different lengths, R will **recycle** the shorter vector to match the length of the longer one.
+
+```{r}
+#| eval: true
+#| output: true
+
+#      x: 1  2  3  4
+#         *  *  *  *
+#         2  2  2  2
+# output: 2  4  6  8
+
+x <- c(1, 2, 3, 4)
+x * 2
+```
+
+-   Recycling can produce confusing results, so it is recommended that two vectors either have the same length or that one of them has length 1.
+
+💻 **Hands-On**
+
+Try the following R code and see what it returns. What do you think this sneaky code does?
+
+```{r}
+
+# Please avoid!
+
+x <- c(5, 3, 7, 4, 6, 8, 3)
+y <- c(1, 2)
+x + y
+```
+
+::: {.callout-tip collapse="true"}
+## Answer
+
+We will see the followling
+
+```{r}
+#| eval: true
+#| output: true
+#| warning: true
+#| message: true
+
+x <- c(5, 3, 7, 4, 6, 8, 3)
+y <- c(1, 2)
+x + y
+```
+
+The shorter vector `y` recycles its elements to match the length of the longer vector `x`. The above is equivalent to 
+
+```{r}
+#| eval: true
+#| output: true
+
+x <- c(5, 3, 7, 4, 6, 8, 3)
+y <- c(1, 2, 1, 2, 1, 2, 1)
+x + y
+```
+
+:::
+
+## Working with logical vectors
+
+-   **Logical vectors** are frequently used in data analysis to account for different conditions.
+
+```{r}
+
+# logical vector
+c(TRUE, FALSE, FALSE, TRUE, TRUE)
+c(T, F, F, T, T)
+```
+
+### Comparison operators
+
+-   A logical vector can be created using **comparison operators**.
+
+|                      |                          |
+|:---------------------|:-------------------------|
+| **Logical Operator** | **Description**          |
+| `<`                  | Less than                |
+| `<=`                 | Less than or equal to    |
+| `>`                  | Greater than             |
+| `>=`                 | Greater than or equal to |
+| `==`                 | Exactly equal to         |
+| `!=`                 | Not equal to             |
+
+
+-   Consider the following vector
+
+```{r}
+#| eval: true
+#| output: true
+
+x <- c(-2, -1, 0, 1, 2, 3)
+```
+
+-   We have
+
+```{r}
+#| eval: true
+#| output: true
+
+# less than
+x < 0     
+
+# less than or equal to
+x <= 0    
+
+# greater than
+x > 0     
+
+# greater than or equal to
+x >= 0    
+
+# exactly equal to
+x == 0    
+ 
+# not equal to
+x != 0    
+```
+
+💻 **Hands-On**
+
+Consider daily high temperatures in celsius over two weeks. Write R code to answer the following questions:
+
+-   Which days had temperatures **at least 30°C**?
+
+-   Which days had temperatures **exactly equal to 19°C**?
+
+-   Which days had temperatures **below 20°C**?
+
+-   Which days had temperatures **greater than 25°C**?
+
+-   Which days had temperatures **at most 22°C**?
+
+```{r}
+#| eval: true
+#| output: true
+
+# Daily high temperatures over two weeks
+temps <- c(
+  Mon02 = 18, Tue03 = 21, Wed04 = 19, Thu05 = 25, Fri06 = 27, Sat07 = 30, Sun08 = 22, 
+  Mon09 = 20, Tue10 = 16, Wed11 = 24, Thu12 = 28, Fri13 = 31, Sat14 = 29, Sun15 = 17
+)
+```
+
+::: {.callout-tip collapse="true"}
+## Answer
+
+Here, we will create logical vectors and use `TRUE` values to tell which days satisfy the conditions. Note that the vector `temps` has names to make it easier to tell.
+
+```{r}
+#| eval: true
+#| output: true
+
+temps >= 30
+
+temps == 19
+
+temps < 20
+
+temps > 25
+
+temps <= 22
+```
+:::
+
+### The `sum()` function
+
+-   Applying the `sum()` function to a logical vector gives the number of `TRUE` values.
+
+-   Recall that implicit coercion turns logical values to $1$'s and $0$'s.
+
+```{r}
+#| eval: true
+#| output: true
+
+# 1 + 0 + 0 + 1 + 1 
+v <- c(TRUE, FALSE, FALSE, TRUE, TRUE)
+sum(v)
+```
+
+💻 **Hands-On**
+
+Consider the following vector
+
+```{r}
+#| eval: true
+#| output: true
+
+x <- c(-2, -1, 0, 1, 2, 3)
+```
+
+Try the following R code and see what it returns.
+
+```{r}
+sum(x < 0)
+
+sum(x <= 0)
+
+sum(x > 0)
+
+sum(x >= 0)
+
+sum(x == 0)
+
+sum(x != 0)
+```
+
+::: {.callout-tip collapse="true"}
+## Answer
+
+```{r}
+#| eval: true
+#| output: true
+
+sum(x < 0)
+
+sum(x <= 0)
+
+sum(x > 0)
+
+sum(x >= 0)
+
+sum(x == 0)
+
+sum(x != 0)
+```
+:::
+
+
+💻 **Hands-On**
+
+Consider daily high temperatures in celsius over two weeks. Write R code to answer the following questions:
+
+-   How many days had temperatures **below 18°C**?
+
+-   How many days had temperatures **greater than 26°C**?
+
+-   How many days had temperatures **at most 21°C**?
+
+-   How many days had temperatures **at least 28°C**?
+
+```{r}
+#| eval: true
+#| output: true
+
+# Daily high temperatures over two weeks
+temps <- c(
+  Mon02 = 18, Tue03 = 21, Wed04 = 19, Thu05 = 25, Fri06 = 27, Sat07 = 30, Sun08 = 22, 
+  Mon09 = 20, Tue10 = 16, Wed11 = 24, Thu12 = 28, Fri13 = 31, Sat14 = 29, Sun15 = 17
+)
+```
+
+::: {.callout-tip collapse="true"}
+## Answer
+
+```{r}
+#| eval: true
+#| output: true
+
+sum(temps < 18)
+
+sum(temps > 26)
+
+sum(temps <= 21)
+
+sum(temps >= 28)
+```
+:::
+
+### The `which()` function
+
+-   The `which()` function returns the indices of `TRUE` values.
+
+💻 **Hands-On**
+
+Consider the following vector
+
+```{r}
+#| eval: true
+#| output: true
+
+x <- c(-2, -1, 0, 1, 2, 3)
+```
+
+Try the following R code and see what it returns.
+
+```{r}
+
+which(x < 0)
+
+which(x > 0)
+ 
+which(x <= 0)
+ 
+which(x >= 0)
+
+which(x == 0)
+
+which(x != 0)
+```
+
+::: {.callout-tip collapse="true"}
+## Answer
+
+```{r}
+#| eval: true
+#| output: true
+
+which(x < 0)
+
+which(x > 0)
+ 
+which(x <= 0)
+ 
+which(x >= 0)
+
+which(x == 0)
+
+which(x != 0)
+```
+:::
+
+### Relational operators
+
+-   **Relational operators** are powerful tools to combine conditional statements.
+
+|                           |                 |
+|:--------------------------|:----------------|
+| **Relationship Operator** | **Description** |
+| &                         | and             |
+| \|                        | or              |
+| !                         | not             |
+
+💻 **Hands-On**
+
+Consider the following vector
+
+```{r}
+#| eval: true
+#| output: true
+
+x <- c(1, 2, 3, 4, 5, 6, 7, 8, 9)
+```
+
+Try the following R code and see what it returns.
+
+```{r}
+
+x > 3 & x < 8
+
+!(x > 3 & x < 8)
+```
+
+::: {.callout-tip collapse="true"}
+## Answer
+
+```{r}
+#| eval: true
+#| output: true
+
+# 3 < x < 8
+x > 3 & x < 8
+
+# Opposite of 3 < x < 8
+!(x > 3 & x < 8)
+```
+:::
+
+💻 **Hands-On**
+
+Consider the following vector
+
+```{r}
+#| eval: true
+#| output: true
+
+x <- c(1, 2, 3, 4, 5, 6, 7, 8, 9)
+```
+
+Try the following R code and see what it returns.
+
+```{r}
+
+x < 4 | x > 6
+
+!(x < 4 | x > 6)
+```
+
+::: {.callout-tip collapse="true"}
+## Answer
+
+```{r}
+#| eval: true
+#| output: true
+
+# x < 4 or x > 6
+x < 4 | x > 6
+
+# Opposite of x < 4 or x > 6
+!(x < 4 | x > 6)
+```
+:::
+
+💻 **Hands-On**
+
+Consider daily high temperatures in celsius over two weeks. Write R code to answer the following questions:
+
+-   Which days had temperatures **at least 20°C and at most 25°C**?
+
+-   Which days had temperatures **below 18°C or above 28°C**?
+
+```{r}
+
+# Daily high temperatures over two weeks
+temps <- c(
+  Mon02 = 18, Tue03 = 21, Wed04 = 19, Thu05 = 25, Fri06 = 27, Sat07 = 30, Sun08 = 22, 
+  Mon09 = 20, Tue10 = 16, Wed11 = 24, Thu12 = 28, Fri13 = 31, Sat14 = 29, Sun15 = 17
+)
+```
+
+::: {.callout-tip collapse="true"}
+## Answer
+
+```{r}
+#| eval: true
+#| output: true
+
+which(temps >= 20 & temps <= 25)
+
+which(temps < 18 | temps > 28)
+```
+:::
+
+## Subsetting
+
+-   Certain elements of a vector can be subsetted using the brackets `[]`
+
+![](https://github.com/hungtong/DS-01-101/blob/main/image/2_vector_index.png?raw=true){fig-cap="From Dr. Gaston Sanchez"}
+
+-   Subsetting can be done using one of the following indexing methods:
+
+    -   Numeric indexing
+
+    -   Logical indexing
+
+    -   Character indexing (if the vector has names; not covered here)
+
+## Numeric indexing
+
+-   Numeric indexing means telling R the specific indices to return values.
+
+-   Consider the following vector
+
+```{r}
+#| eval: true
+#| output: true
+
+#       1   2   3   4   5   6   7
+v <- c(70, 66, 82, 85, 78, 90, 73)
+```
+
+-   We have
+
+```{r}
+#| eval: true
+#| output: true
+#| error: true
+
+# 1st value
+v[1]            
+
+# 4th value
+v[4]            
+
+# last value, 7th value
+v[length(v)]    
+
+# Not available
+v[320]          
+```
+
+-   Numeric indexing can also use a vector of multiple indices.
+
+```{r}
+#| eval: true
+#| output: true
+#| error: true
+
+# at 2nd, 3rd, 4th, 5th
+v[2:5]                 
+
+# at 5th, 4th, 3rd, 2nd
+v[5:2]                 
+
+# at 3rd, 1st, 3rd, 5th, 2nd
+v[c(3, 1, 3, 5, 2)]    
+```
+
+-   Note that negative indices mean all but the specified indices.
+
+```{r}
+#| eval: true
+#| output: true
+#| error: true
+
+# all but 1st value
+v[-1]                    
+
+# all but 2nd and 5th values
+v[-c(2, 5)]              
+
+# all but 1st to 4th values
+v[-(1:4)]                
+
+# error!
+v[-1:4]                  
+```
+
+💻 **Hands-On**
+
+Consider the following vector
+
+```{r}
+#| eval: true
+#| output: true
+
+#       1   2   3   4   5   6   7
+v <- c(70, 66, 82, 85, 78, 90, 73)
+```
+
+Write R code to return the following in `v`
+
+-   The second value
+
+-   The sixth value
+
+-   The first and last values.
+
+-   The values at positions 3 through 6
+
+-   The values at positions 6 through 3
+
+-   The values at positions 1, 4, and 7
+
+-   All values except the first.
+
+-   All values except the last two.
+
+-   All values except positions 2 and 6.
+
+::: {.callout-tip collapse="true"}
+## Answer
+
+```{r}
+#| eval: true
+#| output: true
+
+v[2]
+
+v[6]
+
+v[c(1, length(v))]
+
+v[3:6]
+
+v[6:3]
+
+v[c(1, 4, 7)]
+
+v[-1]
+
+v[-(6:7)]    # or v[-c(6, 7)]
+
+v[-c(2, 6)]
+```
+:::
+
+## Logical Indexing
+
+-   **Logical indexing** means telling R which values to return and which values not to return.
+
+-   With logical indexing, `TRUE` will retain the elements, while `FALSE` will discard the elements.
+
+-   Logical indexing is powerful because it allows for subsetting with conditions.
+
+-   Consider the following vector
+
+```{r}
+#| eval: true
+#| output: true
+
+#       1   2   3   4   5   6   7
+v <- c(70, 66, 82, 85, 78, 90, 73)
+```
+
+```{r}
+#| eval: true
+#| output: true
+
+# 1st, 6th
+v[c(TRUE, FALSE, FALSE, FALSE, FALSE, TRUE, FALSE)]    
+
+# 2nd, 3rd, 4th
+v[c(FALSE, TRUE, TRUE, TRUE, FALSE, FALSE, FALSE)]     
+
+# those values greater than 80
+v[v > 80]    
+```
+
+💻 **Hands-On**
+
+Consider the following vector
+
+```{r}
+#| eval: true
+#| output: true
+
+#       1   2   3   4   5   6   7
+v <- c(70, 66, 82, 85, 78, 90, 73)
+```
+
+Use numeric and logical indexing to subset
+
+-   `66 82 90 73`
+
+-   `70 66 78 73`
+
+::: {.callout-tip collapse="true"}
+## Answer
+
+```{r}
+
+# 66 82 90 73
+
+v[c(2, 3, 6, 7)]
+v[c(FALSE, TRUE, TRUE, FALSE, FALSE, TRUE, TRUE)]
+
+# 70 66 78 73
+
+v[c(1, 2, 5, 7)]
+v[c(TRUE, TRUE, FALSE, FALSE, TRUE, FALSE, TRUE)]
+v[v < 80]
+```
+:::
+
+💻 **Hands-On**
+
+The monthly cost for a stand-alone drug plan varies from plan to plan and from state to state. The vector `cost` gives the premium for the plan with the lowest cost for each state in 2005 (excludes District of Columbia). Write R code using `cost` and `state.name` to find state(s) with a monthly premium
+
+-   Less than or equal to $\$5$
+
+-   Greater than $\$10$
+
+-   Between $\$5$ and $\$10$ (exclusive)
+
+-   Exactly equal to $\$1.87$
+
+-   At most $\$7$
+
+-   At least $\$15$
+
+-   To be the smallest
+
+-   To be the largest
+
+```{r}
+#| eval: true
+#| output: true
+
+# Recall the vector `state.name`
+
+cost <- c(
+  14.08, 20.05, 6.14, 10.31, 5.41, 8.62, 7.32,
+  6.44, 10.35, 17.91, 17.18, 6.33, 13.32, 12.30, 1.87,
+  9.48, 12.30, 17.06, 19.60, 6.44, 7.32, 13.75, 1.87,
+  11.60, 10.29, 1.87, 1.87, 6.42, 19.60, 4.43, 10.65,
+  4.10, 13.27, 1.87, 14.43, 10.07, 6.93, 10.14, 7.32,
+  16.57, 1.87, 14.08, 10.31, 6.33, 7.32, 8.81, 6.93,
+  10.14, 11.42, 1.87
+)
+```
+
+::: {.callout-tip collapse="true"}
+## Answer
+
+```{r}
+#| eval: true
+#| output: true
+
+state.name[cost <= 5]
+
+state.name[cost > 10]
+
+state.name[cost > 5 & cost < 10]
+
+state.name[cost == 1.87]
+
+state.name[cost <= 7]
+
+state.name[cost >= 15]
+
+state.name[cost == min(cost)]
+
+state.name[cost == max(cost)]
+```
+:::
+
+## Useful functions for vectors
+
+Given a vector,
+
+-   `head()` returns its first few elements
+
+-   `tail()` returns its last few elements
+
+-   `sort()` returns its sorted version in increasing or decreasing order
+
+-   `order()` returns the indices of its sorted version
+
+-   `rev()` returns the reversed vector
+
+-   `unique()` returns a vector of its unique elements
+
+-   `table()` shows unique elements and their frequencies
+
+💻 **Hands-On**
+
+The monthly cost for a stand-alone drug plan varies from plan to plan and from state to state. The vector `cost` gives the premium for the plan with the lowest cost for each state in 2005 (excludes District of Columbia).
+
+```{r}
+#| eval: true
+#| output: true
+
+cost <- c(
+  14.08, 20.05, 6.14, 10.31, 5.41, 8.62, 7.32,
+  6.44, 10.35, 17.91, 17.18, 6.33, 13.32, 12.30, 1.87,
+  9.48, 12.30, 17.06, 19.60, 6.44, 7.32, 13.75, 1.87,
+  11.60, 10.29, 1.87, 1.87, 6.42, 19.60, 4.43, 10.65,
+  4.10, 13.27, 1.87, 14.43, 10.07, 6.93, 10.14, 7.32,
+  16.57, 1.87, 14.08, 10.31, 6.33, 7.32, 8.81, 6.93,
+  10.14, 11.42, 1.87
+)
+```
+
+Try the following R code and see what it returns.
+
+```{r}
+
+head(cost)    # head(cost, n = 6)
+
+tail(cost)    # tail(cost, n = 6)
+
+sort(cost)
+
+sort(cost, decreasing = TRUE)
+
+order(cost)
+
+order(cost, decreasing = TRUE)
+
+rev(cost)
+```
+
+::: {.callout-tip collapse="true"}
+## Answer
+
+```{r}
+#| eval: true
+#| output: true
+
+head(cost)    # head(cost, n = 6)
+
+tail(cost)    # tail(cost, n = 6)
+
+sort(cost)
+
+sort(cost, decreasing = TRUE)
+
+order(cost)
+
+order(cost, decreasing = TRUE)
+
+rev(cost)
+```
+:::
+
+💻 **Hands-On**
+
+The vectors `scores` and `grades` contain exam scores and the corresponding letter grades for students in a statistics class. 
+
+```{r}
+#| eval: true
+#| output: true
+
+scores <- c(
+  88, 92, 75, 84, 91, 67, 73, 88, 95, 78,
+  82, 90, 69, 74, 85, 88, 93, 77, 81, 89,
+  94, 72, 68, 86, 80, 76, 83, 88, 91, 79
+)
+
+grades <- c(
+  'B', 'A', 'C', 'B', 'A', 'D', 'C', 'B', 'A', 'C',
+  'B', 'A', 'D', 'C', 'B', 'B', 'A', 'C', 'B', 'B',
+  'A', 'C', 'D', 'B', 'B', 'C', 'B', 'B', 'A', 'C'
+)
+```
+
+Write R code to:
+
+-   Show the first and last few exam scores
+
+-   Sort the exam scores in decreasing order
+
+-   Show unique letter grades of students in this class and their frequencies
+
+::: {.callout-tip collapse="true"}
+## Answer
+
+```{r}
+#| eval: true
+#| output: true
+
+head(scores)
+
+tail(scores)
+
+sort(scores, decreasing = TRUE)
+
+table(grades)
+```
+:::

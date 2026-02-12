@@ -1,0 +1,626 @@
+---
+toc: true
+toc-depth: 3
+echo: true
+eval: false
+output: false
+---
+
+# 2A: Vector
+
+## Readings
+
+From **R Coding Basics: An Introduction to the Basics of Coding in R** by Dr. Gaston Sanchez:
+
+-   [First Contact with Vectors](https://www.gastonsanchez.com/R-coding-basics/1-01-vectors-intro.html)
+
+-   [Properties of Vectors](https://www.gastonsanchez.com/R-coding-basics/1-02-vectors-properties.html)
+
+-   [Creating Vectors](https://www.gastonsanchez.com/R-coding-basics/1-03-vectors-creation.html)
+
+-   [More about Vectors](https://www.gastonsanchez.com/R-coding-basics/1-04-vectors-concepts.html)
+
+## Topics
+
+-   Vectors
+
+-   Atomic types
+
+-   Special values
+
+-   Creating vectors with `c()`, `:`, `seq()` , and `rep()`
+
+-   Useful functions for numeric vectors
+
+-   Built-in vectors
+
+## Basic data structures
+
+-   Basic data structures in R include vector, factor, matrix, array, data frame, and list.
+
+![](https://github.com/hungtong/DS-01-101/blob/main/image/r_data_structures.png?raw=true){fig-align="center" width="652"}
+
+-   These structures are characterized by their dimension and whether they require all elements to be of the same atomic type.
+
+| Structure  | Dimension | Same Atomic Type |
+|------------|:---------:|:----------------:|
+| Vector     |     1     |       Yes        |
+| Factor     |     1     |       Yes        |
+| Matrix     |     2     |       Yes        |
+| Data Frame |     2     |        No        |
+| Array      |  $\ge$ 2  |       Yes        |
+| List       |     1     |        No        |
+
+## Vector
+
+-   A **vector** is a sequence of elements that are of the [same]{.underline} **atomic** **type**.
+
+-   In R, the index of the first element is always **1**.
+
+```{r}
+#  1   2   3   4   5   6   7
+c(70, 66, 82, 85, 78, 90, 73)
+```
+
+-   A single value is treated as a vector of one element
+
+```{r}
+70    # same as c(70)
+```
+
+## Atomic types
+
+-   An **atomic type** refers to the six fundamental types in R: `logical`, `integer`, `double`, `character`, `raw`, and `complex`.
+
+-   Note that `integer` and `double` are also known as `numeric`.
+
+```{r}
+
+# logical vector
+c(TRUE, FALSE, FALSE, TRUE, TRUE)
+c(T, F, F, T, T)
+
+# integer vector (numeric)
+c(1L, 3L, 2L, 4L, 2L)
+
+# double vector (numeric)
+c(6.3, 8.2, 3.1, 4.4, 7.6)
+
+# character vector
+c("apple", "orange", "apple", "apple", "orange")  
+c('dog', 'cat', 'dog', 'dog', 'cat')  
+
+# raw and complex exist but not very popular
+```
+
+-   The functions `typeof()` and `storage.mode()` tells us the atomic type of a vector.
+
+-   The function `mode()` works similarly, except that it returns `numeric` for both `integer` and `double`.
+
+```{r}
+#| eval: true
+#| output: true
+
+typeof(2.3)
+
+storage.mode(2.3)
+
+mode(2.3)
+```
+
+-   There are also dedicated checking function for each atomic type.
+
+```{r}
+
+is.logical()
+
+is.integer()    # integer but not double
+is.double()     # double but not integer
+is.numeric()    # either integer or double
+
+is.character()
+```
+
+💻 **Hands-On**
+
+Try the following R code to see what it returns.
+
+```{r}
+
+enrollment <- c(10, 30, 15, 20)
+
+typeof(enrollment)
+
+storage.mode(enrollment)
+
+mode(enrollment)
+
+is.integer(enrollment)
+
+is.double(enrollment)
+
+is.numeric(enrollment)   
+```
+
+::: {.callout-tip collapse="true"}
+## Answer
+
+Note that `enrollment` contains whole numbers but without writing `c(10L, 30L, 15L, 20L)`, R still thinks of them as `double`. 
+
+```{r}
+#| eval: true
+#| output: true
+
+enrollment <- c(10, 30, 15, 20)
+
+typeof(enrollment)
+
+storage.mode(enrollment)
+
+mode(enrollment)
+
+is.integer(enrollment)
+
+is.double(enrollment)
+
+is.numeric(enrollment)  
+```
+:::
+
+## Special values
+
+-   `NULL` indicates an undefined object
+
+-   `NA` indicates missing or "not available" value
+
+-   `NaN` indicates an object that is "not a number"
+
+-   `Inf` indicates positive infinite
+
+-   `-Inf` indicates negative infinite
+
+💻 **Hands-On**
+
+Try the following R code to see what it returns.
+
+```{r}
+
+sqrt(-7)
+
+log(-5)
+
+0 / 0
+
+100 / 0
+
+-100 / 0
+
+log(0)
+```
+
+::: {.callout-tip collapse="true"}
+## Answer
+
+```{r}
+#| eval: true
+#| output: true
+
+sqrt(-7)
+
+log(-5)
+
+0 / 0
+
+100 / 0
+
+-100 / 0
+
+log(0)
+```
+:::
+
+## Creating vectors
+
+-   As shown previously, a vector can be manually created using the combine `c()` function.
+
+```{r}
+
+# logical vector
+c(TRUE, FALSE, FALSE, TRUE, TRUE)
+c(T, F, F, T, T)
+
+# integer vector (numeric)
+c(1L, 3L, 2L, 4L, 2L)
+
+# double vector (numeric)
+c(6.3, 8.2, 3.1, 4.4, 7.6)
+
+# character vector
+c("apple", "orange", "apple", "apple", "orange")  
+c('dog', 'cat', 'dog', 'dog', 'cat') 
+```
+
+-   Elements in a vector can have names!
+
+-   We can give names directly in `c()`
+
+```{r}
+#| eval: true
+#| output: true
+
+c(exam1 = 90, exam2 = 85, final = 92)
+```
+
+-   We can also create the vector and assign names later.
+
+```{r}
+#| eval: true
+#| output: true
+
+scores <- c(90, 85, 92)
+names(scores) <- c('exam1', 'exam2', 'exam3')
+scores
+```
+
+💻 **Hands-On**
+
+-   Use `c()` to create a short vector for each of the four atomic types: `integer`, `double`, `logical`, and `character`.
+
+-   Assign each vector to a variable with a descriptive name.
+
+-   Choose one of your vectors and assign names to its elements.
+
+::: {.callout-tip collapse="true"}
+## Answer
+
+```{r}
+
+# integer
+experience <- c(1L, 3L, 5L, 2L)
+
+# double
+weight <- c(143.5, 150, 127.3, 133.5)
+
+# logical
+in_stock <- c(TRUE, FALSE, FALSE, TRUE)
+
+# character
+student_levels <- c('Junior', 'Freshman', 'Junior', 'Senior')
+```
+:::
+
+## Creating numeric vectors
+
+### The colon operator
+
+-   The colon operator `:` generate a numeric sequence of one-unit steps by
+
+```{r}
+
+### start:end (end is like an upper/lower bound)
+
+-2:5       # start with -2, increase by 1
+ 
+5:-2       # start with 5, decrease by 1
+
+3.7:9.2    # start with 3.7, increase by 1
+```
+
+💻 **Hands-On**
+
+Use the colon operator `:` to quickly create the following vectors
+
+```{r}
+
+c(3, 4, 5, 6, 7, 8, 9, 10, 11, 12)
+
+c(17, 16, 15, 14, 13, 12, 11, 10, 9)
+```
+
+::: {.callout-tip collapse="true"}
+## Answer
+
+Since the vectors contain consecutive elements, the colon operator `:` is useful.
+
+```{r}
+#| eval: true
+#| output: true
+
+3:12   
+
+17:9   
+```
+:::
+
+### The `seq()` function
+
+-   The `seq()` function generates a numeric sequence of more general steps.
+
+```{r}
+#| eval: true
+#| output: true
+
+# step size of 2
+seq(from = -2, to = 5, by = 2)            
+
+# step size of 0.75
+seq(from = -2, to = 5, by = 0.75)         
+
+# steps are automatically adjusted
+seq(from = -2, to = 5, length.out = 6)    
+```
+
+💻 **Hands-On**
+
+Use the `seq()` function to create the vector that
+
+-   Starts at `5` and ends at `-3`, increasing or decreasing by `1`
+
+-   Starts at `-1` and ends at `7`, with a step size of `1.5`.
+
+-   Starts at `0` and ends at `14`, containing `5` equally spaced values.
+
+-   Starts at `-4` and ends at `4`, including only every other number.
+
+::: {.callout-tip collapse="true"}
+## Answer
+
+```{r}
+#| eval: true
+#| output: true
+
+seq(from = 5, to = -3, by = -1)
+
+seq(from = -1, to = 7, by = 1.5)
+
+seq(from = 0, to = 14, length.out = 5)
+
+seq(from = -4, to = 4, by = 2)
+```
+:::
+
+### The `rep()` function
+
+-   The `rep()` function creates vectors with repeated elements.
+
+```{r}
+#| eval: true
+#| output: true
+
+# repeat -1 five times
+rep(-1, times = 5)                      
+
+# repeat c(-1, 0, 3) four times
+rep(c(-1, 0, 3), times = 4)             
+
+# repeat -1 two times, 0 three times, 3 four times
+rep(c(-1, 0, 3), times = c(2, 3, 4))    
+
+# repeat -1 five times, 0 five times, 3 five times
+rep(c(-1, 0, 3), each = 5)              
+```
+
+💻 **Hands-On**
+
+Use the `rep()` function to create the vector in which
+
+-   Each value in the vector `c(1, 3, 6)` is repeated exactly 4 times
+
+-   The value `4` is repeated `6` times
+
+-   The vector `c(2, −1, 1)` is repeated `3` times
+
+-   The values in `c(5, 0, −2)` are repeated so that `5` appears once, `0` appears three times, and `-2` appears four times.
+
+**Answer:**
+
+::: {.callout-tip collapse="true"}
+## Answer
+
+```{r}
+#| eval: true
+#| output: true
+
+rep(c(1, 3, 6), each = 4)
+
+rep(4, times = 6)
+
+rep(c(2, -1, 1), times = 3)
+
+rep(c(5, 0, -2), times = c(1, 3, 4))
+```
+:::
+
+## Summary functions for numeric vectors
+
+Consider a vector
+
+```{r}
+#| eval: true
+#| output: true
+
+#       1   2   3   4   5   6   7
+v <- c(70, 66, 82, 85, 78, 90, 73)
+```
+
+-   `length()` returns its length
+
+-   `min()` returns its minimum value
+
+-   `max()` returns its maximum value
+
+-   `which.min()` returns the index of its minimum value
+
+-   `which.max()` returns the index of its maximum value
+
+-   `sum()` returns the sum of its elements
+
+-   `prod()` returns the product of its elements
+
+```{r}
+#| eval: true
+#| output: true
+
+length(v)
+
+min(v)
+
+which.min(v)
+
+max(v)
+
+which.max(v)
+
+sum(v)
+
+prod(v)
+```
+
+💻 **Hands-On**
+
+Consider a vector containing calorie content of light beer brands. Write R code to answer the following questions:
+
+-   How many light beer brands are included?
+
+-   What is the lowest calorie content among the light beers?
+
+-   What is the highest calorie content among the light beers?
+
+-   At which position does the highest calorie value occur?
+
+-   What is the total calorie content across all light beer brands?
+
+```{r}
+#| eval: true
+
+# Calories per 100ml of light beer
+beer_cals <- c(29, 28, 33, 31, 30, 33, 30, 28, 27, 41, 39, 31, 29, 
+               23, 32, 31, 32, 19, 40, 22, 34, 31, 42, 35, 29, 43)
+```
+
+::: {.callout-tip collapse="true"}
+## Answer
+
+```{r}
+#| eval: true
+#| output: true
+
+# Number of light beer brands
+length(beer_cals)
+
+# Lowest calorie content
+min(beer_cals)
+
+# Highest calorie content
+max(beer_cals)
+
+# Position of the highest calorie value
+which.max(beer_cals)
+
+# Total calorie content
+sum(beer_cals)
+```
+:::
+
+💻 **Hands-On**
+
+Try the following R code to see what it returns.
+
+```{r}
+
+#       1   2   3   4   5   6   7
+v <- c(70, 66, 82, 85, NA, 90, 73)
+
+length(v)
+
+min(v)
+
+which.min(v)
+
+max(v)
+
+which.max(v)
+
+sum(v)
+
+prod(v)
+```
+
+::: {.callout-tip collapse="true"}
+## Answer
+
+Note that the vector `v` contains a missing value `NA`
+
+```{r}
+#| eval: true
+#| output: true
+
+#       1   2   3   4   5   6   7
+v <- c(70, 66, 82, 85, NA, 90, 73)
+```
+
+Therefore, some functions return `NA`. The functions `which.min()` and `which.max()` exclude missing values first so they return some values. 
+
+```{r}
+#| eval: true
+#| output: true
+
+length(v)
+
+min(v)
+
+which.min(v)
+
+max(v)
+
+which.max(v)
+
+sum(v)
+
+prod(v)
+```
+:::
+
+## Built-in vectors
+
+-   R includes several built-in vectors for alphabets, $\pi$, months, and US states.
+
+💻 **Hands-On**
+
+Try the following R code and see what it returns. Feel free to get the help documentation.
+
+```{r}
+
+LETTERS
+letters
+
+month.abb
+month.name
+
+pi
+
+state.abb
+state.name
+state.area
+```
+
+::: {.callout-tip collapse="true"}
+## Answer
+
+```{r}
+#| eval: true
+#| output: true
+
+LETTERS
+letters
+
+month.abb
+month.name
+
+pi
+
+state.abb
+state.name
+state.area
+```
+:::

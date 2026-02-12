@@ -1,0 +1,610 @@
+---
+toc: true
+toc-depth: 3
+echo: true
+eval: false
+output: false
+---
+
+# 1: R Basics
+
+## Reading
+
+From **R Coding Basics: An Introduction to the Basics of Coding in R** by Dr. Gaston Sanchez:
+
+-   [First Contact with R](https://www.gastonsanchez.com/R-ice-breaker/1-04-first-contact.html)
+
+-   [Getting Help](https://www.gastonsanchez.com/R-ice-breaker/1-05-help-documentation.html)
+
+## Topics
+
+-   Mathematical operations
+
+-   Operation precedence
+
+-   Comments
+
+-   Objects, variables, and assignments
+
+-   Variable names and reserved words
+
+-   Functions
+
+-   Help Documentation
+
+-   Packages
+
+## Mathematical Operations
+
+-   Common mathematical operations in R include:
+
+```{r}
+
+2 + 2     # Add
+
+3 - 4     # Subtract
+
+5 * 2     # Multiply
+
+4 / 2     # Divide
+
+2 ^ 3     # Exponent
+2 ** 3    # Exponent as well
+```
+
+## Operation Precedence
+
+-   In R, operator precedence (from highest to lowest) is:
+
+```{r}
+
+# Parenthesis
+(2 + 3) * 4
+
+# Exponent
+2 ^ 3
+2 ** 3
+
+# Multiply and divide (from left to right)
+5 * 2
+4 / 2
+
+# Add and subtract
+2 + 2
+3 - 4
+```
+
+💻 **Hands-On**
+
+Evaluate the following expressions in R:
+
+-   $19 - 3 \times 6$
+
+-   $20 - 2 \times 3^2 + 11$
+
+-   $3 + 8 \div 2 \times 2$
+
+-   $7 - (5 \times 3 + 2^3)$
+
+
+::: {.callout-tip collapse="true"}
+## Answer
+
+```{r}
+#| eval: true
+#| output: true
+
+19 - 3 * 6
+
+20 - 2 * 3^2 + 11
+
+3 + 8 / 2 * 2
+
+7 - (5 * 3 + 2^3)
+```
+:::
+
+## Comments
+
+-   Comments are notes to explain what the code does.
+
+-   In R, comments are created using a hash `#`.
+
+-   On a line, everything after a hash will be ignored. In other words, even if the comments contain some code, it will not be executed.
+
+-   The keyboard short cut to comment out blocks of code is `Command` or `Ctrl` + `Shift` + `c`
+
+```{r}
+
+(2 + 3) * 4    # 2 + 3 will be evaluated first, then multiplied by 4
+```
+
+💻 **Hands-On**
+
+Run the following code in the console and add a comment describing the output.
+
+```{r}
+
+5 * (2 + 4) / 2 
+
+(5 * 2 + 4) / 2
+
+5 * (2 + 4 / 2)
+```
+
+::: {.callout-tip collapse="true"}
+## Answer
+
+```{r}
+#| eval: true
+#| output: true
+
+5 * (2 + 4) / 2    # 15
+
+(5 * 2 + 4) / 2    # 7
+
+5 * (2 + 4 / 2)    # 20
+```
+:::
+
+## Object, Variable, and Assignment
+
+-   An **object** is anything that stores values or instructions.
+
+-   A **variable** is a name associated to an object so that we can access the object in memory.
+
+-   A variable can be created using the assignment operator `<-` (left arrow) or the equal sign `=`.
+
+```{r}
+
+# 100 is an object itself
+100
+
+# We name this object 'eagles'
+eagles <- 100
+
+# The variable 'eagles' allows us to access the object 100
+eagles
+```
+
+💻 **Hands-On**
+
+Create the following variables:
+
+-   `year` that stores the value `2026`
+
+-   `price` that stores the value `5.5`
+
+-   `score` that stores the value `93`
+
+::: {.callout-tip collapse="true"}
+## Answer
+
+```{r}
+#| eval: true
+#| output: true
+
+year <- 2026
+
+price <- 5.5
+
+score <- 9.3
+```
+:::
+
+## Variable Names
+
+-   Variable names are **case-sensitive**.
+
+```{r}
+
+# These names are NOT the same
+eagles
+
+Eagles
+
+EAGLES
+
+eaGleS
+
+EagLEs
+
+EaGlEs
+```
+
+💻 **Hands-On**
+
+Run the following code in the console. What does it return?
+
+```{r}
+
+EAGLES <- 123
+
+Eagles
+```
+
+::: {.callout-tip collapse="true"}
+## Answer
+
+Since variable names are case-sensitive, `EAGLES` and `Eagles` are different. In this case, we created `EAGLES` but not `Eagles` so R will throw an error.
+
+```{r}
+#| eval: true
+#| output: true
+#| error: true
+
+EAGLES <- 123
+
+Eagles
+```
+:::
+
+## Variable Names
+
+-   A variable name must start with a letter or a period (not recommended). The rest can only consist of letters `a-z, A-Z`, numbers `0-9`, underscores `_`, and periods `.`
+
+-   A variable name cannot be a reserved word (`TRUE`, `FALSE`, `if`, `for`, `while`, etc.)
+
+```{r}
+
+# Valid variable names
+age            
+height_cm1    
+weight2.kg    
+
+# Valid but not recommended
+.data       
+True
+```
+
+## Reserved Words
+
+-   **Reserved words** are words with special meaning and [cannot]{.underline} be used as variable names.
+
+```{r}
+
+if, else, for, while, function 
+
+break, stop, continue, next
+
+TRUE, FALSE
+
+NULL, NA, Inf, NaN
+```
+
+💻 **Hands-On**
+
+The following R code attempts to create variables. Run each line in the console and explain why the variable name is invalid.
+
+```{r}
+
+9null <- 5
+
+null%9 <- 5
+
+null 9 <- 5
+
+_null9 <- 5 
+
+null,9 <- 5
+
+NULL <- 5
+```
+
+::: {.callout-tip collapse="true"}
+## Answer
+
+Note that all given variable names are invalid. See below for the explanation.
+
+```{r}
+
+9null <- 5     # variable name cannot start with a number
+
+null%9 <- 5    # variable name cannot contain any percentage
+
+null 9 <- 5    # variable name cannot contain any space
+
+_null9 <- 5    # variable name cannot start with an underscore
+
+null,9 <- 5    # variable name cannot contain any comma
+
+NULL <- 5      # variable name cannot be a reserved word
+```
+:::
+
+## Naming Styles
+
+Three common naming styles for variables include
+
+```{r}
+
+eagles_green_swag    # snake case
+
+eaglesGreenSwag      # camel case
+
+eagles.green.swag    # period case
+```
+
+💻 **Hands-On**
+
+Create three variables that represent the phrase "Crimson Roll Tide" using the three naming styles.
+
+::: {.callout-tip collapse="true"}
+## Answer
+
+[Tidyverse style guide]{https://style.tidyverse.org/syntax.html) recommends the snake case, which is what I tend to use as well!
+
+```{r}
+
+crimson_roll_tide    # snake case
+
+crimsonRollTide      # camel case
+
+crimson.roll.tide    # period case
+```
+:::
+
+## **Functions**
+
+-   A function is a collection of R code to perform a complex task or obtain certain results.
+
+-   R has many useful built-in functions.
+
+```{r}
+
+# Absolute value, sign function, and squared root
+abs, sign, sqrt
+
+# Rounding of numbers
+round, floor, ceiling, trunc, signif
+
+# Logarithms and Exponentials
+exp, log, expm1, log1p
+
+# Combination and factorial
+choose, factorial, lchoose, lfactorial
+
+# Trigonometric and hyperbolic functions
+cos, sin, tan, cospi, sinpi, tanpi, acos, asin, atan
+cosh, sinh, tanh, acosh, asinh, atanh
+
+# Beta and gamma functions
+beta, lbeta, gamma, lgamma, digamma, trigamma, psigamma
+```
+
+💻 **Hands-On**
+
+Try the following code in the console.
+
+```{r}
+
+abs(-7)         # absolute value
+
+sqrt(25)        # squared root
+
+exp(3)          # exponential
+
+log(8)          # natural log
+
+factorial(6)    # 1 x 2 x 3 x 4 x 5 x 6
+```
+
+::: {.callout-tip collapse="true"}
+## Answer
+
+```{r}
+#| eval: true
+#| output: true
+
+abs(-7)         # absolute value
+
+sqrt(25)        # squared root
+
+exp(3)          # exponential
+
+log(8)          # natural log
+
+factorial(6)    # 1 x 2 x 3 x 4 x 5 x 6
+```
+:::
+
+## Getting Help
+
+-   If we want to learn more about a function, we can refer to its **help documentation**.
+
+```{r}
+
+# Using the operator '?'
+?abs
+?sqrt
+
+# Using the help() function
+help(abs)
+help(sqrt)
+```
+
+💻 **Hands-On**
+
+Use the help documentation to explain the purpose of the following functions.
+
+```{r}
+
+sign(-17)
+
+log1p(3)
+
+choose(5, 2)
+```
+
+::: {.callout-tip collapse="true"}
+## Answer
+
+To get the help documentation of the functions, we can use `?` or `help()`
+
+```{r}
+?sign
+help(sign)
+
+?log1p
+help(log1p)
+
+?choose
+help(choose)
+```
+
+The functions do the following
+
+```{r}
+#| eval: true
+#| output: true
+
+sign(-17)       # give -1 for negative number and 1 for positive number
+
+log1p(3)        # compute log(1 + 3)
+
+choose(5, 2)    # compute combination coefficient 5C2 
+```
+:::
+
+💻 **Hands-On**
+
+What does the following code do? Use the help documentation of `round()` to confirm your guess/observation.
+
+```{r}
+
+round(6.267)
+
+round(6.267, digits = 1)
+round(6.267, 1)
+
+round(6.267, digits = 2)
+round(6.267, 2)
+```
+
+::: {.callout-tip collapse="true"}
+## Answer
+
+To get the help documentation of `round()`, we can use `?` or `help()`. It is actually pretty self-explanatory! 
+
+```{r}
+?round
+help(round)
+```
+
+The given code does the following
+
+```{r}
+#| eval: true
+#| output: true
+
+# Round to the whole number (digits = 0)
+round(6.267)
+
+# Round to 1 decimal place
+round(6.267, digits = 1)
+
+# Round to 2 decimal places
+round(6.267, digits = 2)
+```
+:::
+
+## Packages
+
+-   A **package** is a collection of functions and data for specific purpose.
+
+-   Most developers make their packages freely available on the Comprehensive R Archive Network (CRAN).
+
+```{r}
+
+# Install a package
+install.packages("bannerCommenter")
+
+# Load an installed package
+library(bannerCommenter)
+library("bannerCommenter")
+
+# Uninstall a package
+remove.packages("bannerCommenter")
+```
+
+<!-- ## Exercise 1 -->
+
+<!-- Evaluate the expression at $x = 3$, $y = -2$, and $z = 4$ -->
+
+<!-- -   $6z + 5x - 3y$ -->
+
+<!-- -   $x^2 - 5y + 4z$ -->
+
+<!-- -   $\dfrac{4z - 2y}{20 x}$ -->
+
+<!-- ::: {.callout-tip collapse="true"} -->
+<!-- ## Answer -->
+
+<!-- ```{r} -->
+
+
+<!-- ``` -->
+<!-- ::: -->
+
+<!-- ## Exercise 2 -->
+
+<!-- The balance $A$ in an account that earns an annual compound interest rate $r$ (in decimal form) for $t$ years is given by -->
+
+<!-- $$ -->
+<!-- A = P \left( 1 + \dfrac{r}{n} \right)^{nt}, -->
+<!-- $$ -->
+
+<!-- where $P$ is the principal (initial deposit) and $n$ is the number of compoundings per year. -->
+
+<!-- 1.  We deposit $\$6000$ in an account with an annual interest rate of $1.5\%$. What is our balance after $5$ years when the interest is compounded quarterly ($n = 4$)? -->
+
+<!-- 2.  We deposit $\$10,000$ in an account with an annual interest rate of $3.75\%$. What is our balance after $12$ years when the interest is compounded daily ($n = 365$)? -->
+
+<!-- ::: {.callout-tip collapse="true"} -->
+<!-- ## Answer -->
+
+<!-- ```{r} -->
+
+
+<!-- ``` -->
+<!-- ::: -->
+
+<!-- ## Exercise 3 -->
+
+<!-- The compound interest formula can be rewritten as -->
+
+<!-- $$ -->
+<!-- P = \dfrac{A}{\left( 1 + \dfrac{r}{n} \right)^{nt}} -->
+<!-- $$ -->
+
+<!-- Find the principal $P$ that we need to invest today at $4.5\%$ annual interest compounded monthly to earn $\$100,000$ in the next $20$ years. -->
+
+<!-- ::: {.callout-tip collapse="true"} -->
+<!-- ## Answer -->
+
+<!-- ```{r} -->
+
+
+<!-- ``` -->
+<!-- ::: -->
+
+<!-- ## Exercise 4 -->
+
+<!-- The formula for the volume of a cylinder is -->
+
+<!-- $$ -->
+<!-- V = \pi r^2 h -->
+<!-- $$ -->
+
+<!-- where $r$ is the radius and $h$ is the height. -->
+
+<!-- Find the height of a cylindrical shipping container with a volume of $15,607$ cubic inches and a radius of $12$ inches. You may find reading `help(pi)` or `?pi` useful. -->
+
+<!-- ::: {.callout-tip collapse="true"} -->
+<!-- ## Answer -->
+
+<!-- ```{r} -->
+
+
+<!-- ``` -->
+<!-- ::: -->
