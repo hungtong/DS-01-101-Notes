@@ -3,9 +3,9 @@ project:
   output-dir: docs
 
 book:
-  title: "Course Notes for DS 101: In-Depth Introduction to Data Science"
+  title: "Data Science Course Notes"
   author: "Hung Tong"
-  date: "Spring 2026"
+  date: "February 2026"
   chapters:
     - index.qmd
     # - intro.qmd

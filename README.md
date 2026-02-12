@@ -1,4 +1,6 @@
-## Course Notes for DS 01-101: In-Depth Introduction to Data Science at Rowan University
+## Data Science Course Notes
+
+This text contains my lecture notes for DS 101: In-Depth Introduction to Data Science at Rowan University.
 
 This work is licensed under the Creative Commons Attribution 4.0 International License (CC BY 4.0).
 

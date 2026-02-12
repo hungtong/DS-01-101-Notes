@@ -152,5 +152,15 @@
       "Base R programming",
       "<span class='chapter-number'>4</span>  <span class='chapter-title'>2C: Character Vector and Factor</span>"
     ]
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Data Science Course Notes",
+    "section": "",
+    "text": "Preface\nThis text contains my lecture notes for DS 101: In-Depth Introduction to Data Science at Rowan University.",
+    "crumbs": [
+      "Preface"
+    ]
   }
 ]
