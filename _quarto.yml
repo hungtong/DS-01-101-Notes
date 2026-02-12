@@ -2,20 +2,32 @@ project:
   type: book
 
 book:
-  title: "DS-01-101-Notes"
-  author: "Norah Jones"
-  date: "2/11/2026"
+  title: "Course Notes for DS 101: In-Depth Introduction to Data Science"
+  author: "Hung Tong"
+  date: "Spring 2026"
   chapters:
     - index.qmd
-    - intro.qmd
-    - summary.qmd
-    - references.qmd
+    # - intro.qmd
+    
+    - part: "Base R programming"
+      chapters:
+          - ls1_basics.qmd
+          - ls2a_vector.qmd
+          - ls2b_vector.qmd
+          - ls2c_vector.qmd
+        
+    # - summary.qmd
+    # - references.qmd
 
 bibliography: references.bib
+
+number-sections: false
 
 format:
   html:
     theme: cosmo
+    toc: true
+    self-contained: true
   pdf:
     documentclass: scrreprt
 
