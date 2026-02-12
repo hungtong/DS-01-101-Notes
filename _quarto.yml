@@ -1,5 +1,6 @@
 project:
   type: book
+  output-dir: docs
 
 book:
   title: "Course Notes for DS 101: In-Depth Introduction to Data Science"
@@ -15,6 +16,7 @@ book:
           - ls2a_vector.qmd
           - ls2b_vector.qmd
           - ls2c_vector.qmd
+          - ls3a_data_frame.qmd
         
     # - summary.qmd
     # - references.qmd

@@ -1,0 +1,156 @@
+[
+  {
+    "objectID": "ls3a_data_frame.html",
+    "href": "ls3a_data_frame.html",
+    "title": "3A: Data Frame",
+    "section": "",
+    "text": "Readings\nFrom R Coding Basics: An Introduction to the Basics of Coding in R by Dr. Gaston Sanchez:",
+    "crumbs": [
+      "Base R programming",
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>3A: Data Frame</span>"
+    ]
+  },
+  {
+    "objectID": "ls3a_data_frame.html#readings",
+    "href": "ls3a_data_frame.html#readings",
+    "title": "3A: Data Frame",
+    "section": "",
+    "text": "Data Frames",
+    "crumbs": [
+      "Base R programming",
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>3A: Data Frame</span>"
+    ]
+  },
+  {
+    "objectID": "ls3a_data_frame.html#topics",
+    "href": "ls3a_data_frame.html#topics",
+    "title": "3A: Data Frame",
+    "section": "Topics",
+    "text": "Topics\n\nData frame and matrix\nCreating a data frame\nSelecting elements in a data frame\nAdding, removing, and transforming a column",
+    "crumbs": [
+      "Base R programming",
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>3A: Data Frame</span>"
+    ]
+  },
+  {
+    "objectID": "ls3a_data_frame.html#data-frame",
+    "href": "ls3a_data_frame.html#data-frame",
+    "title": "3A: Data Frame",
+    "section": "Data Frame",
+    "text": "Data Frame\n\nA matrix is a tabular data structure containing values of the same type.\nA data frame is a matrix-like data structure in which each column may have a different type.\n\n\n#   Age Height Weight Gender\n# 1  25    168     65 Female\n# 2  32    175     70   Male\n# 3  28    160     55 Female\n# 4  40    180     80   Male\n\n\nTo create a data frame, we can combine multiple vectors using\n\n\nage &lt;- c(25, 32, 28, 40)\nhei &lt;- c(168, 175, 160, 180)\nwei &lt;- c(65, 70, 55, 80)\ngen &lt;- c(\"Female\", \"Male\", \"Female\", \"Male\")\n\ndata.frame(age, hei, wei, gen)\n\n  age hei wei    gen\n1  25 168  65 Female\n2  32 175  70   Male\n3  28 160  55 Female\n4  40 180  80   Male\n\n\n\nIt is possible to specify the column names.\n\n\nage &lt;- c(25, 32, 28, 40)\nhei &lt;- c(168, 175, 160, 180)\nwei &lt;- c(65, 70, 55, 80)\ngen &lt;- c('Female', 'Male', 'Female', 'Male')\n\ndata.frame(Age = age, Height = hei, Weight = wei, Gender = gen)\n\n  Age Height Weight Gender\n1  25    168     65 Female\n2  32    175     70   Male\n3  28    160     55 Female\n4  40    180     80   Male\n\n\n\nWe can also type in the values directly.\n\n\ndata.frame(\n  Age    = c(25, 32, 28, 40), \n  Height = c(168, 175, 160, 180), \n  Weight = c(65, 70, 55, 80), \n  Gender = c('Female', 'Male', 'Female', 'Male')\n)\n\n  Age Height Weight Gender\n1  25    168     65 Female\n2  32    175     70   Male\n3  28    160     55 Female\n4  40    180     80   Male\n\n\n💻 Hands-On\nCreate a data frame from the following data set\n\n\n\nStudent\nScore\nAllergy\n\n\n\n\nAlice\n92\npeanut\n\n\nBob\n88\nnone\n\n\nCalvin\n95\nseafood\n\n\n\n\n\n\n\n\n\nAnswer\n\n\n\n\n\n\ndata.frame(\n  Student = c('Alice', 'Bob', 'Calvin'), \n  Score   = c(92, 88, 95), \n  Allergy = c('peanut', 'none', 'seafood')\n)\n\n  Student Score Allergy\n1   Alice    92  peanut\n2     Bob    88    none\n3  Calvin    95 seafood",
+    "crumbs": [
+      "Base R programming",
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>3A: Data Frame</span>"
+    ]
+  },
+  {
+    "objectID": "ls3a_data_frame.html#subsetting",
+    "href": "ls3a_data_frame.html#subsetting",
+    "title": "3A: Data Frame",
+    "section": "Subsetting",
+    "text": "Subsetting\n\nThe dollar operator $\n\nA specific column (variable) can be quickly accessed using the dollar operator $\nNote that the output is a vector, not a data frame.\n\n\ndf &lt;- data.frame(\n  Age    = c(25, 32, 28, 40), \n  Height = c(168, 175, 160, 180), \n  Weight = c(65, 70, 55, 80), \n  Gender = c('Female', 'Male', 'Female', 'Male')\n)\n\ndf$Height\n\n[1] 168 175 160 180\n\n\n💻 Hands-On\nWrite R code to subset each individual column of df\n\n#   Age Height Weight Gender\n# 1  25    168     65 Female\n# 2  32    175     70   Male\n# 3  28    160     55 Female\n# 4  40    180     80   Male\n\n\n\n\n\n\n\nAnswer\n\n\n\n\n\n\ndf$Age\n\n[1] 25 32 28 40\n\ndf$Height\n\n[1] 168 175 160 180\n\ndf$Weight\n\n[1] 65 70 55 80\n\ndf$Gender\n\n[1] \"Female\" \"Male\"   \"Female\" \"Male\"  \n\n\n\n\n\n💻 Hands-On\nTry the following R code to see what it returns.\n\ndf$Gender == 'Male'\n\ndf$Gender == 'Female'\n\ndf$Age &lt; 30\n\ndf$Height[df$Gender == 'Male']\n\ndf$Height[df$Gender == 'Female']\n\ndf$Height[df$Age &lt; 30]\n\n\n\n\n\n\n\nAnswer\n\n\n\n\n\nIn this activity, we use logical indexing to subset observations that satisfy certain characteristic.\n\ndf$Gender == 'Male'\n\n[1] FALSE  TRUE FALSE  TRUE\n\ndf$Gender == 'Female'\n\n[1]  TRUE FALSE  TRUE FALSE\n\ndf$Age &lt; 30\n\n[1]  TRUE FALSE  TRUE FALSE\n\ndf$Height[df$Gender == 'Male']\n\n[1] 175 180\n\ndf$Height[df$Gender == 'Female']\n\n[1] 168 160\n\ndf$Height[df$Age &lt; 30]\n\n[1] 168 160\n\n\n\n\n\n💻 Hands-On\nWrite R code to find the following:\n\nWeights of all male individuals\nAges of all female individuals\nHeights of those whose weights are at least 65\n\n\n\n\n\n\n\nAnswer\n\n\n\n\n\n\ndf$Weight[df$Gender == 'Male']\n\n[1] 70 80\n\ndf$Age[df$Gender == 'Female']\n\n[1] 25 28\n\ndf$Height[df$Weight &gt;= 65]\n\n[1] 168 175 180\n\n\n\n\n\n\n\nThe brackets []\n\nCertain elements of a data frame can be subset using the brackets []\n\n\n\n\nFrom Dr. Gaston Sanchez\n\n\n💻 Hands-On\nWrite R code to subset the indicated values of df\n\n#   Age Height Weight Gender\n# 1  25    168     65 Female\n# 2  32    175     70   Male\n# 3  28    160     55 Female\n# 4  40    180     80   Male\n\n# row 1, column 3\n\n# row 4, column 4\n\n# row 3, column 2\n\n\n\n\n\n\n\nAnswer\n\n\n\n\n\n\n# row 1, column 3\ndf[1, 3]\n\n[1] 65\n\n# row 4, column 4\ndf[4, 4]\n\n[1] \"Male\"\n\n# row 3, column 2\ndf[3, 2]\n\n[1] 160\n\n\n\n\n\n\n\nSubsetting rows\n\nSubsetting rows can be done using numeric indexing with the brackets []\n\n\n\n\nFrom Dr. Gaston Sanchez\n\n\n💻 Hands-On\nWrite R code to subset the indicated values of df\n\n#   Age Height Weight Gender\n# 1  25    168     65 Female\n# 2  32    175     70   Male\n# 3  28    160     55 Female\n# 4  40    180     80   Male\n\n# row 3\n\n# rows 2 to 4 (2, 3, 4)\n\n# rows 1, 2, and 4 only\n\n\n\n\n\n\n\nAnswer\n\n\n\n\n\n\n# row 3\ndf[3, ]\n\n  Age Height Weight Gender\n3  28    160     55 Female\n\n# rows 2 to 4 (2, 3, 4)\ndf[2:4, ]\n\n  Age Height Weight Gender\n2  32    175     70   Male\n3  28    160     55 Female\n4  40    180     80   Male\n\n# rows 1, 2, and 4 only\ndf[c(1, 2, 4), ]\n\n  Age Height Weight Gender\n1  25    168     65 Female\n2  32    175     70   Male\n4  40    180     80   Male\n\n\n\n\n\n💻 Hands-On\nTry the following R code to see what it returns.\n\ndf[df$Gender == 'Male', ]\n\ndf[df$Gender == 'Female', ]\n\ndf[df$Age &lt; 30, ]\n\n\n\n\n\n\n\nAnswer\n\n\n\n\n\n\ndf[df$Gender == 'Male', ]\n\n  Age Height Weight Gender\n2  32    175     70   Male\n4  40    180     80   Male\n\ndf[df$Gender == 'Female', ]\n\n  Age Height Weight Gender\n1  25    168     65 Female\n3  28    160     55 Female\n\ndf[df$Age &lt; 30, ]\n\n  Age Height Weight Gender\n1  25    168     65 Female\n3  28    160     55 Female\n\n\n\n\n\n💻 Hands-On\nWrite R code to find the following all individuals who are:\n\nOlder than 25\nShorter than 170\nHeavier than 60\n\n\n\n\n\n\n\nAnswer\n\n\n\n\n\n\ndf[df$Age &gt; 25, ]\n\n  Age Height Weight Gender\n2  32    175     70   Male\n3  28    160     55 Female\n4  40    180     80   Male\n\ndf[df$Height &lt; 170, ]\n\n  Age Height Weight Gender\n1  25    168     65 Female\n3  28    160     55 Female\n\ndf[df$Weight &gt; 60, ]\n\n  Age Height Weight Gender\n1  25    168     65 Female\n2  32    175     70   Male\n4  40    180     80   Male\n\n\n\n\n\n\n\nSubsetting columns\n\n\n\nFrom Dr. Gaston Sanchez\n\n\n💻 Hands-On\nWrite R code to subset the indicated values of df\n\n#   Age Height Weight Gender\n# 1  25    168     65 Female\n# 2  32    175     70   Male\n# 3  28    160     55 Female\n# 4  40    180     80   Male\n\n# column 1\n\n# columns 1 to 3 (1, 2, 3)\n\n# columns 1, 3, and 4 only\n\n\n\n\n\n\n\nAnswer\n\n\n\n\n\n\n# column 1\ndf[, 1]\n\n[1] 25 32 28 40\n\n# columns 1 to 3 (1, 2, 3)\ndf[, 1:3]\n\n  Age Height Weight\n1  25    168     65\n2  32    175     70\n3  28    160     55\n4  40    180     80\n\n# columns 1, 3, and 4 only\ndf[c(1, 3, 4), ]\n\n  Age Height Weight Gender\n1  25    168     65 Female\n3  28    160     55 Female\n4  40    180     80   Male\n\n\n\n\n\n\nAnother way to subset column(s) of a data frame is to use the brackets [] with column name(s). If more than one column name are given, the output is a data frame.\n\n\ndf[, c('Age', 'Gender')]\n\n  Age Gender\n1  25 Female\n2  32   Male\n3  28 Female\n4  40   Male\n\n\n\nOtherwise, the ouput is a vector.\n\n\ndf[, 'Height']\n\n[1] 168 175 160 180\n\n\n💻 Hands-On\nWrite R code to subset the indicated column(s) of df using the brackets []\n\n#   Age Height Weight Gender\n# 1  25    168     65 Female\n# 2  32    175     70   Male\n# 3  28    160     55 Female\n# 4  40    180     80   Male\n\n# Height, Weight\n\n# Gender, Weight, Age\n\n# Gender\n\n# Age\n\n\n\n\n\n\n\nAnswer\n\n\n\n\n\n\n# Height, Weight\ndf[, c('Height', 'Weight')]\n\n  Height Weight\n1    168     65\n2    175     70\n3    160     55\n4    180     80\n\n# Gender, Weight, Age\ndf[, c('Gender', 'Weight', 'Age')]\n\n  Gender Weight Age\n1 Female     65  25\n2   Male     70  32\n3 Female     55  28\n4   Male     80  40\n\n# Gender\ndf[, 'Gender']\n\n[1] \"Female\" \"Male\"   \"Female\" \"Male\"  \n\n# Age\ndf[, 'Age']\n\n[1] 25 32 28 40",
+    "crumbs": [
+      "Base R programming",
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>3A: Data Frame</span>"
+    ]
+  },
+  {
+    "objectID": "ls3a_data_frame.html#adding-a-column",
+    "href": "ls3a_data_frame.html#adding-a-column",
+    "title": "3A: Data Frame",
+    "section": "Adding a column",
+    "text": "Adding a column\n\nUsing the dollar operator $ is the easiest way to add a column\n\n\ndf &lt;- data.frame(\n  Age    = c(25, 32, 28, 40), \n  Height = c(168, 175, 160, 180), \n  Weight = c(65, 70, 55, 80), \n  Gender = c('Female', 'Male', 'Female', 'Male')\n)\n\ndf$Home &lt;- c('Pitman', 'Glassboro', 'Clayton', 'Deptford')\ndf\n\n  Age Height Weight Gender      Home\n1  25    168     65 Female    Pitman\n2  32    175     70   Male Glassboro\n3  28    160     55 Female   Clayton\n4  40    180     80   Male  Deptford\n\n\n💻 Hands-On\nCreate a new data frame as follows:\n\n#&gt;   Age Height Weight Gender      Home Married Savings\n#&gt; 1  25    168     65 Female    Pitman    TRUE   10000\n#&gt; 2  32    175     70   Male Glassboro    TRUE   25000\n#&gt; 3  28    160     55 Female   Clayton   FALSE    7000\n#&gt; 4  40    180     80   Male  Deptford    TRUE   40000\n\n\n\n\n\n\n\nAnswer\n\n\n\n\n\n\ndf$Married &lt;- c(TRUE, TRUE, FALSE, TRUE)\ndf$Savings &lt;- c(10000, 25000, 7000, 40000)\ndf\n\n  Age Height Weight Gender      Home Married Savings\n1  25    168     65 Female    Pitman    TRUE   10000\n2  32    175     70   Male Glassboro    TRUE   25000\n3  28    160     55 Female   Clayton   FALSE    7000\n4  40    180     80   Male  Deptford    TRUE   40000",
+    "crumbs": [
+      "Base R programming",
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>3A: Data Frame</span>"
+    ]
+  },
+  {
+    "objectID": "ls3a_data_frame.html#removing-a-column",
+    "href": "ls3a_data_frame.html#removing-a-column",
+    "title": "3A: Data Frame",
+    "section": "Removing a column",
+    "text": "Removing a column\n\nRemoving a column can be done with the dollar operator $ as follows:\n\n\ndf$Home &lt;- NULL\ndf\n\n  Age Height Weight Gender Married Savings\n1  25    168     65 Female    TRUE   10000\n2  32    175     70   Male    TRUE   25000\n3  28    160     55 Female   FALSE    7000\n4  40    180     80   Male    TRUE   40000\n\n\n💻 Hands-On\nRemove the column Married in df\n\n\n\n\n\n\nAnswer\n\n\n\n\n\n\ndf$Married &lt;- NULL\ndf\n\n  Age Height Weight Gender Savings\n1  25    168     65 Female   10000\n2  32    175     70   Male   25000\n3  28    160     55 Female    7000\n4  40    180     80   Male   40000",
+    "crumbs": [
+      "Base R programming",
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>3A: Data Frame</span>"
+    ]
+  },
+  {
+    "objectID": "ls3a_data_frame.html#transforming-a-column",
+    "href": "ls3a_data_frame.html#transforming-a-column",
+    "title": "3A: Data Frame",
+    "section": "Transforming a column",
+    "text": "Transforming a column\n\nThe dollar operator $ allows us to subset and transform a column.\n\n\ndf$Savings &lt;- df$Savings / 1000\ndf\n\n  Age Height Weight Gender Savings\n1  25    168     65 Female      10\n2  32    175     70   Male      25\n3  28    160     55 Female       7\n4  40    180     80   Male      40\n\n\n💻 Hands-On\nConvert Weight in kilograms to lbs\n\n\n\n\n\n\nAnswer\n\n\n\n\n\n\ndf$Weight &lt;- df$Weight * 2.20462\ndf\n\n  Age Height   Weight Gender Savings\n1  25    168 143.3003 Female      10\n2  32    175 154.3234   Male      25\n3  28    160 121.2541 Female       7\n4  40    180 176.3696   Male      40",
+    "crumbs": [
+      "Base R programming",
+      "<span class='chapter-number'>5</span>  <span class='chapter-title'>3A: Data Frame</span>"
+    ]
+  },
+  {
+    "objectID": "ls2c_vector.html",
+    "href": "ls2c_vector.html",
+    "title": "2C: Character Vector and Factor",
+    "section": "",
+    "text": "Readings\nFrom R Coding Basics: An Introduction to the Basics of Coding in R by Dr. Gaston Sanchez:",
+    "crumbs": [
+      "Base R programming",
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>2C: Character Vector and Factor</span>"
+    ]
+  },
+  {
+    "objectID": "ls2c_vector.html#readings",
+    "href": "ls2c_vector.html#readings",
+    "title": "2C: Character Vector and Factor",
+    "section": "",
+    "text": "Factors",
+    "crumbs": [
+      "Base R programming",
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>2C: Character Vector and Factor</span>"
+    ]
+  },
+  {
+    "objectID": "ls2c_vector.html#topics",
+    "href": "ls2c_vector.html#topics",
+    "title": "2C: Character Vector and Factor",
+    "section": "Topics",
+    "text": "Topics\n\nCharacter vector\nUseful functions for character vector\nFactor",
+    "crumbs": [
+      "Base R programming",
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>2C: Character Vector and Factor</span>"
+    ]
+  },
+  {
+    "objectID": "ls2c_vector.html#character-vector",
+    "href": "ls2c_vector.html#character-vector",
+    "title": "2C: Character Vector and Factor",
+    "section": "Character vector",
+    "text": "Character vector\n\nData can be in the form of specific categories that describe a certain characteristic.\nCategories such as gender, color, nationality, and college major are said to be nominal because they have no natural ordering.\nIn contrast, categories such as education level, customer satisfaction, and Likert scale responses, are ordinal because they do have a natural ordering.\nIn R, a character vector is often used to represent nominal categories.\n\n\n# character vector\nc('male', 'female', 'female', 'male', 'female')  \nc('Math', 'Data Science', 'Math', 'Computer Science', 'Data Science')",
+    "crumbs": [
+      "Base R programming",
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>2C: Character Vector and Factor</span>"
+    ]
+  },
+  {
+    "objectID": "ls2c_vector.html#useful-functions-for-character-vector",
+    "href": "ls2c_vector.html#useful-functions-for-character-vector",
+    "title": "2C: Character Vector and Factor",
+    "section": "Useful functions for character vector",
+    "text": "Useful functions for character vector\n\nThe nchar() function\n\nnchar() counts the number of characters of each element.\n\n\nv &lt;- c('Data', 'science', 'is', 'fun', 'and', 'challenging')\nnchar(v)\n\n[1]  4  7  2  3  3 11\n\n\n💻 Hands-On\nWrite R code to count the number of characters of the following vector:\n\ntowns &lt;- c('Glassboro', 'Clayton', 'Pitman', 'Deptford')\n\n\n\n\n\n\n\nAnswer\n\n\n\n\n\n\nnchar(towns)\n\n[1] 9 7 6 8\n\n\n\n\n\n\n\nThe strsplit() function\n\nstrsplit() splits a string into words.\n\n\nstrsplit('Data science is fun and challenging', split = ' ')\n\n[[1]]\n[1] \"Data\"        \"science\"     \"is\"          \"fun\"         \"and\"        \n[6] \"challenging\"\n\n\n💻 Hands-On\nWrite R code extract words in the following string:\n\n#&gt; 'Name,Age,Major,GPA,Hobbies'\n\n\n\n\n\n\n\nAnswer\n\n\n\n\n\n\nstrsplit('Name,Age,Major,GPA,Hobbies', split = ',')\n\n[[1]]\n[1] \"Name\"    \"Age\"     \"Major\"   \"GPA\"     \"Hobbies\"\n\n\n\n\n\n\n\nThe paste() function\n\npaste() concatenates elements of character vectors\n\n\npaste(towns, 'NJ')\n\n[1] \"Glassboro NJ\" \"Clayton NJ\"   \"Pitman NJ\"    \"Deptford NJ\" \n\npaste(towns, 'NJ', sep = ' ')\n\n[1] \"Glassboro NJ\" \"Clayton NJ\"   \"Pitman NJ\"    \"Deptford NJ\" \n\npaste(towns, 'NJ', sep = ', ')\n\n[1] \"Glassboro, NJ\" \"Clayton, NJ\"   \"Pitman, NJ\"    \"Deptford, NJ\" \n\npaste(towns, 'NJ', sep = ' in ')\n\n[1] \"Glassboro in NJ\" \"Clayton in NJ\"   \"Pitman in NJ\"    \"Deptford in NJ\" \n\n\n💻 Hands-On\nWrite R code to generate the following output:\n\n#&gt; [1] \"Glassboro Township\" \"Clayton Township\"   \"Pitman Township\"   \n#&gt; [4] \"Deptford Township\"\n\n\n\n\n\n\n\nAnswer\n\n\n\n\n\n\npaste(towns, 'Township', sep = ' ')\n\n[1] \"Glassboro Township\" \"Clayton Township\"   \"Pitman Township\"   \n[4] \"Deptford Township\" \n\n\n\n\n\n💻 Hands-On\nWhat does the paste0() function does?\n\ntowns &lt;- c('Glassboro', 'Clayton', 'Pitman', 'Deptford')\n\npaste0(towns, 'NJ')\n\n[1] \"GlassboroNJ\" \"ClaytonNJ\"   \"PitmanNJ\"    \"DeptfordNJ\" \n\n\n\n\n\n\n\n\nAnswer\n\n\n\n\n\npaste0 is a shortcut for paste(..., sep = '') (no separator)\n\ntowns &lt;- c('Glassboro', 'Clayton', 'Pitman', 'Deptford')\n\npaste0(towns, 'NJ')\n\n[1] \"GlassboroNJ\" \"ClaytonNJ\"   \"PitmanNJ\"    \"DeptfordNJ\" \n\n\n\n\n\n\nThanks to vectorization, paste() allows corresponding elements to be concatenated.\n\n\nfirst_names &lt;- c('James', 'Robert', 'Mary')\nlast_names  &lt;- c('Smith', 'Williams', 'Brown')\n\npaste(first_names, last_names)\n\n[1] \"James Smith\"     \"Robert Williams\" \"Mary Brown\"     \n\n\n💻 Hands-On\nWrite R code to generate the following output:\n\n#&gt; [1] \"Smith, James\"     \"Williams, Robert\" \"Brown, Mary\"\n\n\n\n\n\n\n\nAnswer\n\n\n\n\n\n\npaste(last_names, first_names, collapse = ', ')\n\n[1] \"Smith James, Williams Robert, Brown Mary\"\n\n\n\n\n\n💻 Hands-On\nWrite R code to generate the following output:\n\n#&gt; [1] \"Glassboro, NJ 08028\" \"Clayton, NJ 08312\"   \"Pitman, NJ 08071\"   \n#&gt; [4] \"Deptford, NJ 08096\" \n\n\n\n\n\n\n\nAnswer\n\n\n\n\n\n\nzip_code &lt;- c('08028', '08312', '08071', '08096')\n\npaste0(towns, ', NJ ', zip_code)\n\n[1] \"Glassboro, NJ 08028\" \"Clayton, NJ 08312\"   \"Pitman, NJ 08071\"   \n[4] \"Deptford, NJ 08096\"",
+    "crumbs": [
+      "Base R programming",
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>2C: Character Vector and Factor</span>"
+    ]
+  },
+  {
+    "objectID": "ls2c_vector.html#factor",
+    "href": "ls2c_vector.html#factor",
+    "title": "2C: Character Vector and Factor",
+    "section": "Factor",
+    "text": "Factor\n\nA factor is a specialized data structure for categories, especially ordinal categories.\nIt behaves like a vector but has additional attributes.\nA factor displays categories (levels) but stores them internally as integers.\nA factor is created from a character vector using the factor() function.\n\n\n### Nominal factor\n\n#&gt; [1] O  A  AB O  O  B  A  B  AB\n#&gt; Levels: A B AB O\n\n### Ordinal factor\n\n#&gt;  [1] extra hot mild      hot       mild      medium    extra hot mild     \n#&gt;  [8] medium    extra hot medium    extra hot mild     \n#&gt; Levels: mild &lt; medium &lt; hot &lt; extra hot\n\n💻 Hands-On\nCreate a nominal factor from the following character vector:\n\nblood &lt;- c('O', 'A', 'AB', 'O', 'O', 'B', 'A', 'B', 'AB')\n\n\n\n\n\n\n\nAnswer\n\n\n\n\n\n\nfactor(blood, levels = c('O', 'A', 'B', 'AB'))\n\n[1] O  A  AB O  O  B  A  B  AB\nLevels: O A B AB\n\n\n\n\n\n💻 Hands-On\nCreate an ordinal factor from the following character vector:\n\npepper &lt;- c('extra hot', 'mild', 'hot', 'mild', 'medium', 'extra hot', \n            'mild', 'medium', 'extra hot', 'medium', 'extra hot', 'mild')\n\n\n\n\n\n\n\nAnswer\n\n\n\n\n\n\nfactor(pepper, levels = c('mild', 'medium', 'hot', 'extra hot'), ordered = TRUE)\n\n [1] extra hot mild      hot       mild      medium    extra hot mild     \n [8] medium    extra hot medium    extra hot mild     \nLevels: mild &lt; medium &lt; hot &lt; extra hot\n\n\n\n\n\n💻 Hands-On\nCreate an ordinal factor from the following character vector:\n\nshirts &lt;- c('L', 'XL', 'XL', 'L', 'M', 'S', 'S', 'XL', 'M', 'S', 'L', 'S')\n\n\n\n\n\n\n\nAnswer\n\n\n\n\n\n\nfactor(shirts, levels = c('S', 'M', 'L', 'XL'),\n       labels = c('Small', 'Medium', 'Large', 'Extra Large'))\n\n [1] Large       Extra Large Extra Large Large       Medium      Small      \n [7] Small       Extra Large Medium      Small       Large       Small      \nLevels: Small Medium Large Extra Large",
+    "crumbs": [
+      "Base R programming",
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>2C: Character Vector and Factor</span>"
+    ]
+  }
+]

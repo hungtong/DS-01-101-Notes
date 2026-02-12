@@ -1,0 +1,908 @@
+[
+  {
+    "objectID": "summary.html",
+    "href": "summary.html",
+    "title": "Summary",
+    "section": "",
+    "text": "In summary, this book has no content whatsoever.",
+    "crumbs": [
+      "Summary"
+    ]
+  },
+  {
+    "objectID": "intro.html",
+    "href": "intro.html",
+    "title": "Introduction",
+    "section": "",
+    "text": "This is a book created from markdown and executable code.\nSee Knuth (1984) for additional discussion of literate programming.\n\n\n\n\nKnuth, Donald E. 1984. “Literate Programming.” Comput. J. 27 (2): 97–111. https://doi.org/10.1093/comjnl/27.2.97.",
+    "crumbs": [
+      "Introduction"
+    ]
+  },
+  {
+    "objectID": "references.html",
+    "href": "references.html",
+    "title": "References",
+    "section": "",
+    "text": "Knuth, Donald E. 1984. “Literate Programming.” Comput.\nJ. 27 (2): 97–111. https://doi.org/10.1093/comjnl/27.2.97.",
+    "crumbs": [
+      "References"
+    ]
+  },
+  {
+    "objectID": "index.html",
+    "href": "index.html",
+    "title": "Course Notes for DS 101: In-Depth Introduction to Data Science",
+    "section": "",
+    "text": "Preface\nThis text contains my lecture notes for DS 101: In-Depth Introduction to Data Science at Rowan University.",
+    "crumbs": [
+      "Preface"
+    ]
+  },
+  {
+    "objectID": "0_intro.html",
+    "href": "0_intro.html",
+    "title": "Introduction",
+    "section": "",
+    "text": "This is a book created from markdown and executable code.\nSee Knuth (1984) for additional discussion of literate programming.\n\n\n\n\nKnuth, Donald E. 1984. “Literate Programming.” Comput. J. 27 (2): 97–111. https://doi.org/10.1093/comjnl/27.2.97.",
+    "crumbs": [
+      "Introduction"
+    ]
+  },
+  {
+    "objectID": "l1_basics.html",
+    "href": "l1_basics.html",
+    "title": "Lesson 1: R Basics",
+    "section": "",
+    "text": "Reading\nFrom R Coding Basics: An Introduction to the Basics of Coding in R by Dr. Gaston Sanchez:",
+    "crumbs": [
+      "Base R programming",
+      "Lesson 1: R Basics"
+    ]
+  },
+  {
+    "objectID": "l1_basics.html#reading",
+    "href": "l1_basics.html#reading",
+    "title": "Lesson 1: R Basics",
+    "section": "",
+    "text": "First Contact with R\nGetting Help",
+    "crumbs": [
+      "Base R programming",
+      "Lesson 1: R Basics"
+    ]
+  },
+  {
+    "objectID": "l1_basics.html#topics",
+    "href": "l1_basics.html#topics",
+    "title": "Lesson 1: R Basics",
+    "section": "Topics",
+    "text": "Topics\n\nMathematical operations\nOperation precedence\nComments\nObjects, variables, and assignments\nVariable names and reserved words\nFunctions\nHelp Documentation\nPackages",
+    "crumbs": [
+      "Base R programming",
+      "Lesson 1: R Basics"
+    ]
+  },
+  {
+    "objectID": "l1_basics.html#mathematical-operations",
+    "href": "l1_basics.html#mathematical-operations",
+    "title": "Lesson 1: R Basics",
+    "section": "Mathematical Operations",
+    "text": "Mathematical Operations\n\nCommon mathematical operations in R include:\n\n\n2 + 2     # Add\n\n3 - 4     # Subtract\n\n5 * 2     # Multiply\n\n4 / 2     # Divide\n\n2 ^ 3     # Exponent\n2 ** 3    # Exponent as well",
+    "crumbs": [
+      "Base R programming",
+      "Lesson 1: R Basics"
+    ]
+  },
+  {
+    "objectID": "l1_basics.html#operation-precedence",
+    "href": "l1_basics.html#operation-precedence",
+    "title": "Lesson 1: R Basics",
+    "section": "Operation Precedence",
+    "text": "Operation Precedence\n\nIn R, operator precedence (from highest to lowest) is:\n\n\n# Parenthesis\n(2 + 3) * 4\n\n# Exponent\n2 ^ 3\n2 ** 3\n\n# Multiply and divide (from left to right)\n5 * 2\n4 / 2\n\n# Add and subtract\n2 + 2\n3 - 4\n\n\nHands-On\nEvaluate the following expressions in R:\n\n\\(19 - 3 \\times 6\\)\n\\(20 - 2 \\times 3^2 + 11\\)\n\\(3 + 8 \\div 2 \\times 2\\)\n\\(7 - [5 \\times 3 + 2^3]\\)\n\nAnswer:\n\n### R code here",
+    "crumbs": [
+      "Base R programming",
+      "Lesson 1: R Basics"
+    ]
+  },
+  {
+    "objectID": "l1_basics.html#comments",
+    "href": "l1_basics.html#comments",
+    "title": "Lesson 1: R Basics",
+    "section": "Comments",
+    "text": "Comments\n\nComments are notes to explain what the code does.\nIn R, comments are created using a hash #.\nOn a line, everything after a hash will be ignored. In other words, even if the comments contain some code, it will not be executed.\nThe keyboard short cut to comment out blocks of code is Command or Ctrl + Shift + c\n\n\n(2 + 3) * 4    # 2 + 3 will be evaluated first, then multiplied by 4\n\n\nHands-On\nRun the following code in the console and add a comment describing the output.\n\n5 * (2 + 4) / 2 \n\n(5 * 2 + 4) / 2\n\n5 * (2 + 4 / 2)\n\nAnswer:\n\n### R code here",
+    "crumbs": [
+      "Base R programming",
+      "Lesson 1: R Basics"
+    ]
+  },
+  {
+    "objectID": "l1_basics.html#object-variable-and-assignment",
+    "href": "l1_basics.html#object-variable-and-assignment",
+    "title": "Lesson 1: R Basics",
+    "section": "Object, Variable, and Assignment",
+    "text": "Object, Variable, and Assignment\n\nAn object is anything that stores values or instructions.\nA variable is a name associated to an object so that we can access the object in memory.\nA variable can be created using the assignment operator &lt;- (left arrow) or the equal sign =.\n\n\n# 100 is an object itself\n100\n\n# We name this object 'eagles'\neagles &lt;- 100\n\n# The variable 'eagles' allows us to access the object 100\neagles\n\n\nHands-On\nCreate the following variables:\n\nyear that stores the value 2026\nprice that stores the value 5.5\nscore that stores the value 93\n\nAnswer:\n\n### R code here",
+    "crumbs": [
+      "Base R programming",
+      "Lesson 1: R Basics"
+    ]
+  },
+  {
+    "objectID": "l1_basics.html#variable-names",
+    "href": "l1_basics.html#variable-names",
+    "title": "Lesson 1: R Basics",
+    "section": "Variable Names",
+    "text": "Variable Names\n\nVariable names are case-sensitive.\n\n\n# These names are NOT the same\neagles\n\nEagles\n\nEAGLES\n\neaGleS\n\nEagLEs\n\nEaGlEs\n\n\nHands-On\nRun the following code in the console. What does it return?\n\nEAGLES &lt;- 123\n\nEagles\n\nAnswer:\n\n### R code here",
+    "crumbs": [
+      "Base R programming",
+      "Lesson 1: R Basics"
+    ]
+  },
+  {
+    "objectID": "l1_basics.html#variable-names-1",
+    "href": "l1_basics.html#variable-names-1",
+    "title": "Lesson 1: R Basics",
+    "section": "Variable Names",
+    "text": "Variable Names\n\nA variable name must start with a letter or a period (not recommended). The rest can only consist of letters a-z, A-Z, numbers 0-9, underscores _, and periods .\nA variable name cannot be a reserved word (TRUE, FALSE, if, for, while, etc.)\n\n\n# Valid variable names\nage            \nheight_cm1    \nweight2.kg    \n\n# Valid but not recommended\n.data       \nTrue",
+    "crumbs": [
+      "Base R programming",
+      "Lesson 1: R Basics"
+    ]
+  },
+  {
+    "objectID": "l1_basics.html#reserved-words",
+    "href": "l1_basics.html#reserved-words",
+    "title": "Lesson 1: R Basics",
+    "section": "Reserved Words",
+    "text": "Reserved Words\n\nReserved words are words with special meaning and cannot be used as variable names.\n\n\nif, else, for, while, function \n\nbreak, stop, continue, next\n\nTRUE, FALSE\n\nNULL, NA, Inf, NaN\n\n\nHands-On\nThe following R code attempts to create variables. Run each line in the console and explain why the variable name is invalid.\n\n9null &lt;- 5\n\nnull%9 &lt;- 5\n\nnull 9 &lt;- 5\n\n_null9 &lt;- 5 \n\nnull,9 &lt;- 5\n\nNULL &lt;- 5\n\nAnswer:\n\n### R code here",
+    "crumbs": [
+      "Base R programming",
+      "Lesson 1: R Basics"
+    ]
+  },
+  {
+    "objectID": "l1_basics.html#naming-styles",
+    "href": "l1_basics.html#naming-styles",
+    "title": "Lesson 1: R Basics",
+    "section": "Naming Styles",
+    "text": "Naming Styles\nThree common naming styles for variables include\n\neagles_green_swag    # snake case\n\neaglesGreenSwag      # camel case\n\neagles.green.swag    # period case\n\n\nHands-On\nCreate three variables that represent the phrase “Crimson Roll Tide” using the three naming styles.\nAnswer:\n\n### R code here",
+    "crumbs": [
+      "Base R programming",
+      "Lesson 1: R Basics"
+    ]
+  },
+  {
+    "objectID": "l1_basics.html#functions",
+    "href": "l1_basics.html#functions",
+    "title": "Lesson 1: R Basics",
+    "section": "Functions",
+    "text": "Functions\n\nA function is a collection of R code to perform a complex task or obtain certain results.\nR has many useful built-in functions.\n\n\n# Absolute value, sign function, and squared root\nabs, sign, sqrt\n\n# Rounding of numbers\nround, floor, ceiling, trunc, signif\n\n# Logarithms and Exponentials\nexp, log, expm1, log1p\n\n# Combination and factorial\nchoose, factorial, lchoose, lfactorial\n\n# Trigonometric and hyperbolic functions\ncos, sin, tan, cospi, sinpi, tanpi, acos, asin, atan\ncosh, sinh, tanh, acosh, asinh, atanh\n\n# Beta and gamma functions\nbeta, lbeta, gamma, lgamma, digamma, trigamma, psigamma\n\n\nHands-On\nTry the following code in the console.\n\nabs(-7)         # absolute value\n\nsqrt(25)        # squared root\n\nexp(3)          # exponential\n\nlog(8)          # natural log\n\nfactorial(6)    # 1 x 2 x 3 x 4 x 5 x 6",
+    "crumbs": [
+      "Base R programming",
+      "Lesson 1: R Basics"
+    ]
+  },
+  {
+    "objectID": "l1_basics.html#getting-help",
+    "href": "l1_basics.html#getting-help",
+    "title": "Lesson 1: R Basics",
+    "section": "Getting Help",
+    "text": "Getting Help\n\nIf we want to learn more about a function, we can refer to its help documentation.\n\n\n# Using the operator '?'\n?abs\n?sqrt\n\n# Using the function help()\nhelp(abs)\nhelp(sqrt)\n\n\nHands-On\nUse the help documentation to explain the purpose of the following functions.\n\nsign(-17)\n\nlog1p(3)\n\nchoose(5, 2)\n\nAnswer:\n\n### R code here\n\n\n\nHands-On\nWhat does the following code do? Use the help documentation of round() to confirm your guess/observation.\n\nround(6.267)\n\nround(6.267, digits = 1)\nround(6.267, 1)\n\nround(6.267, digits = 2)\nround(6.267, 2)\n\nAnswer:\n\n# Round to the whole number (digits = 0)\nround(6.267)\n#&gt; [1] 6\n\n# Round to 1 decimal place\nround(6.267, digits = 1)\n#&gt; [1] 6.3\n\n# Round to 2 decimal places\nround(6.267, digits = 2)\n#&gt; [1] 6.27",
+    "crumbs": [
+      "Base R programming",
+      "Lesson 1: R Basics"
+    ]
+  },
+  {
+    "objectID": "l1_basics.html#packages",
+    "href": "l1_basics.html#packages",
+    "title": "Lesson 1: R Basics",
+    "section": "Packages",
+    "text": "Packages\n\nA package is a collection of functions and data for specific purpose.\nMost developers make their packages freely available on the Comprehensive R Archive Network (CRAN).\n\n\n# Install a package\ninstall.packages(\"bannerCommenter\")\n\n# Load an installed package\nlibrary(bannerCommenter)\nlibrary(\"bannerCommenter\")\n\n# Uninstall a package\nremove.packages(\"bannerCommenter\")",
+    "crumbs": [
+      "Base R programming",
+      "Lesson 1: R Basics"
+    ]
+  },
+  {
+    "objectID": "l1_basics.html#exercise-1",
+    "href": "l1_basics.html#exercise-1",
+    "title": "Lesson 1: R Basics",
+    "section": "Exercise 1",
+    "text": "Exercise 1\nEvaluate the expression at \\(x = 3\\), \\(y = -2\\), and \\(z = 4\\)\n\n\\(6z + 5x - 3y\\)\n\\(x^2 - 5y + 4z\\)\n\\(\\dfrac{4z - 2y}{20 x}\\)\n\nAnswer:\n\n### R code here",
+    "crumbs": [
+      "Base R programming",
+      "Lesson 1: R Basics"
+    ]
+  },
+  {
+    "objectID": "l1_basics.html#exercise-2",
+    "href": "l1_basics.html#exercise-2",
+    "title": "Lesson 1: R Basics",
+    "section": "Exercise 2",
+    "text": "Exercise 2\nThe balance \\(A\\) in an account that earns an annual compound interest rate \\(r\\) (in decimal form) for \\(t\\) years is given by\n\\[\nA = P \\left( 1 + \\dfrac{r}{n} \\right)^{nt},\n\\]\nwhere \\(P\\) is the principal (initial deposit) and \\(n\\) is the number of compoundings per year.\n\nWe deposit \\(\\$6000\\) in an account with an annual interest rate of \\(1.5\\%\\). What is our balance after \\(5\\) years when the interest is compounded quarterly (\\(n = 4\\))?\nWe deposit \\(\\$10,000\\) in an account with an annual interest rate of \\(3.75\\%\\). What is our balance after \\(12\\) years when the interest is compounded daily (\\(n = 365\\))?\n\nAnswer:\n\n### R code here",
+    "crumbs": [
+      "Base R programming",
+      "Lesson 1: R Basics"
+    ]
+  },
+  {
+    "objectID": "l1_basics.html#exercise-3",
+    "href": "l1_basics.html#exercise-3",
+    "title": "Lesson 1: R Basics",
+    "section": "Exercise 3",
+    "text": "Exercise 3\nThe compound interest formula can be rewritten as\n\\[\nP = \\dfrac{A}{\\left( 1 + \\dfrac{r}{n} \\right)^{nt}}\n\\]\nFind the principal \\(P\\) that we need to invest today at \\(4.5\\%\\) annual interest compounded monthly to earn \\(\\$100,000\\) in the next \\(20\\) years.\nAnswer:\n\n### R code here",
+    "crumbs": [
+      "Base R programming",
+      "Lesson 1: R Basics"
+    ]
+  },
+  {
+    "objectID": "l1_basics.html#exercise-4",
+    "href": "l1_basics.html#exercise-4",
+    "title": "Lesson 1: R Basics",
+    "section": "Exercise 4",
+    "text": "Exercise 4\nThe formula for the volume of a cylinder is\n\\[\nV = \\pi r^2 h\n\\]\nwhere \\(r\\) is the radius and \\(h\\) is the height.\nFind the height of a cylindrical shipping container with a volume of \\(15,607\\) cubic inches and a radius of \\(12\\) inches. You may find reading help(pi) or ?pi useful.\nAnswer:\n\n### R code here",
+    "crumbs": [
+      "Base R programming",
+      "Lesson 1: R Basics"
+    ]
+  },
+  {
+    "objectID": "l2a_vector.html",
+    "href": "l2a_vector.html",
+    "title": "2  Lesson 2A: Vector",
+    "section": "",
+    "text": "2.1 Readings\nFrom R Coding Basics: An Introduction to the Basics of Coding in R by Dr. Gaston Sanchez:",
+    "crumbs": [
+      "Base R programming",
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Lesson 2A: Vector</span>"
+    ]
+  },
+  {
+    "objectID": "l2a_vector.html#readings",
+    "href": "l2a_vector.html#readings",
+    "title": "2  Lesson 2A: Vector",
+    "section": "",
+    "text": "First Contact with Vectors\nProperties of Vectors\nCreating Vectors\nMore about Vectors",
+    "crumbs": [
+      "Base R programming",
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Lesson 2A: Vector</span>"
+    ]
+  },
+  {
+    "objectID": "l2a_vector.html#topics",
+    "href": "l2a_vector.html#topics",
+    "title": "2  Lesson 2A: Vector",
+    "section": "2.2 Topics",
+    "text": "2.2 Topics\n\nVectors\nAtomic types\nSpecial values\nCreating vectors with c(), :, seq() , and rep()\nUseful functions for numeric vectors\nBuilt-in vectors",
+    "crumbs": [
+      "Base R programming",
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Lesson 2A: Vector</span>"
+    ]
+  },
+  {
+    "objectID": "l2a_vector.html#basic-data-structures",
+    "href": "l2a_vector.html#basic-data-structures",
+    "title": "2  Lesson 2A: Vector",
+    "section": "2.3 Basic data structures",
+    "text": "2.3 Basic data structures\n\nBasic data structures in R include vector, factor, matrix, array, data frame, and list.\n\n\n\n\n\n\n\nThese structures are characterized by their dimension and whether they require all elements to be of the same atomic type.\n\n\n\n\nStructure\nDimension\nSame Atomic Type\n\n\n\n\nVector\n1\nYes\n\n\nFactor\n1\nYes\n\n\nMatrix\n2\nYes\n\n\nData Frame\n2\nNo\n\n\nArray\n\\(\\ge\\) 2\nYes\n\n\nList\n1\nNo",
+    "crumbs": [
+      "Base R programming",
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Lesson 2A: Vector</span>"
+    ]
+  },
+  {
+    "objectID": "l2a_vector.html#vector",
+    "href": "l2a_vector.html#vector",
+    "title": "2  Lesson 2A: Vector",
+    "section": "2.4 Vector",
+    "text": "2.4 Vector\n\nA vector is a sequence of elements that are of the same atomic type.\nIn R, the index of the first element is always 1.\n\n\n#  1   2   3   4   5   6   7\nc(70, 66, 82, 85, 78, 90, 73)\n\n\nA single value is treated as a vector of one element\n\n\n70    # same as c(70)",
+    "crumbs": [
+      "Base R programming",
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Lesson 2A: Vector</span>"
+    ]
+  },
+  {
+    "objectID": "l2a_vector.html#atomic-types",
+    "href": "l2a_vector.html#atomic-types",
+    "title": "2  Lesson 2A: Vector",
+    "section": "2.5 Atomic types",
+    "text": "2.5 Atomic types\n\nAn atomic type refers to the six fundamental types in R: logical, integer, double, character, raw, and complex.\nNote that integer and double are also known as numeric.\n\n\n# logical vector\nc(TRUE, FALSE, FALSE, TRUE, TRUE)\nc(T, F, F, T, T)\n\n# integer vector (numeric)\nc(1L, 3L, 2L, 4L, 2L)\n\n# double vector (numeric)\nc(6.3, 8.2, 3.1, 4.4, 7.6)\n\n# character vector\nc(\"apple\", \"orange\", \"apple\", \"apple\", \"orange\")  \nc('dog', 'cat', 'dog', 'dog', 'cat')  \n\n# raw and complex exist but not very popular\n\n\nThe functions typeof() and storage.mode() tells us the atomic type of a vector.\nThe function mode() works similarly, except that it returns numeric for both integer and double\n\n\ntypeof(2.3)\n#&gt; [1] \"double\"\n\nstorage.mode(2.3)\n#&gt; [1] \"double\"\n\nmode(2.3)\n#&gt; [1] \"numeric\"\n\n\nThere are also dedicated checking function for each atomic type.\n\n\nis.logical()\n\nis.integer()    # integer but not double\nis.double()     # double but not integer\nis.numeric()    # either integer or double\n\nis.character()\n\nHands-On\nTry the following R code to see what it returns.\n\nenrollment &lt;- c(10, 30, 15, 20)\n\ntypeof(enrollment)\n\nstorage.mode(enrollment)\n\nmode(enrollment)\n\nis.integer(enrollment)\n\nis.double(enrollment)\n\nis.numeric(enrollment)   \n\nAnswer:\n\n### R code here",
+    "crumbs": [
+      "Base R programming",
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Lesson 2A: Vector</span>"
+    ]
+  },
+  {
+    "objectID": "l2a_vector.html#special-values",
+    "href": "l2a_vector.html#special-values",
+    "title": "2  Lesson 2A: Vector",
+    "section": "2.6 Special values",
+    "text": "2.6 Special values\n\nNULL indicates an undefined object\nNA indicates missing or “not available” value\nNaN indicates an object that is “not a number”\nInf indicates positive infinite\n-Inf indicates negative infinite\n\nHands-On\nTry the following R code to see what it returns.\n\nsqrt(-7)\n\nlog(-5)\n\n0 / 0\n\n100 / 0\n\n-100 / 0\n\nlog(0)\n\nAnswer:\n\n### R code here",
+    "crumbs": [
+      "Base R programming",
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Lesson 2A: Vector</span>"
+    ]
+  },
+  {
+    "objectID": "l2a_vector.html#creating-vectors",
+    "href": "l2a_vector.html#creating-vectors",
+    "title": "2  Lesson 2A: Vector",
+    "section": "2.7 Creating vectors",
+    "text": "2.7 Creating vectors\n\nAs shown previously, a vector can be manually created using the combine c() function.\n\n\n# logical vector\nc(TRUE, FALSE, FALSE, TRUE, TRUE)\nc(T, F, F, T, T)\n\n# integer vector (numeric)\nc(1L, 3L, 2L, 4L, 2L)\n\n# double vector (numeric)\nc(6.3, 8.2, 3.1, 4.4, 7.6)\n\n# character vector\nc(\"apple\", \"orange\", \"apple\", \"apple\", \"orange\")  \nc('dog', 'cat', 'dog', 'dog', 'cat') \n\n\nElements in a vector can have names!\nWe can give names directly in c()\n\n\nc(exam1 = 90, exam2 = 85, final = 92)\n\n#&gt; exam1 exam2 exam3 \n#&gt;    90    85    92\n\n\nWe can also create the vector and assign names later\n\n\nscores &lt;- c(90, 85, 92)\nnames(scores) &lt;- c('exam1', 'exam2', 'exam3')\nscores\n\n#&gt; exam1 exam2 exam3 \n#&gt;    90    85    92\n\nHands-On\n\nUse c() to create a short vector for each of the four atomic types: integer, double, logical, and character.\nAssign each vector to a variable with a descriptive name.\nChoose one of your vectors and assign names to its elements.\n\nAnswer:\n\n### R code here",
+    "crumbs": [
+      "Base R programming",
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Lesson 2A: Vector</span>"
+    ]
+  },
+  {
+    "objectID": "l2a_vector.html#creating-numeric-vectors",
+    "href": "l2a_vector.html#creating-numeric-vectors",
+    "title": "2  Lesson 2A: Vector",
+    "section": "2.8 Creating numeric vectors",
+    "text": "2.8 Creating numeric vectors\n\n2.8.1 The colon operator\n\nThe colon operator : generate a numeric sequence of one-unit steps by\n\n\n### start:end (end is like an upper/lower bound)\n\n-2:5       # start with -2, increase by 1\n \n5:-2       # start with 5, decrease by 1\n\n3.7:9.2    # start with 3.7, increase by 1\n\nHands-On\n\nUsing the colon operator : to quickly create the following vectors\n\n\nc(3, 4, 5, 6, 7, 8, 9, 10, 11, 12)\n\nc(17, 16, 15, 14, 13, 12, 11, 10, 9)\n\nAnswer:\n\n### R code here\n\n\n\n2.8.2 The seq() function\n\nThe seq() function generates a numeric sequence of more general steps.\n\n\nseq(from = -2, to = 5, by = 2)            # step size of 2\n\nseq(from = -2, to = 5, by = 0.75)         # step size of 0.75\n\nseq(from = -2, to = 5, length.out = 6)    # steps are automatically adjusted\n\nHands-On\nUse the seq() function to create the vector that\n\nStarts at 5 and ends at -3, increasing or decreasing by 1\nStarts at -1 and ends at 7, with a step size of 1.5.\nStarts at 0 and ends at 10, containing 5 equally spaced values.\nStarts at -4 and ends at 4, including only every other number.\n\nAnswer:\n\n### R code here\n\n\n\n2.8.3 The req() function\n\nThe rep() function creates vectors with repeated elements.\n\n\nrep(-1, times = 5)                      # repeat -1 five times\n\nrep(c(-1, 0, 2), times = 4)             # repeat c(-1, 0, 2) four times\n\nrep(c(-1, 0, 3), times = c(2, 3, 4))    # repeat -1 two times, 0 three times, 3 four times\n\nrep(c(-1, 0, 3), each = 5)              # repeat -1 five times, 0 five times, 3 five times\n\nHands-On\nUse the rep() function to create the vector in which\n\nEach value in the vector c(1, 3, 6) is repeated exactly 4 times\nThe value 4 is repeated 6 times\nThe vector c(2, −1, 1) is repeated 3 times\nThe values in c(5, 0, −2) are repeated so that 5 appears once, 0 appears three times, and -2 appears four times.\n\nAnswer:\n\n### R code here",
+    "crumbs": [
+      "Base R programming",
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Lesson 2A: Vector</span>"
+    ]
+  },
+  {
+    "objectID": "l2a_vector.html#summary-functions-for-numeric-vectors",
+    "href": "l2a_vector.html#summary-functions-for-numeric-vectors",
+    "title": "2  Lesson 2A: Vector",
+    "section": "2.9 Summary functions for numeric vectors",
+    "text": "2.9 Summary functions for numeric vectors\nGiven a vector,\n\nlength() returns its length\nmin() returns its minimum value\nmax() returns its maximum value\nwhich.min() returns the index of its minimum value\nwhich.max() returns the index of its maximum value\nsum() returns the sum of its elements\nprod() returns the product of its elements\n\n\n#       1   2   3   4   5   6   7\nv &lt;- c(70, 66, 82, 85, 78, 90, 73)\n\nlength(v)\n\nmin(v)\n\nwhich.min(v)\n\nmax(v)\n\nwhich.max(v)\n\nsum(v)\n\nprod(v)\n\nHands-On\nConsider a vector containing calorie content of light beer brands. Write R code to answer the following questions:\n\nHow many light beer brands are included?\nWhat is the lowest calorie content among the light beers?\nWhat is the highest calorie content among the light beers?\nAt which position does the highest calorie value occur?\nWhat is the total calorie content across all light beer brands?\n\n\n# Calories per 100ml of light beer\nbeer_cals &lt;- c(29, 28, 33, 31, 30, 33, 30, 28, 27, 41, 39, 31, 29, \n               23, 32, 31, 32, 19, 40, 22, 34, 31, 42, 35, 29, 43)\n\nAnswer:\n\n### R code here\n\nHands-On\nTry the following R code to see what it returns.\n\n#       1   2   3   4   5   6   7\nv &lt;- c(70, 66, 82, 85, NA, 90, 73)\n\nlength(v)\n\nmin(v)\n\nwhich.min(v)\n\nmax(v)\n\nwhich.max(v)\n\nsum(v)\n\nprod(v)\n\nAnswer:\n\n### R code here",
+    "crumbs": [
+      "Base R programming",
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Lesson 2A: Vector</span>"
+    ]
+  },
+  {
+    "objectID": "l2a_vector.html#built-in-vectors",
+    "href": "l2a_vector.html#built-in-vectors",
+    "title": "2  Lesson 2A: Vector",
+    "section": "2.10 Built-in vectors",
+    "text": "2.10 Built-in vectors\n\nR includes several built-in vectors for alphabets, \\(\\pi\\), months, and US states.\n\nHands-On\nTry the following R code and see what it returns. Feel free to get the help documentation.\n\nLETTERS\nletters\n\nmonth.abb\nmonth.name\n\npi\n\nstate.abb\nstate.name\nstate.area\n\nAnswer:\n\n### R code here",
+    "crumbs": [
+      "Base R programming",
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>Lesson 2A: Vector</span>"
+    ]
+  },
+  {
+    "objectID": "0_summary.html",
+    "href": "0_summary.html",
+    "title": "Summary",
+    "section": "",
+    "text": "In summary, this book has no content whatsoever.",
+    "crumbs": [
+      "Summary"
+    ]
+  },
+  {
+    "objectID": "0_references.html",
+    "href": "0_references.html",
+    "title": "References",
+    "section": "",
+    "text": "Knuth, Donald E. 1984. “Literate Programming.” Comput.\nJ. 27 (2): 97–111. https://doi.org/10.1093/comjnl/27.2.97.",
+    "crumbs": [
+      "References"
+    ]
+  },
+  {
+    "objectID": "ls1_basics.html",
+    "href": "ls1_basics.html",
+    "title": "1: R Basics",
+    "section": "",
+    "text": "Reading\nFrom R Coding Basics: An Introduction to the Basics of Coding in R by Dr. Gaston Sanchez:",
+    "crumbs": [
+      "Base R programming",
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>1: R Basics</span>"
+    ]
+  },
+  {
+    "objectID": "ls1_basics.html#reading",
+    "href": "ls1_basics.html#reading",
+    "title": "1: R Basics",
+    "section": "",
+    "text": "First Contact with R\nGetting Help",
+    "crumbs": [
+      "Base R programming",
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>1: R Basics</span>"
+    ]
+  },
+  {
+    "objectID": "ls1_basics.html#topics",
+    "href": "ls1_basics.html#topics",
+    "title": "1: R Basics",
+    "section": "Topics",
+    "text": "Topics\n\nMathematical operations\nOperation precedence\nComments\nObjects, variables, and assignments\nVariable names and reserved words\nFunctions\nHelp Documentation\nPackages",
+    "crumbs": [
+      "Base R programming",
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>1: R Basics</span>"
+    ]
+  },
+  {
+    "objectID": "ls1_basics.html#mathematical-operations",
+    "href": "ls1_basics.html#mathematical-operations",
+    "title": "1: R Basics",
+    "section": "Mathematical Operations",
+    "text": "Mathematical Operations\n\nCommon mathematical operations in R include:\n\n\n2 + 2     # Add\n\n3 - 4     # Subtract\n\n5 * 2     # Multiply\n\n4 / 2     # Divide\n\n2 ^ 3     # Exponent\n2 ** 3    # Exponent as well",
+    "crumbs": [
+      "Base R programming",
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>1: R Basics</span>"
+    ]
+  },
+  {
+    "objectID": "ls1_basics.html#operation-precedence",
+    "href": "ls1_basics.html#operation-precedence",
+    "title": "1: R Basics",
+    "section": "Operation Precedence",
+    "text": "Operation Precedence\n\nIn R, operator precedence (from highest to lowest) is:\n\n\n# Parenthesis\n(2 + 3) * 4\n\n# Exponent\n2 ^ 3\n2 ** 3\n\n# Multiply and divide (from left to right)\n5 * 2\n4 / 2\n\n# Add and subtract\n2 + 2\n3 - 4\n\n💻 Hands-On\nEvaluate the following expressions in R:\n\n\\(19 - 3 \\times 6\\)\n\\(20 - 2 \\times 3^2 + 11\\)\n\\(3 + 8 \\div 2 \\times 2\\)\n\\(7 - (5 \\times 3 + 2^3)\\)\n\n\n\n\n\n\n\nAnswer\n\n\n\n\n\n\n19 - 3 * 6\n\n[1] 1\n\n20 - 2 * 3^2 + 11\n\n[1] 13\n\n3 + 8 / 2 * 2\n\n[1] 11\n\n7 - (5 * 3 + 2^3)\n\n[1] -16",
+    "crumbs": [
+      "Base R programming",
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>1: R Basics</span>"
+    ]
+  },
+  {
+    "objectID": "ls1_basics.html#comments",
+    "href": "ls1_basics.html#comments",
+    "title": "1: R Basics",
+    "section": "Comments",
+    "text": "Comments\n\nComments are notes to explain what the code does.\nIn R, comments are created using a hash #.\nOn a line, everything after a hash will be ignored. In other words, even if the comments contain some code, it will not be executed.\nThe keyboard short cut to comment out blocks of code is Command or Ctrl + Shift + c\n\n\n(2 + 3) * 4    # 2 + 3 will be evaluated first, then multiplied by 4\n\n💻 Hands-On\nRun the following code in the console and add a comment describing the output.\n\n5 * (2 + 4) / 2 \n\n(5 * 2 + 4) / 2\n\n5 * (2 + 4 / 2)\n\n\n\n\n\n\n\nAnswer\n\n\n\n\n\n\n5 * (2 + 4) / 2    # 15\n\n[1] 15\n\n(5 * 2 + 4) / 2    # 7\n\n[1] 7\n\n5 * (2 + 4 / 2)    # 20\n\n[1] 20",
+    "crumbs": [
+      "Base R programming",
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>1: R Basics</span>"
+    ]
+  },
+  {
+    "objectID": "ls1_basics.html#object-variable-and-assignment",
+    "href": "ls1_basics.html#object-variable-and-assignment",
+    "title": "1: R Basics",
+    "section": "Object, Variable, and Assignment",
+    "text": "Object, Variable, and Assignment\n\nAn object is anything that stores values or instructions.\nA variable is a name associated to an object so that we can access the object in memory.\nA variable can be created using the assignment operator &lt;- (left arrow) or the equal sign =.\n\n\n# 100 is an object itself\n100\n\n# We name this object 'eagles'\neagles &lt;- 100\n\n# The variable 'eagles' allows us to access the object 100\neagles\n\n💻 Hands-On\nCreate the following variables:\n\nyear that stores the value 2026\nprice that stores the value 5.5\nscore that stores the value 93\n\n\n\n\n\n\n\nAnswer\n\n\n\n\n\n\nyear &lt;- 2026\n\nprice &lt;- 5.5\n\nscore &lt;- 9.3",
+    "crumbs": [
+      "Base R programming",
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>1: R Basics</span>"
+    ]
+  },
+  {
+    "objectID": "ls1_basics.html#variable-names",
+    "href": "ls1_basics.html#variable-names",
+    "title": "1: R Basics",
+    "section": "Variable Names",
+    "text": "Variable Names\n\nVariable names are case-sensitive.\n\n\n# These names are NOT the same\neagles\n\nEagles\n\nEAGLES\n\neaGleS\n\nEagLEs\n\nEaGlEs\n\n💻 Hands-On\nRun the following code in the console. What does it return?\n\nEAGLES &lt;- 123\n\nEagles\n\n\n\n\n\n\n\nAnswer\n\n\n\n\n\nSince variable names are case-sensitive, EAGLES and Eagles are different. In this case, we created EAGLES but not Eagles so R will throw an error.\n\nEAGLES &lt;- 123\n\nEagles\n\nError: object 'Eagles' not found",
+    "crumbs": [
+      "Base R programming",
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>1: R Basics</span>"
+    ]
+  },
+  {
+    "objectID": "ls1_basics.html#variable-names-1",
+    "href": "ls1_basics.html#variable-names-1",
+    "title": "1: R Basics",
+    "section": "Variable Names",
+    "text": "Variable Names\n\nA variable name must start with a letter or a period (not recommended). The rest can only consist of letters a-z, A-Z, numbers 0-9, underscores _, and periods .\nA variable name cannot be a reserved word (TRUE, FALSE, if, for, while, etc.)\n\n\n# Valid variable names\nage            \nheight_cm1    \nweight2.kg    \n\n# Valid but not recommended\n.data       \nTrue",
+    "crumbs": [
+      "Base R programming",
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>1: R Basics</span>"
+    ]
+  },
+  {
+    "objectID": "ls1_basics.html#reserved-words",
+    "href": "ls1_basics.html#reserved-words",
+    "title": "1: R Basics",
+    "section": "Reserved Words",
+    "text": "Reserved Words\n\nReserved words are words with special meaning and cannot be used as variable names.\n\n\nif, else, for, while, function \n\nbreak, stop, continue, next\n\nTRUE, FALSE\n\nNULL, NA, Inf, NaN\n\n💻 Hands-On\nThe following R code attempts to create variables. Run each line in the console and explain why the variable name is invalid.\n\n9null &lt;- 5\n\nnull%9 &lt;- 5\n\nnull 9 &lt;- 5\n\n_null9 &lt;- 5 \n\nnull,9 &lt;- 5\n\nNULL &lt;- 5\n\n\n\n\n\n\n\nAnswer\n\n\n\n\n\nNote that all given variable names are invalid. See below for the explanation.\n\n9null &lt;- 5     # variable name cannot start with a number\n\nnull%9 &lt;- 5    # variable name cannot contain any percentage\n\nnull 9 &lt;- 5    # variable name cannot contain any space\n\n_null9 &lt;- 5    # variable name cannot start with an underscore\n\nnull,9 &lt;- 5    # variable name cannot contain any comma\n\nNULL &lt;- 5      # variable name cannot be a reserved word",
+    "crumbs": [
+      "Base R programming",
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>1: R Basics</span>"
+    ]
+  },
+  {
+    "objectID": "ls1_basics.html#naming-styles",
+    "href": "ls1_basics.html#naming-styles",
+    "title": "1: R Basics",
+    "section": "Naming Styles",
+    "text": "Naming Styles\nThree common naming styles for variables include\n\neagles_green_swag    # snake case\n\neaglesGreenSwag      # camel case\n\neagles.green.swag    # period case\n\n💻 Hands-On\nCreate three variables that represent the phrase “Crimson Roll Tide” using the three naming styles.\n\n\n\n\n\n\nAnswer\n\n\n\n\n\n[Tidyverse style guide]{https://style.tidyverse.org/syntax.html) recommends the snake case, which is what I tend to use as well!\n\ncrimson_roll_tide    # snake case\n\ncrimsonRollTide      # camel case\n\ncrimson.roll.tide    # period case",
+    "crumbs": [
+      "Base R programming",
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>1: R Basics</span>"
+    ]
+  },
+  {
+    "objectID": "ls1_basics.html#functions",
+    "href": "ls1_basics.html#functions",
+    "title": "1: R Basics",
+    "section": "Functions",
+    "text": "Functions\n\nA function is a collection of R code to perform a complex task or obtain certain results.\nR has many useful built-in functions.\n\n\n# Absolute value, sign function, and squared root\nabs, sign, sqrt\n\n# Rounding of numbers\nround, floor, ceiling, trunc, signif\n\n# Logarithms and Exponentials\nexp, log, expm1, log1p\n\n# Combination and factorial\nchoose, factorial, lchoose, lfactorial\n\n# Trigonometric and hyperbolic functions\ncos, sin, tan, cospi, sinpi, tanpi, acos, asin, atan\ncosh, sinh, tanh, acosh, asinh, atanh\n\n# Beta and gamma functions\nbeta, lbeta, gamma, lgamma, digamma, trigamma, psigamma\n\n💻 Hands-On\nTry the following code in the console.\n\nabs(-7)         # absolute value\n\nsqrt(25)        # squared root\n\nexp(3)          # exponential\n\nlog(8)          # natural log\n\nfactorial(6)    # 1 x 2 x 3 x 4 x 5 x 6\n\n\n\n\n\n\n\nAnswer\n\n\n\n\n\n\nabs(-7)         # absolute value\n\n[1] 7\n\nsqrt(25)        # squared root\n\n[1] 5\n\nexp(3)          # exponential\n\n[1] 20.08554\n\nlog(8)          # natural log\n\n[1] 2.079442\n\nfactorial(6)    # 1 x 2 x 3 x 4 x 5 x 6\n\n[1] 720",
+    "crumbs": [
+      "Base R programming",
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>1: R Basics</span>"
+    ]
+  },
+  {
+    "objectID": "ls1_basics.html#getting-help",
+    "href": "ls1_basics.html#getting-help",
+    "title": "1: R Basics",
+    "section": "Getting Help",
+    "text": "Getting Help\n\nIf we want to learn more about a function, we can refer to its help documentation.\n\n\n# Using the operator '?'\n?abs\n?sqrt\n\n# Using the help() function\nhelp(abs)\nhelp(sqrt)\n\n💻 Hands-On\nUse the help documentation to explain the purpose of the following functions.\n\nsign(-17)\n\nlog1p(3)\n\nchoose(5, 2)\n\n\n\n\n\n\n\nAnswer\n\n\n\n\n\nTo get the help documentation of the functions, we can use ? or help()\n\n?sign\nhelp(sign)\n\n?log1p\nhelp(log1p)\n\n?choose\nhelp(choose)\n\nThe functions do the following\n\nsign(-17)       # give -1 for negative number and 1 for positive number\n\n[1] -1\n\nlog1p(3)        # compute log(1 + 3)\n\n[1] 1.386294\n\nchoose(5, 2)    # compute combination coefficient 5C2 \n\n[1] 10\n\n\n\n\n\n💻 Hands-On\nWhat does the following code do? Use the help documentation of round() to confirm your guess/observation.\n\nround(6.267)\n\nround(6.267, digits = 1)\nround(6.267, 1)\n\nround(6.267, digits = 2)\nround(6.267, 2)\n\n\n\n\n\n\n\nAnswer\n\n\n\n\n\nTo get the help documentation of round(), we can use ? or help(). It is actually pretty self-explanatory!\n\n?round\nhelp(round)\n\nThe given code does the following\n\n# Round to the whole number (digits = 0)\nround(6.267)\n\n[1] 6\n\n# Round to 1 decimal place\nround(6.267, digits = 1)\n\n[1] 6.3\n\n# Round to 2 decimal places\nround(6.267, digits = 2)\n\n[1] 6.27",
+    "crumbs": [
+      "Base R programming",
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>1: R Basics</span>"
+    ]
+  },
+  {
+    "objectID": "ls1_basics.html#packages",
+    "href": "ls1_basics.html#packages",
+    "title": "1: R Basics",
+    "section": "Packages",
+    "text": "Packages\n\nA package is a collection of functions and data for specific purpose.\nMost developers make their packages freely available on the Comprehensive R Archive Network (CRAN).\n\n\n# Install a package\ninstall.packages(\"bannerCommenter\")\n\n# Load an installed package\nlibrary(bannerCommenter)\nlibrary(\"bannerCommenter\")\n\n# Uninstall a package\nremove.packages(\"bannerCommenter\")",
+    "crumbs": [
+      "Base R programming",
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>1: R Basics</span>"
+    ]
+  },
+  {
+    "objectID": "ls1_basics.html#exercise-1",
+    "href": "ls1_basics.html#exercise-1",
+    "title": "1: R Basics",
+    "section": "Exercise 1",
+    "text": "Exercise 1\nEvaluate the expression at \\(x = 3\\), \\(y = -2\\), and \\(z = 4\\)\n\n\\(6z + 5x - 3y\\)\n\\(x^2 - 5y + 4z\\)\n\\(\\dfrac{4z - 2y}{20 x}\\)\n\n\n\n\n\n\n\nAnswer",
+    "crumbs": [
+      "Base R programming",
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>1: R Basics</span>"
+    ]
+  },
+  {
+    "objectID": "ls1_basics.html#exercise-2",
+    "href": "ls1_basics.html#exercise-2",
+    "title": "1: R Basics",
+    "section": "Exercise 2",
+    "text": "Exercise 2\nThe balance \\(A\\) in an account that earns an annual compound interest rate \\(r\\) (in decimal form) for \\(t\\) years is given by\n\\[\nA = P \\left( 1 + \\dfrac{r}{n} \\right)^{nt},\n\\]\nwhere \\(P\\) is the principal (initial deposit) and \\(n\\) is the number of compoundings per year.\n\nWe deposit \\(\\$6000\\) in an account with an annual interest rate of \\(1.5\\%\\). What is our balance after \\(5\\) years when the interest is compounded quarterly (\\(n = 4\\))?\nWe deposit \\(\\$10,000\\) in an account with an annual interest rate of \\(3.75\\%\\). What is our balance after \\(12\\) years when the interest is compounded daily (\\(n = 365\\))?\n\n\n\n\n\n\n\nAnswer",
+    "crumbs": [
+      "Base R programming",
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>1: R Basics</span>"
+    ]
+  },
+  {
+    "objectID": "ls1_basics.html#exercise-3",
+    "href": "ls1_basics.html#exercise-3",
+    "title": "1: R Basics",
+    "section": "Exercise 3",
+    "text": "Exercise 3\nThe compound interest formula can be rewritten as\n\\[\nP = \\dfrac{A}{\\left( 1 + \\dfrac{r}{n} \\right)^{nt}}\n\\]\nFind the principal \\(P\\) that we need to invest today at \\(4.5\\%\\) annual interest compounded monthly to earn \\(\\$100,000\\) in the next \\(20\\) years.\n\n\n\n\n\n\nAnswer",
+    "crumbs": [
+      "Base R programming",
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>1: R Basics</span>"
+    ]
+  },
+  {
+    "objectID": "ls1_basics.html#exercise-4",
+    "href": "ls1_basics.html#exercise-4",
+    "title": "1: R Basics",
+    "section": "Exercise 4",
+    "text": "Exercise 4\nThe formula for the volume of a cylinder is\n\\[\nV = \\pi r^2 h\n\\]\nwhere \\(r\\) is the radius and \\(h\\) is the height.\nFind the height of a cylindrical shipping container with a volume of \\(15,607\\) cubic inches and a radius of \\(12\\) inches. You may find reading help(pi) or ?pi useful.\n\n\n\n\n\n\nAnswer",
+    "crumbs": [
+      "Base R programming",
+      "<span class='chapter-number'>1</span>  <span class='chapter-title'>1: R Basics</span>"
+    ]
+  },
+  {
+    "objectID": "ls2a_vector.html",
+    "href": "ls2a_vector.html",
+    "title": "2A: Vector",
+    "section": "",
+    "text": "Readings\nFrom R Coding Basics: An Introduction to the Basics of Coding in R by Dr. Gaston Sanchez:",
+    "crumbs": [
+      "Base R programming",
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>2A: Vector</span>"
+    ]
+  },
+  {
+    "objectID": "ls2a_vector.html#readings",
+    "href": "ls2a_vector.html#readings",
+    "title": "2A: Vector",
+    "section": "",
+    "text": "First Contact with Vectors\nProperties of Vectors\nCreating Vectors\nMore about Vectors",
+    "crumbs": [
+      "Base R programming",
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>2A: Vector</span>"
+    ]
+  },
+  {
+    "objectID": "ls2a_vector.html#topics",
+    "href": "ls2a_vector.html#topics",
+    "title": "2A: Vector",
+    "section": "Topics",
+    "text": "Topics\n\nVectors\nAtomic types\nSpecial values\nCreating vectors with c(), :, seq() , and rep()\nUseful functions for numeric vectors\nBuilt-in vectors",
+    "crumbs": [
+      "Base R programming",
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>2A: Vector</span>"
+    ]
+  },
+  {
+    "objectID": "ls2a_vector.html#basic-data-structures",
+    "href": "ls2a_vector.html#basic-data-structures",
+    "title": "2A: Vector",
+    "section": "Basic data structures",
+    "text": "Basic data structures\n\nBasic data structures in R include vector, factor, matrix, array, data frame, and list.\n\n\n\n\n\n\n\nThese structures are characterized by their dimension and whether they require all elements to be of the same atomic type.\n\n\n\n\nStructure\nDimension\nSame Atomic Type\n\n\n\n\nVector\n1\nYes\n\n\nFactor\n1\nYes\n\n\nMatrix\n2\nYes\n\n\nData Frame\n2\nNo\n\n\nArray\n\\(\\ge\\) 2\nYes\n\n\nList\n1\nNo",
+    "crumbs": [
+      "Base R programming",
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>2A: Vector</span>"
+    ]
+  },
+  {
+    "objectID": "ls2a_vector.html#vector",
+    "href": "ls2a_vector.html#vector",
+    "title": "2A: Vector",
+    "section": "Vector",
+    "text": "Vector\n\nA vector is a sequence of elements that are of the same atomic type.\nIn R, the index of the first element is always 1.\n\n\n#  1   2   3   4   5   6   7\nc(70, 66, 82, 85, 78, 90, 73)\n\n\nA single value is treated as a vector of one element\n\n\n70    # same as c(70)",
+    "crumbs": [
+      "Base R programming",
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>2A: Vector</span>"
+    ]
+  },
+  {
+    "objectID": "ls2a_vector.html#atomic-types",
+    "href": "ls2a_vector.html#atomic-types",
+    "title": "2A: Vector",
+    "section": "Atomic types",
+    "text": "Atomic types\n\nAn atomic type refers to the six fundamental types in R: logical, integer, double, character, raw, and complex.\nNote that integer and double are also known as numeric.\n\n\n# logical vector\nc(TRUE, FALSE, FALSE, TRUE, TRUE)\nc(T, F, F, T, T)\n\n# integer vector (numeric)\nc(1L, 3L, 2L, 4L, 2L)\n\n# double vector (numeric)\nc(6.3, 8.2, 3.1, 4.4, 7.6)\n\n# character vector\nc(\"apple\", \"orange\", \"apple\", \"apple\", \"orange\")  \nc('dog', 'cat', 'dog', 'dog', 'cat')  \n\n# raw and complex exist but not very popular\n\n\nThe functions typeof() and storage.mode() tells us the atomic type of a vector.\nThe function mode() works similarly, except that it returns numeric for both integer and double.\n\n\ntypeof(2.3)\n\n[1] \"double\"\n\nstorage.mode(2.3)\n\n[1] \"double\"\n\nmode(2.3)\n\n[1] \"numeric\"\n\n\n\nThere are also dedicated checking function for each atomic type.\n\n\nis.logical()\n\nis.integer()    # integer but not double\nis.double()     # double but not integer\nis.numeric()    # either integer or double\n\nis.character()\n\n💻 Hands-On\nTry the following R code to see what it returns.\n\nenrollment &lt;- c(10, 30, 15, 20)\n\ntypeof(enrollment)\n\nstorage.mode(enrollment)\n\nmode(enrollment)\n\nis.integer(enrollment)\n\nis.double(enrollment)\n\nis.numeric(enrollment)   \n\n\n\n\n\n\n\nAnswer\n\n\n\n\n\nNote that enrollment contains whole numbers but without writing c(10L, 30L, 15L, 20L), R still thinks of them as double.\n\nenrollment &lt;- c(10, 30, 15, 20)\n\ntypeof(enrollment)\n\n[1] \"double\"\n\nstorage.mode(enrollment)\n\n[1] \"double\"\n\nmode(enrollment)\n\n[1] \"numeric\"\n\nis.integer(enrollment)\n\n[1] FALSE\n\nis.double(enrollment)\n\n[1] TRUE\n\nis.numeric(enrollment)  \n\n[1] TRUE",
+    "crumbs": [
+      "Base R programming",
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>2A: Vector</span>"
+    ]
+  },
+  {
+    "objectID": "ls2a_vector.html#special-values",
+    "href": "ls2a_vector.html#special-values",
+    "title": "2A: Vector",
+    "section": "Special values",
+    "text": "Special values\n\nNULL indicates an undefined object\nNA indicates missing or “not available” value\nNaN indicates an object that is “not a number”\nInf indicates positive infinite\n-Inf indicates negative infinite\n\n💻 Hands-On\nTry the following R code to see what it returns.\n\nsqrt(-7)\n\nlog(-5)\n\n0 / 0\n\n100 / 0\n\n-100 / 0\n\nlog(0)\n\n\n\n\n\n\n\nAnswer\n\n\n\n\n\n\nsqrt(-7)\n\n[1] NaN\n\nlog(-5)\n\n[1] NaN\n\n0 / 0\n\n[1] NaN\n\n100 / 0\n\n[1] Inf\n\n-100 / 0\n\n[1] -Inf\n\nlog(0)\n\n[1] -Inf",
+    "crumbs": [
+      "Base R programming",
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>2A: Vector</span>"
+    ]
+  },
+  {
+    "objectID": "ls2a_vector.html#creating-vectors",
+    "href": "ls2a_vector.html#creating-vectors",
+    "title": "2A: Vector",
+    "section": "Creating vectors",
+    "text": "Creating vectors\n\nAs shown previously, a vector can be manually created using the combine c() function.\n\n\n# logical vector\nc(TRUE, FALSE, FALSE, TRUE, TRUE)\nc(T, F, F, T, T)\n\n# integer vector (numeric)\nc(1L, 3L, 2L, 4L, 2L)\n\n# double vector (numeric)\nc(6.3, 8.2, 3.1, 4.4, 7.6)\n\n# character vector\nc(\"apple\", \"orange\", \"apple\", \"apple\", \"orange\")  \nc('dog', 'cat', 'dog', 'dog', 'cat') \n\n\nElements in a vector can have names!\nWe can give names directly in c()\n\n\nc(exam1 = 90, exam2 = 85, final = 92)\n\nexam1 exam2 final \n   90    85    92 \n\n\n\nWe can also create the vector and assign names later.\n\n\nscores &lt;- c(90, 85, 92)\nnames(scores) &lt;- c('exam1', 'exam2', 'exam3')\nscores\n\nexam1 exam2 exam3 \n   90    85    92 \n\n\n💻 Hands-On\n\nUse c() to create a short vector for each of the four atomic types: integer, double, logical, and character.\nAssign each vector to a variable with a descriptive name.\nChoose one of your vectors and assign names to its elements.\n\n\n\n\n\n\n\nAnswer\n\n\n\n\n\n\n# integer\nexperience &lt;- c(1L, 3L, 5L, 2L)\n\n# double\nweight &lt;- c(143.5, 150, 127.3, 133.5)\n\n# logical\nin_stock &lt;- c(TRUE, FALSE, FALSE, TRUE)\n\n# character\nstudent_levels &lt;- c('Junior', 'Freshman', 'Junior', 'Senior')",
+    "crumbs": [
+      "Base R programming",
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>2A: Vector</span>"
+    ]
+  },
+  {
+    "objectID": "ls2a_vector.html#creating-numeric-vectors",
+    "href": "ls2a_vector.html#creating-numeric-vectors",
+    "title": "2A: Vector",
+    "section": "Creating numeric vectors",
+    "text": "Creating numeric vectors\n\nThe colon operator\n\nThe colon operator : generate a numeric sequence of one-unit steps by\n\n\n### start:end (end is like an upper/lower bound)\n\n-2:5       # start with -2, increase by 1\n \n5:-2       # start with 5, decrease by 1\n\n3.7:9.2    # start with 3.7, increase by 1\n\n💻 Hands-On\nUse the colon operator : to quickly create the following vectors\n\nc(3, 4, 5, 6, 7, 8, 9, 10, 11, 12)\n\nc(17, 16, 15, 14, 13, 12, 11, 10, 9)\n\n\n\n\n\n\n\nAnswer\n\n\n\n\n\nSince the vectors contain consecutive elements, the colon operator : is useful.\n\n3:12   \n\n [1]  3  4  5  6  7  8  9 10 11 12\n\n17:9   \n\n[1] 17 16 15 14 13 12 11 10  9\n\n\n\n\n\n\n\nThe seq() function\n\nThe seq() function generates a numeric sequence of more general steps.\n\n\n# step size of 2\nseq(from = -2, to = 5, by = 2)            \n\n[1] -2  0  2  4\n\n# step size of 0.75\nseq(from = -2, to = 5, by = 0.75)         \n\n [1] -2.00 -1.25 -0.50  0.25  1.00  1.75  2.50  3.25  4.00  4.75\n\n# steps are automatically adjusted\nseq(from = -2, to = 5, length.out = 6)    \n\n[1] -2.0 -0.6  0.8  2.2  3.6  5.0\n\n\n💻 Hands-On\nUse the seq() function to create the vector that\n\nStarts at 5 and ends at -3, increasing or decreasing by 1\nStarts at -1 and ends at 7, with a step size of 1.5.\nStarts at 0 and ends at 14, containing 5 equally spaced values.\nStarts at -4 and ends at 4, including only every other number.\n\n\n\n\n\n\n\nAnswer\n\n\n\n\n\n\nseq(from = 5, to = -3, by = -1)\n\n[1]  5  4  3  2  1  0 -1 -2 -3\n\nseq(from = -1, to = 7, by = 1.5)\n\n[1] -1.0  0.5  2.0  3.5  5.0  6.5\n\nseq(from = 0, to = 14, length.out = 5)\n\n[1]  0.0  3.5  7.0 10.5 14.0\n\nseq(from = -4, to = 4, by = 2)\n\n[1] -4 -2  0  2  4\n\n\n\n\n\n\n\nThe rep() function\n\nThe rep() function creates vectors with repeated elements.\n\n\n# repeat -1 five times\nrep(-1, times = 5)                      \n\n[1] -1 -1 -1 -1 -1\n\n# repeat c(-1, 0, 3) four times\nrep(c(-1, 0, 3), times = 4)             \n\n [1] -1  0  3 -1  0  3 -1  0  3 -1  0  3\n\n# repeat -1 two times, 0 three times, 3 four times\nrep(c(-1, 0, 3), times = c(2, 3, 4))    \n\n[1] -1 -1  0  0  0  3  3  3  3\n\n# repeat -1 five times, 0 five times, 3 five times\nrep(c(-1, 0, 3), each = 5)              \n\n [1] -1 -1 -1 -1 -1  0  0  0  0  0  3  3  3  3  3\n\n\n💻 Hands-On\nUse the rep() function to create the vector in which\n\nEach value in the vector c(1, 3, 6) is repeated exactly 4 times\nThe value 4 is repeated 6 times\nThe vector c(2, −1, 1) is repeated 3 times\nThe values in c(5, 0, −2) are repeated so that 5 appears once, 0 appears three times, and -2 appears four times.\n\nAnswer:\n\n\n\n\n\n\nAnswer\n\n\n\n\n\n\nrep(c(1, 3, 6), each = 4)\n\n [1] 1 1 1 1 3 3 3 3 6 6 6 6\n\nrep(4, times = 6)\n\n[1] 4 4 4 4 4 4\n\nrep(c(2, -1, 1), times = 3)\n\n[1]  2 -1  1  2 -1  1  2 -1  1\n\nrep(c(5, 0, -2), times = c(1, 3, 4))\n\n[1]  5  0  0  0 -2 -2 -2 -2",
+    "crumbs": [
+      "Base R programming",
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>2A: Vector</span>"
+    ]
+  },
+  {
+    "objectID": "ls2a_vector.html#summary-functions-for-numeric-vectors",
+    "href": "ls2a_vector.html#summary-functions-for-numeric-vectors",
+    "title": "2A: Vector",
+    "section": "Summary functions for numeric vectors",
+    "text": "Summary functions for numeric vectors\nConsider a vector\n\n#       1   2   3   4   5   6   7\nv &lt;- c(70, 66, 82, 85, 78, 90, 73)\n\n\nlength() returns its length\nmin() returns its minimum value\nmax() returns its maximum value\nwhich.min() returns the index of its minimum value\nwhich.max() returns the index of its maximum value\nsum() returns the sum of its elements\nprod() returns the product of its elements\n\n\nlength(v)\n\n[1] 7\n\nmin(v)\n\n[1] 66\n\nwhich.min(v)\n\n[1] 2\n\nmax(v)\n\n[1] 90\n\nwhich.max(v)\n\n[1] 6\n\nsum(v)\n\n[1] 544\n\nprod(v)\n\n[1] 1.650193e+13\n\n\n💻 Hands-On\nConsider a vector containing calorie content of light beer brands. Write R code to answer the following questions:\n\nHow many light beer brands are included?\nWhat is the lowest calorie content among the light beers?\nWhat is the highest calorie content among the light beers?\nAt which position does the highest calorie value occur?\nWhat is the total calorie content across all light beer brands?\n\n\n# Calories per 100ml of light beer\nbeer_cals &lt;- c(29, 28, 33, 31, 30, 33, 30, 28, 27, 41, 39, 31, 29, \n               23, 32, 31, 32, 19, 40, 22, 34, 31, 42, 35, 29, 43)\n\n\n\n\n\n\n\nAnswer\n\n\n\n\n\n\n# Number of light beer brands\nlength(beer_cals)\n\n[1] 26\n\n# Lowest calorie content\nmin(beer_cals)\n\n[1] 19\n\n# Highest calorie content\nmax(beer_cals)\n\n[1] 43\n\n# Position of the highest calorie value\nwhich.max(beer_cals)\n\n[1] 26\n\n# Total calorie content\nsum(beer_cals)\n\n[1] 822\n\n\n\n\n\n💻 Hands-On\nTry the following R code to see what it returns.\n\n#       1   2   3   4   5   6   7\nv &lt;- c(70, 66, 82, 85, NA, 90, 73)\n\nlength(v)\n\nmin(v)\n\nwhich.min(v)\n\nmax(v)\n\nwhich.max(v)\n\nsum(v)\n\nprod(v)\n\n\n\n\n\n\n\nAnswer\n\n\n\n\n\nNote that the vector v contains a missing value NA\n\n#       1   2   3   4   5   6   7\nv &lt;- c(70, 66, 82, 85, NA, 90, 73)\n\nTherefore, some functions return NA. The functions which.min() and which.max() exclude missing values first so they return some values.\n\nlength(v)\n\n[1] 7\n\nmin(v)\n\n[1] NA\n\nwhich.min(v)\n\n[1] 2\n\nmax(v)\n\n[1] NA\n\nwhich.max(v)\n\n[1] 6\n\nsum(v)\n\n[1] NA\n\nprod(v)\n\n[1] NA",
+    "crumbs": [
+      "Base R programming",
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>2A: Vector</span>"
+    ]
+  },
+  {
+    "objectID": "ls2a_vector.html#built-in-vectors",
+    "href": "ls2a_vector.html#built-in-vectors",
+    "title": "2A: Vector",
+    "section": "Built-in vectors",
+    "text": "Built-in vectors\n\nR includes several built-in vectors for alphabets, \\(\\pi\\), months, and US states.\n\n💻 Hands-On\nTry the following R code and see what it returns. Feel free to get the help documentation.\n\nLETTERS\nletters\n\nmonth.abb\nmonth.name\n\npi\n\nstate.abb\nstate.name\nstate.area\n\n\n\n\n\n\n\nAnswer\n\n\n\n\n\n\nLETTERS\n\n [1] \"A\" \"B\" \"C\" \"D\" \"E\" \"F\" \"G\" \"H\" \"I\" \"J\" \"K\" \"L\" \"M\" \"N\" \"O\" \"P\" \"Q\" \"R\" \"S\"\n[20] \"T\" \"U\" \"V\" \"W\" \"X\" \"Y\" \"Z\"\n\nletters\n\n [1] \"a\" \"b\" \"c\" \"d\" \"e\" \"f\" \"g\" \"h\" \"i\" \"j\" \"k\" \"l\" \"m\" \"n\" \"o\" \"p\" \"q\" \"r\" \"s\"\n[20] \"t\" \"u\" \"v\" \"w\" \"x\" \"y\" \"z\"\n\nmonth.abb\n\n [1] \"Jan\" \"Feb\" \"Mar\" \"Apr\" \"May\" \"Jun\" \"Jul\" \"Aug\" \"Sep\" \"Oct\" \"Nov\" \"Dec\"\n\nmonth.name\n\n [1] \"January\"   \"February\"  \"March\"     \"April\"     \"May\"       \"June\"     \n [7] \"July\"      \"August\"    \"September\" \"October\"   \"November\"  \"December\" \n\npi\n\n[1] 3.141593\n\nstate.abb\n\n [1] \"AL\" \"AK\" \"AZ\" \"AR\" \"CA\" \"CO\" \"CT\" \"DE\" \"FL\" \"GA\" \"HI\" \"ID\" \"IL\" \"IN\" \"IA\"\n[16] \"KS\" \"KY\" \"LA\" \"ME\" \"MD\" \"MA\" \"MI\" \"MN\" \"MS\" \"MO\" \"MT\" \"NE\" \"NV\" \"NH\" \"NJ\"\n[31] \"NM\" \"NY\" \"NC\" \"ND\" \"OH\" \"OK\" \"OR\" \"PA\" \"RI\" \"SC\" \"SD\" \"TN\" \"TX\" \"UT\" \"VT\"\n[46] \"VA\" \"WA\" \"WV\" \"WI\" \"WY\"\n\nstate.name\n\n [1] \"Alabama\"        \"Alaska\"         \"Arizona\"        \"Arkansas\"      \n [5] \"California\"     \"Colorado\"       \"Connecticut\"    \"Delaware\"      \n [9] \"Florida\"        \"Georgia\"        \"Hawaii\"         \"Idaho\"         \n[13] \"Illinois\"       \"Indiana\"        \"Iowa\"           \"Kansas\"        \n[17] \"Kentucky\"       \"Louisiana\"      \"Maine\"          \"Maryland\"      \n[21] \"Massachusetts\"  \"Michigan\"       \"Minnesota\"      \"Mississippi\"   \n[25] \"Missouri\"       \"Montana\"        \"Nebraska\"       \"Nevada\"        \n[29] \"New Hampshire\"  \"New Jersey\"     \"New Mexico\"     \"New York\"      \n[33] \"North Carolina\" \"North Dakota\"   \"Ohio\"           \"Oklahoma\"      \n[37] \"Oregon\"         \"Pennsylvania\"   \"Rhode Island\"   \"South Carolina\"\n[41] \"South Dakota\"   \"Tennessee\"      \"Texas\"          \"Utah\"          \n[45] \"Vermont\"        \"Virginia\"       \"Washington\"     \"West Virginia\" \n[49] \"Wisconsin\"      \"Wyoming\"       \n\nstate.area\n\n [1]  51609 589757 113909  53104 158693 104247   5009   2057  58560  58876\n[11]   6450  83557  56400  36291  56290  82264  40395  48523  33215  10577\n[21]   8257  58216  84068  47716  69686 147138  77227 110540   9304   7836\n[31] 121666  49576  52586  70665  41222  69919  96981  45333   1214  31055\n[41]  77047  42244 267339  84916   9609  40815  68192  24181  56154  97914",
+    "crumbs": [
+      "Base R programming",
+      "<span class='chapter-number'>2</span>  <span class='chapter-title'>2A: Vector</span>"
+    ]
+  },
+  {
+    "objectID": "ls2b_vector.html",
+    "href": "ls2b_vector.html",
+    "title": "2B: More on Vector",
+    "section": "",
+    "text": "Readings\nFrom R Coding Basics: An Introduction to the Basics of Coding in R by Dr. Gaston Sanchez:",
+    "crumbs": [
+      "Base R programming",
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>2B: More on Vector</span>"
+    ]
+  },
+  {
+    "objectID": "ls2b_vector.html#topics",
+    "href": "ls2b_vector.html#topics",
+    "title": "2B: More on Vector",
+    "section": "Topics",
+    "text": "Topics\n\nImplicit and explicit coercion\nVectorization and recycling\nWorking with logical vectors\nSubsetting: numeric and logical indexing\nUseful functions for vectors",
+    "crumbs": [
+      "Base R programming",
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>2B: More on Vector</span>"
+    ]
+  },
+  {
+    "objectID": "ls2b_vector.html#implicit-coercion",
+    "href": "ls2b_vector.html#implicit-coercion",
+    "title": "2B: More on Vector",
+    "section": "Implicit coercion",
+    "text": "Implicit coercion\n\nBroadly speaking, implicit coercion is how R decides what type the output should be when combining or performing operations on different atomic types.\nImplicit coercion is most commonly found in calculations with logical values and in vector creation using the combine c() function.\n\n\nCalculations with logical values\n\nLogical values are automatically coerced to numeric when used in calculations.\n\n\n# TRUE becomes 1 so 1 + 5 = 6\nTRUE + 5     \n\n[1] 6\n\n# FALSE becomes 0 so 0 + 5 = 5\nFALSE + 5    \n\n[1] 5\n\n# 1 + 0 + 1 = 2\nv &lt;- c(TRUE, FALSE, TRUE)\nsum(v)    \n\n[1] 2\n\n\n💻 Hands-On\nGuess the output in the following R code. Try the code to confirm your guess.\n\nTRUE * 2\n\nFALSE * 2\n\nv1 &lt;- c(TRUE, TRUE, FALSE, FALSE, TRUE, FALSE, FALSE)\nsum(v1)\n\nv2 &lt;- c(F, T, F, F, T, F, T)\nsum(v2)\n\n\n\n\n\n\n\nAnswer\n\n\n\n\n\n\n# TRUE becomes 1 so 1 * 2 = 2\nTRUE * 2\n\n[1] 2\n\n# FALSE becomes 0 so 0 * 2 = 0\nFALSE * 2\n\n[1] 0\n\n# 1 + 1 + 0 + 0 + 1 + 0 + 0 = 3\nv1 &lt;- c(TRUE, TRUE, FALSE, FALSE, TRUE, FALSE, FALSE)\nsum(v1)\n\n[1] 3\n\n# 0 + 1 + 0 + 0 + 1 + 0 + 1 = 3\nv2 &lt;- c(F, T, F, F, T, F, T)\nsum(v2)\n\n[1] 3\n\n\n\n\n\n\n\nCombining values with c()\n\nImplicit coercion also occurs when we combine different atomic types into a single vector.\nIn this case, all elements are converted to the most complex type (character).\n\n\\[\n\\text{Character} \\, &gt; \\, \\text{Double} \\, &gt; \\, \\text{Integer} \\, &gt; \\, \\text{Logical}\n\\]\n\n# integer &gt; logical\nc(4L, TRUE, TRUE, FALSE)                   \n\n[1] 4 1 1 0\n\n# double &gt; integer &gt; logical\nc(7.3, 4L, TRUE, TRUE, FALSE)              \n\n[1] 7.3 4.0 1.0 1.0 0.0\n\n# character &gt; double &gt; integer &gt; logical\nc(\"eagles\", 7.3, 4L, TRUE, TRUE, FALSE)    \n\n[1] \"eagles\" \"7.3\"    \"4\"      \"TRUE\"   \"TRUE\"   \"FALSE\" \n\n\n💻 Hands-On\nGuess the output in the following R code. Try the code to confirm your guess.\n\nv1 &lt;- c(TRUE, 3.5, FALSE, 1L)\nsum(v1)\n\nv2 &lt;- c(FALSE, TRUE, 2, 3, \"4\", 5L)\nsum(v2)\n\n\n\n\n\n\n\nAnswer\n\n\n\n\n\n\n# Coercion gives c(1.0, 3.5, 0.0, 1.0)\nv1 &lt;- c(TRUE, 3.5, FALSE, 1L)\nsum(v1)\n\n[1] 5.5\n\n# Coercion gives c(\"FALSE\", \"TRUE\", \"2\", \"3\", \"4\", \"5\") so sum() gives an error\nv2 &lt;- c(FALSE, TRUE, 2, 3, \"4\", 5L)\nsum(v2)\n\nError in sum(v2): invalid 'type' (character) of argument",
+    "crumbs": [
+      "Base R programming",
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>2B: More on Vector</span>"
+    ]
+  },
+  {
+    "objectID": "ls2b_vector.html#explicit-coercion",
+    "href": "ls2b_vector.html#explicit-coercion",
+    "title": "2B: More on Vector",
+    "section": "Explicit coercion",
+    "text": "Explicit coercion\n\nExplicit coercion directly forces one atomic type to become another.\n\n\nas.logical()      # to logical type\n\nas.integer()      # to integer type\nas.double()       # to double type\nas.numeric()      # to numeric type\n\nas.character()    # to character type",
+    "crumbs": [
+      "Base R programming",
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>2B: More on Vector</span>"
+    ]
+  },
+  {
+    "objectID": "ls2b_vector.html#vectorization",
+    "href": "ls2b_vector.html#vectorization",
+    "title": "2B: More on Vector",
+    "section": "Vectorization",
+    "text": "Vectorization\n\nIn R, vectorization means when we apply a function or operation on a vector, it will be done element by element automatically.\nThis means we do not need to loop through the vector.\n\n\n#       x:      4        8         25         49\n# sqrt(x): sqrt(4)  sqrt(8)   sqrt(25)   sqrt(49)\n#  output:      2        3          5          7\n\nx &lt;- c(4, 9, 25, 49)\nsqrt(x)\n\n[1] 2 3 5 7\n\n\n\nVectorization also implies that an operation on two vectors will be done in an element-wise manner.\n\n\n#      x:  1  2  3  4\n#          +  +  +  +\n#      y:  3  5  6  2\n# output:  4  7  9  6\n\nx &lt;- c(1, 2, 3, 4)\ny &lt;- c(3, 5, 6, 2)\nx + y\n\n[1] 4 7 9 6\n\n\n💻 Hands-On\nVerify the properties of vectorization with the following code\n\nx &lt;- c(1, 2, 3, 4)\ny &lt;- c(3, 5, 6, 2)\n\nx - y\n\nx * y\n\ny / x\n\nlog(y)\n\nsin(x)\n\n\n\n\n\n\n\nAnswer\n\n\n\n\n\nDue to vectorization, R will perform operations on corresponding elements.\n\nx &lt;- c(1, 2, 3, 4)\ny &lt;- c(3, 5, 6, 2)\n\nSee the following\n\nx - y\n\n[1] -2 -3 -3  2\n\nx * y\n\n[1]  3 10 18  8\n\ny / x\n\n[1] 3.0 2.5 2.0 0.5\n\nlog(y)\n\n[1] 1.0986123 1.6094379 1.7917595 0.6931472\n\nsin(x)\n\n[1]  0.8414710  0.9092974  0.1411200 -0.7568025",
+    "crumbs": [
+      "Base R programming",
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>2B: More on Vector</span>"
+    ]
+  },
+  {
+    "objectID": "ls2b_vector.html#recycling",
+    "href": "ls2b_vector.html#recycling",
+    "title": "2B: More on Vector",
+    "section": "Recycling",
+    "text": "Recycling\n\nWhen performing operations on two vectors are different lengths, R will recycle the shorter vector to match the length of the longer one.\n\n\n#      x: 1  2  3  4\n#         *  *  *  *\n#         2  2  2  2\n# output: 2  4  6  8\n\nx &lt;- c(1, 2, 3, 4)\nx * 2\n\n[1] 2 4 6 8\n\n\n\nRecycling can produce confusing results, so it is recommended that two vectors either have the same length or that one of them has length 1.\n\n💻 Hands-On\nTry the following R code and see what it returns. What do you think this sneaky code does?\n\n# Please avoid!\n\nx &lt;- c(5, 3, 7, 4, 6, 8, 3)\ny &lt;- c(1, 2)\nx + y\n\n\n\n\n\n\n\nAnswer\n\n\n\n\n\nWe will see the followling\n\nx &lt;- c(5, 3, 7, 4, 6, 8, 3)\ny &lt;- c(1, 2)\nx + y\n\n[1]  6  5  8  6  7 10  4\n\n\nThe shorter vector y recycles its elements to match the length of the longer vector x. The above is equivalent to\n\nx &lt;- c(5, 3, 7, 4, 6, 8, 3)\ny &lt;- c(1, 2, 1, 2, 1, 2, 1)\nx + y\n\n[1]  6  5  8  6  7 10  4",
+    "crumbs": [
+      "Base R programming",
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>2B: More on Vector</span>"
+    ]
+  },
+  {
+    "objectID": "ls2b_vector.html#working-with-logical-vectors",
+    "href": "ls2b_vector.html#working-with-logical-vectors",
+    "title": "2B: More on Vector",
+    "section": "Working with logical vectors",
+    "text": "Working with logical vectors\n\nLogical vectors are frequently used in data analysis to account for different conditions.\n\n\n# logical vector\nc(TRUE, FALSE, FALSE, TRUE, TRUE)\nc(T, F, F, T, T)\n\n\nComparison operators\n\nA logical vector can be created using comparison operators.\n\n\n\n\nLogical Operator\nDescription\n\n\n&lt;\nLess than\n\n\n&lt;=\nLess than or equal to\n\n\n&gt;\nGreater than\n\n\n&gt;=\nGreater than or equal to\n\n\n==\nExactly equal to\n\n\n!=\nNot equal to\n\n\n\n\nConsider the following vector\n\n\nx &lt;- c(-2, -1, 0, 1, 2, 3)\n\n\nWe have\n\n\n# less than\nx &lt; 0     \n\n[1]  TRUE  TRUE FALSE FALSE FALSE FALSE\n\n# less than or equal to\nx &lt;= 0    \n\n[1]  TRUE  TRUE  TRUE FALSE FALSE FALSE\n\n# greater than\nx &gt; 0     \n\n[1] FALSE FALSE FALSE  TRUE  TRUE  TRUE\n\n# greater than or equal to\nx &gt;= 0    \n\n[1] FALSE FALSE  TRUE  TRUE  TRUE  TRUE\n\n# exactly equal to\nx == 0    \n\n[1] FALSE FALSE  TRUE FALSE FALSE FALSE\n\n# not equal to\nx != 0    \n\n[1]  TRUE  TRUE FALSE  TRUE  TRUE  TRUE\n\n\n💻 Hands-On\nConsider daily high temperatures in celsius over two weeks. Write R code to answer the following questions:\n\nWhich days had temperatures at least 30°C?\nWhich days had temperatures exactly equal to 19°C?\nWhich days had temperatures below 20°C?\nWhich days had temperatures greater than 25°C?\nWhich days had temperatures at most 22°C?\n\n\n# Daily high temperatures over two weeks\ntemps &lt;- c(\n  Mon02 = 18, Tue03 = 21, Wed04 = 19, Thu05 = 25, Fri06 = 27, Sat07 = 30, Sun08 = 22, \n  Mon09 = 20, Tue10 = 16, Wed11 = 24, Thu12 = 28, Fri13 = 31, Sat14 = 29, Sun15 = 17\n)\n\n\n\n\n\n\n\nAnswer\n\n\n\n\n\nHere, we will create logical vectors and use TRUE values to tell which days satisfy the conditions. Note that the vector temps has names to make it easier to tell.\n\ntemps &gt;= 30\n\nMon02 Tue03 Wed04 Thu05 Fri06 Sat07 Sun08 Mon09 Tue10 Wed11 Thu12 Fri13 Sat14 \nFALSE FALSE FALSE FALSE FALSE  TRUE FALSE FALSE FALSE FALSE FALSE  TRUE FALSE \nSun15 \nFALSE \n\ntemps == 19\n\nMon02 Tue03 Wed04 Thu05 Fri06 Sat07 Sun08 Mon09 Tue10 Wed11 Thu12 Fri13 Sat14 \nFALSE FALSE  TRUE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE FALSE \nSun15 \nFALSE \n\ntemps &lt; 20\n\nMon02 Tue03 Wed04 Thu05 Fri06 Sat07 Sun08 Mon09 Tue10 Wed11 Thu12 Fri13 Sat14 \n TRUE FALSE  TRUE FALSE FALSE FALSE FALSE FALSE  TRUE FALSE FALSE FALSE FALSE \nSun15 \n TRUE \n\ntemps &gt; 25\n\nMon02 Tue03 Wed04 Thu05 Fri06 Sat07 Sun08 Mon09 Tue10 Wed11 Thu12 Fri13 Sat14 \nFALSE FALSE FALSE FALSE  TRUE  TRUE FALSE FALSE FALSE FALSE  TRUE  TRUE  TRUE \nSun15 \nFALSE \n\ntemps &lt;= 22\n\nMon02 Tue03 Wed04 Thu05 Fri06 Sat07 Sun08 Mon09 Tue10 Wed11 Thu12 Fri13 Sat14 \n TRUE  TRUE  TRUE FALSE FALSE FALSE  TRUE  TRUE  TRUE FALSE FALSE FALSE FALSE \nSun15 \n TRUE \n\n\n\n\n\n\n\nThe sum() function\n\nApplying the sum() function to a logical vector gives the number of TRUE values.\nRecall that implicit coercion turns logical values to \\(1\\)’s and \\(0\\)’s.\n\n\n# 1 + 0 + 0 + 1 + 1 \nv &lt;- c(TRUE, FALSE, FALSE, TRUE, TRUE)\nsum(v)\n\n[1] 3\n\n\n💻 Hands-On\nConsider the following vector\n\nx &lt;- c(-2, -1, 0, 1, 2, 3)\n\nTry the following R code and see what it returns.\n\nsum(x &lt; 0)\n\nsum(x &lt;= 0)\n\nsum(x &gt; 0)\n\nsum(x &gt;= 0)\n\nsum(x == 0)\n\nsum(x != 0)\n\n\n\n\n\n\n\nAnswer\n\n\n\n\n\n\nsum(x &lt; 0)\n\n[1] 2\n\nsum(x &lt;= 0)\n\n[1] 3\n\nsum(x &gt; 0)\n\n[1] 3\n\nsum(x &gt;= 0)\n\n[1] 4\n\nsum(x == 0)\n\n[1] 1\n\nsum(x != 0)\n\n[1] 5\n\n\n\n\n\n💻 Hands-On\nConsider daily high temperatures in celsius over two weeks. Write R code to answer the following questions:\n\nHow many days had temperatures below 18°C?\nHow many days had temperatures greater than 26°C?\nHow many days had temperatures at most 21°C?\nHow many days had temperatures at least 28°C?\n\n\n# Daily high temperatures over two weeks\ntemps &lt;- c(\n  Mon02 = 18, Tue03 = 21, Wed04 = 19, Thu05 = 25, Fri06 = 27, Sat07 = 30, Sun08 = 22, \n  Mon09 = 20, Tue10 = 16, Wed11 = 24, Thu12 = 28, Fri13 = 31, Sat14 = 29, Sun15 = 17\n)\n\n\n\n\n\n\n\nAnswer\n\n\n\n\n\n\nsum(temps &lt; 18)\n\n[1] 2\n\nsum(temps &gt; 26)\n\n[1] 5\n\nsum(temps &lt;= 21)\n\n[1] 6\n\nsum(temps &gt;= 28)\n\n[1] 4\n\n\n\n\n\n\n\nThe which() function\n\nThe which() function returns the indices of TRUE values.\n\n💻 Hands-On\nConsider the following vector\n\nx &lt;- c(-2, -1, 0, 1, 2, 3)\n\nTry the following R code and see what it returns.\n\nwhich(x &lt; 0)\n\nwhich(x &gt; 0)\n \nwhich(x &lt;= 0)\n \nwhich(x &gt;= 0)\n\nwhich(x == 0)\n\nwhich(x != 0)\n\n\n\n\n\n\n\nAnswer\n\n\n\n\n\n\nwhich(x &lt; 0)\n\n[1] 1 2\n\nwhich(x &gt; 0)\n\n[1] 4 5 6\n\nwhich(x &lt;= 0)\n\n[1] 1 2 3\n\nwhich(x &gt;= 0)\n\n[1] 3 4 5 6\n\nwhich(x == 0)\n\n[1] 3\n\nwhich(x != 0)\n\n[1] 1 2 4 5 6\n\n\n\n\n\n\n\nRelational operators\n\nRelational operators are powerful tools to combine conditional statements.\n\n\n\n\nRelationship Operator\nDescription\n\n\n&\nand\n\n\n|\nor\n\n\n!\nnot\n\n\n\n💻 Hands-On\nConsider the following vector\n\nx &lt;- c(1, 2, 3, 4, 5, 6, 7, 8, 9)\n\nTry the following R code and see what it returns.\n\nx &gt; 3 & x &lt; 8\n\n!(x &gt; 3 & x &lt; 8)\n\n\n\n\n\n\n\nAnswer\n\n\n\n\n\n\n# 3 &lt; x &lt; 8\nx &gt; 3 & x &lt; 8\n\n[1] FALSE FALSE FALSE  TRUE  TRUE  TRUE  TRUE FALSE FALSE\n\n# Opposite of 3 &lt; x &lt; 8\n!(x &gt; 3 & x &lt; 8)\n\n[1]  TRUE  TRUE  TRUE FALSE FALSE FALSE FALSE  TRUE  TRUE\n\n\n\n\n\n💻 Hands-On\nConsider the following vector\n\nx &lt;- c(1, 2, 3, 4, 5, 6, 7, 8, 9)\n\nTry the following R code and see what it returns.\n\nx &lt; 4 | x &gt; 6\n\n!(x &lt; 4 | x &gt; 6)\n\n\n\n\n\n\n\nAnswer\n\n\n\n\n\n\n# x &lt; 4 or x &gt; 6\nx &lt; 4 | x &gt; 6\n\n[1]  TRUE  TRUE  TRUE FALSE FALSE FALSE  TRUE  TRUE  TRUE\n\n# Opposite of x &lt; 4 or x &gt; 6\n!(x &lt; 4 | x &gt; 6)\n\n[1] FALSE FALSE FALSE  TRUE  TRUE  TRUE FALSE FALSE FALSE\n\n\n\n\n\n💻 Hands-On\nConsider daily high temperatures in celsius over two weeks. Write R code to answer the following questions:\n\nWhich days had temperatures at least 20°C and at most 25°C?\nWhich days had temperatures below 18°C or above 28°C?\n\n\n# Daily high temperatures over two weeks\ntemps &lt;- c(\n  Mon02 = 18, Tue03 = 21, Wed04 = 19, Thu05 = 25, Fri06 = 27, Sat07 = 30, Sun08 = 22, \n  Mon09 = 20, Tue10 = 16, Wed11 = 24, Thu12 = 28, Fri13 = 31, Sat14 = 29, Sun15 = 17\n)\n\n\n\n\n\n\n\nAnswer\n\n\n\n\n\n\nwhich(temps &gt;= 20 & temps &lt;= 25)\n\nTue03 Thu05 Sun08 Mon09 Wed11 \n    2     4     7     8    10 \n\nwhich(temps &lt; 18 | temps &gt; 28)\n\nSat07 Tue10 Fri13 Sat14 Sun15 \n    6     9    12    13    14",
+    "crumbs": [
+      "Base R programming",
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>2B: More on Vector</span>"
+    ]
+  },
+  {
+    "objectID": "ls2b_vector.html#subsetting",
+    "href": "ls2b_vector.html#subsetting",
+    "title": "2B: More on Vector",
+    "section": "Subsetting",
+    "text": "Subsetting\n\nCertain elements of a vector can be subsetted using the brackets []\n\n\n\nSubsetting can be done using one of the following indexing methods:\n\nNumeric indexing\nLogical indexing\nCharacter indexing (if the vector has names; not covered here)",
+    "crumbs": [
+      "Base R programming",
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>2B: More on Vector</span>"
+    ]
+  },
+  {
+    "objectID": "ls2b_vector.html#numeric-indexing",
+    "href": "ls2b_vector.html#numeric-indexing",
+    "title": "2B: More on Vector",
+    "section": "Numeric indexing",
+    "text": "Numeric indexing\n\nNumeric indexing means telling R the specific indices to return values.\nConsider the following vector\n\n\n#       1   2   3   4   5   6   7\nv &lt;- c(70, 66, 82, 85, 78, 90, 73)\n\n\nWe have\n\n\n# 1st value\nv[1]            \n\n[1] 70\n\n# 4th value\nv[4]            \n\n[1] 85\n\n# last value, 7th value\nv[length(v)]    \n\n[1] 73\n\n# Not available\nv[320]          \n\n[1] NA\n\n\n\nNumeric indexing can also use a vector of multiple indices.\n\n\n# at 2nd, 3rd, 4th, 5th\nv[2:5]                 \n\n[1] 66 82 85 78\n\n# at 5th, 4th, 3rd, 2nd\nv[5:2]                 \n\n[1] 78 85 82 66\n\n# at 3rd, 1st, 3rd, 5th, 2nd\nv[c(3, 1, 3, 5, 2)]    \n\n[1] 82 70 82 78 66\n\n\n\nNote that negative indices mean all but the specified indices.\n\n\n# all but 1st value\nv[-1]                    \n\n[1] 66 82 85 78 90 73\n\n# all but 2nd and 5th values\nv[-c(2, 5)]              \n\n[1] 70 82 85 90 73\n\n# all but 1st to 4th values\nv[-(1:4)]                \n\n[1] 78 90 73\n\n# error!\nv[-1:4]                  \n\nError in v[-1:4]: only 0's may be mixed with negative subscripts\n\n\n💻 Hands-On\nConsider the following vector\n\n#       1   2   3   4   5   6   7\nv &lt;- c(70, 66, 82, 85, 78, 90, 73)\n\nWrite R code to return the following in v\n\nThe second value\nThe sixth value\nThe first and last values.\nThe values at positions 3 through 6\nThe values at positions 6 through 3\nThe values at positions 1, 4, and 7\nAll values except the first.\nAll values except the last two.\nAll values except positions 2 and 6.\n\n\n\n\n\n\n\nAnswer\n\n\n\n\n\n\nv[2]\n\n[1] 66\n\nv[6]\n\n[1] 90\n\nv[c(1, length(v))]\n\n[1] 70 73\n\nv[3:6]\n\n[1] 82 85 78 90\n\nv[6:3]\n\n[1] 90 78 85 82\n\nv[c(1, 4, 7)]\n\n[1] 70 85 73\n\nv[-1]\n\n[1] 66 82 85 78 90 73\n\nv[-(6:7)]    # or v[-c(6, 7)]\n\n[1] 70 66 82 85 78\n\nv[-c(2, 6)]\n\n[1] 70 82 85 78 73",
+    "crumbs": [
+      "Base R programming",
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>2B: More on Vector</span>"
+    ]
+  },
+  {
+    "objectID": "ls2b_vector.html#logical-indexing",
+    "href": "ls2b_vector.html#logical-indexing",
+    "title": "2B: More on Vector",
+    "section": "Logical Indexing",
+    "text": "Logical Indexing\n\nLogical indexing means telling R which values to return and which values not to return.\nWith logical indexing, TRUE will retain the elements, while FALSE will discard the elements.\nLogical indexing is powerful because it allows for subsetting with conditions.\nConsider the following vector\n\n\n#       1   2   3   4   5   6   7\nv &lt;- c(70, 66, 82, 85, 78, 90, 73)\n\n\n# 1st, 6th\nv[c(TRUE, FALSE, FALSE, FALSE, FALSE, TRUE, FALSE)]    \n\n[1] 70 90\n\n# 2nd, 3rd, 4th\nv[c(FALSE, TRUE, TRUE, TRUE, FALSE, FALSE, FALSE)]     \n\n[1] 66 82 85\n\n# those values greater than 80\nv[v &gt; 80]    \n\n[1] 82 85 90\n\n\n💻 Hands-On\nConsider the following vector\n\n#       1   2   3   4   5   6   7\nv &lt;- c(70, 66, 82, 85, 78, 90, 73)\n\nUse numeric and logical indexing to subset\n\n66 82 90 73\n70 66 78 73\n\n\n\n\n\n\n\nAnswer\n\n\n\n\n\n\n# 66 82 90 73\n\nv[c(2, 3, 6, 7)]\nv[c(FALSE, TRUE, TRUE, FALSE, FALSE, TRUE, TRUE)]\n\n# 70 66 78 73\n\nv[c(1, 2, 5, 7)]\nv[c(TRUE, TRUE, FALSE, FALSE, TRUE, FALSE, TRUE)]\nv[v &lt; 80]\n\n\n\n\n💻 Hands-On\nThe monthly cost for a stand-alone drug plan varies from plan to plan and from state to state. The vector cost gives the premium for the plan with the lowest cost for each state in 2005 (excludes District of Columbia). Write R code using cost and state.name to find state(s) with a monthly premium\n\nLess than or equal to \\(\\$5\\)\nGreater than \\(\\$10\\)\nBetween \\(\\$5\\) and \\(\\$10\\) (exclusive)\nExactly equal to \\(\\$1.87\\)\nAt most \\(\\$7\\)\nAt least \\(\\$15\\)\nTo be the smallest\nTo be the largest\n\n\n# Recall the vector `state.name`\n\ncost &lt;- c(\n  14.08, 20.05, 6.14, 10.31, 5.41, 8.62, 7.32,\n  6.44, 10.35, 17.91, 17.18, 6.33, 13.32, 12.30, 1.87,\n  9.48, 12.30, 17.06, 19.60, 6.44, 7.32, 13.75, 1.87,\n  11.60, 10.29, 1.87, 1.87, 6.42, 19.60, 4.43, 10.65,\n  4.10, 13.27, 1.87, 14.43, 10.07, 6.93, 10.14, 7.32,\n  16.57, 1.87, 14.08, 10.31, 6.33, 7.32, 8.81, 6.93,\n  10.14, 11.42, 1.87\n)\n\n\n\n\n\n\n\nAnswer\n\n\n\n\n\n\nstate.name[cost &lt;= 5]\n\n[1] \"Iowa\"         \"Minnesota\"    \"Montana\"      \"Nebraska\"     \"New Jersey\"  \n[6] \"New York\"     \"North Dakota\" \"South Dakota\" \"Wyoming\"     \n\nstate.name[cost &gt; 10]\n\n [1] \"Alabama\"        \"Alaska\"         \"Arkansas\"       \"Florida\"       \n [5] \"Georgia\"        \"Hawaii\"         \"Illinois\"       \"Indiana\"       \n [9] \"Kentucky\"       \"Louisiana\"      \"Maine\"          \"Michigan\"      \n[13] \"Mississippi\"    \"Missouri\"       \"New Hampshire\"  \"New Mexico\"    \n[17] \"North Carolina\" \"Ohio\"           \"Oklahoma\"       \"Pennsylvania\"  \n[21] \"South Carolina\" \"Tennessee\"      \"Texas\"          \"West Virginia\" \n[25] \"Wisconsin\"     \n\nstate.name[cost &gt; 5 & cost &lt; 10]\n\n [1] \"Arizona\"       \"California\"    \"Colorado\"      \"Connecticut\"  \n [5] \"Delaware\"      \"Idaho\"         \"Kansas\"        \"Maryland\"     \n [9] \"Massachusetts\" \"Nevada\"        \"Oregon\"        \"Rhode Island\" \n[13] \"Utah\"          \"Vermont\"       \"Virginia\"      \"Washington\"   \n\nstate.name[cost == 1.87]\n\n[1] \"Iowa\"         \"Minnesota\"    \"Montana\"      \"Nebraska\"     \"North Dakota\"\n[6] \"South Dakota\" \"Wyoming\"     \n\nstate.name[cost &lt;= 7]\n\n [1] \"Arizona\"      \"California\"   \"Delaware\"     \"Idaho\"        \"Iowa\"        \n [6] \"Maryland\"     \"Minnesota\"    \"Montana\"      \"Nebraska\"     \"Nevada\"      \n[11] \"New Jersey\"   \"New York\"     \"North Dakota\" \"Oregon\"       \"South Dakota\"\n[16] \"Utah\"         \"Washington\"   \"Wyoming\"     \n\nstate.name[cost &gt;= 15]\n\n[1] \"Alaska\"         \"Georgia\"        \"Hawaii\"         \"Louisiana\"     \n[5] \"Maine\"          \"New Hampshire\"  \"South Carolina\"\n\nstate.name[cost == min(cost)]\n\n[1] \"Iowa\"         \"Minnesota\"    \"Montana\"      \"Nebraska\"     \"North Dakota\"\n[6] \"South Dakota\" \"Wyoming\"     \n\nstate.name[cost == max(cost)]\n\n[1] \"Alaska\"",
+    "crumbs": [
+      "Base R programming",
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>2B: More on Vector</span>"
+    ]
+  },
+  {
+    "objectID": "ls2b_vector.html#useful-functions-for-vectors",
+    "href": "ls2b_vector.html#useful-functions-for-vectors",
+    "title": "2B: More on Vector",
+    "section": "Useful functions for vectors",
+    "text": "Useful functions for vectors\nGiven a vector,\n\nhead() returns its first few elements\ntail() returns its last few elements\nsort() returns its sorted version in increasing or decreasing order\norder() returns the indices of its sorted version\nrev() returns the reversed vector\nunique() returns a vector of its unique elements\ntable() shows unique elements and their frequencies\n\n💻 Hands-On\nThe monthly cost for a stand-alone drug plan varies from plan to plan and from state to state. The vector cost gives the premium for the plan with the lowest cost for each state in 2005 (excludes District of Columbia).\n\ncost &lt;- c(\n  14.08, 20.05, 6.14, 10.31, 5.41, 8.62, 7.32,\n  6.44, 10.35, 17.91, 17.18, 6.33, 13.32, 12.30, 1.87,\n  9.48, 12.30, 17.06, 19.60, 6.44, 7.32, 13.75, 1.87,\n  11.60, 10.29, 1.87, 1.87, 6.42, 19.60, 4.43, 10.65,\n  4.10, 13.27, 1.87, 14.43, 10.07, 6.93, 10.14, 7.32,\n  16.57, 1.87, 14.08, 10.31, 6.33, 7.32, 8.81, 6.93,\n  10.14, 11.42, 1.87\n)\n\nTry the following R code and see what it returns.\n\nhead(cost)    # head(cost, n = 6)\n\ntail(cost)    # tail(cost, n = 6)\n\nsort(cost)\n\nsort(cost, decreasing = TRUE)\n\norder(cost)\n\norder(cost, decreasing = TRUE)\n\nrev(cost)\n\n\n\n\n\n\n\nAnswer\n\n\n\n\n\n\nhead(cost)    # head(cost, n = 6)\n\n[1] 14.08 20.05  6.14 10.31  5.41  8.62\n\ntail(cost)    # tail(cost, n = 6)\n\n[1]  7.32  8.81  6.93 10.14 11.42  1.87\n\nsort(cost)\n\n [1]  1.87  1.87  1.87  1.87  1.87  1.87  1.87  4.10  4.43  5.41  6.14  6.33\n[13]  6.33  6.42  6.44  6.44  6.93  6.93  7.32  7.32  7.32  7.32  8.62  8.81\n[25]  9.48 10.07 10.14 10.14 10.29 10.31 10.31 10.35 10.65 11.42 11.60 12.30\n[37] 12.30 13.27 13.32 13.75 14.08 14.08 14.43 16.57 17.06 17.18 17.91 19.60\n[49] 19.60 20.05\n\nsort(cost, decreasing = TRUE)\n\n [1] 20.05 19.60 19.60 17.91 17.18 17.06 16.57 14.43 14.08 14.08 13.75 13.32\n[13] 13.27 12.30 12.30 11.60 11.42 10.65 10.35 10.31 10.31 10.29 10.14 10.14\n[25] 10.07  9.48  8.81  8.62  7.32  7.32  7.32  7.32  6.93  6.93  6.44  6.44\n[37]  6.42  6.33  6.33  6.14  5.41  4.43  4.10  1.87  1.87  1.87  1.87  1.87\n[49]  1.87  1.87\n\norder(cost)\n\n [1] 15 23 26 27 34 41 50 32 30  5  3 12 44 28  8 20 37 47  7 21 39 45  6 46 16\n[26] 36 38 48 25  4 43  9 31 49 24 14 17 33 13 22  1 42 35 40 18 11 10 19 29  2\n\norder(cost, decreasing = TRUE)\n\n [1]  2 19 29 10 11 18 40 35  1 42 22 13 33 14 17 24 49 31  9  4 43 25 38 48 36\n[26] 16 46  6  7 21 39 45 37 47  8 20 28 12 44  3  5 30 32 15 23 26 27 34 41 50\n\nrev(cost)\n\n [1]  1.87 11.42 10.14  6.93  8.81  7.32  6.33 10.31 14.08  1.87 16.57  7.32\n[13] 10.14  6.93 10.07 14.43  1.87 13.27  4.10 10.65  4.43 19.60  6.42  1.87\n[25]  1.87 10.29 11.60  1.87 13.75  7.32  6.44 19.60 17.06 12.30  9.48  1.87\n[37] 12.30 13.32  6.33 17.18 17.91 10.35  6.44  7.32  8.62  5.41 10.31  6.14\n[49] 20.05 14.08\n\n\n\n\n\n💻 Hands-On\nThe vectors scores and grades contain exam scores and the corresponding letter grades for students in a statistics class.\n\nscores &lt;- c(\n  88, 92, 75, 84, 91, 67, 73, 88, 95, 78,\n  82, 90, 69, 74, 85, 88, 93, 77, 81, 89,\n  94, 72, 68, 86, 80, 76, 83, 88, 91, 79\n)\n\ngrades &lt;- c(\n  'B', 'A', 'C', 'B', 'A', 'D', 'C', 'B', 'A', 'C',\n  'B', 'A', 'D', 'C', 'B', 'B', 'A', 'C', 'B', 'B',\n  'A', 'C', 'D', 'B', 'B', 'C', 'B', 'B', 'A', 'C'\n)\n\nWrite R code to:\n\nShow the first and last few exam scores\nSort the exam scores in decreasing order\nShow unique letter grades of students in this class and their frequencies\n\n\n\n\n\n\n\nAnswer\n\n\n\n\n\n\nhead(scores)\n\n[1] 88 92 75 84 91 67\n\ntail(scores)\n\n[1] 80 76 83 88 91 79\n\nsort(scores, decreasing = TRUE)\n\n [1] 95 94 93 92 91 91 90 89 88 88 88 88 86 85 84 83 82 81 80 79 78 77 76 75 74\n[26] 73 72 69 68 67\n\ntable(grades)\n\ngrades\n A  B  C  D \n 7 12  8  3",
+    "crumbs": [
+      "Base R programming",
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>2B: More on Vector</span>"
+    ]
+  },
+  {
+    "objectID": "ls2b_vector.html#readings",
+    "href": "ls2b_vector.html#readings",
+    "title": "2B: More on Vector",
+    "section": "",
+    "text": "First Contact with Vectors\nProperties of Vectors\nCreating Vectors\nMore about Vectors",
+    "crumbs": [
+      "Base R programming",
+      "<span class='chapter-number'>3</span>  <span class='chapter-title'>2B: More on Vector</span>"
+    ]
+  },
+  {
+    "objectID": "ls2c_vector.html",
+    "href": "ls2c_vector.html",
+    "title": "2C: Character Vector and Factor",
+    "section": "",
+    "text": "Readings\nFrom R Coding Basics: An Introduction to the Basics of Coding in R by Dr. Gaston Sanchez:",
+    "crumbs": [
+      "Base R programming",
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>2C: Character Vector and Factor</span>"
+    ]
+  },
+  {
+    "objectID": "ls2c_vector.html#readings",
+    "href": "ls2c_vector.html#readings",
+    "title": "2C: Character Vector and Factor",
+    "section": "",
+    "text": "Factors",
+    "crumbs": [
+      "Base R programming",
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>2C: Character Vector and Factor</span>"
+    ]
+  },
+  {
+    "objectID": "ls2c_vector.html#topics",
+    "href": "ls2c_vector.html#topics",
+    "title": "2C: Character Vector and Factor",
+    "section": "Topics",
+    "text": "Topics\n\nCharacter vector\nUseful functions for character vector\nFactor",
+    "crumbs": [
+      "Base R programming",
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>2C: Character Vector and Factor</span>"
+    ]
+  },
+  {
+    "objectID": "ls2c_vector.html#character-vector",
+    "href": "ls2c_vector.html#character-vector",
+    "title": "2C: Character Vector and Factor",
+    "section": "Character vector",
+    "text": "Character vector\n\nData can be in the form of specific categories that describe a certain characteristic.\nCategories such as gender, color, nationality, and college major are said to be nominal because they have no natural ordering.\nIn contrast, categories such as education level, customer satisfaction, and Likert scale responses, are ordinal because they do have a natural ordering.\nIn R, a character vector is often used to represent nominal categories.\n\n\n# character vector\nc('male', 'female', 'female', 'male', 'female')  \nc('Math', 'Data Science', 'Math', 'Computer Science', 'Data Science')",
+    "crumbs": [
+      "Base R programming",
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>2C: Character Vector and Factor</span>"
+    ]
+  },
+  {
+    "objectID": "ls2c_vector.html#useful-functions-for-character-vector",
+    "href": "ls2c_vector.html#useful-functions-for-character-vector",
+    "title": "2C: Character Vector and Factor",
+    "section": "Useful functions for character vector",
+    "text": "Useful functions for character vector\n\nThe nchar() function\n\nnchar() counts the number of characters of each element.\n\n\nv &lt;- c('Data', 'science', 'is', 'fun', 'and', 'challenging')\nnchar(v)\n\n[1]  4  7  2  3  3 11\n\n\n💻 Hands-On\nWrite R code to count the number of characters of the following vector:\n\ntowns &lt;- c('Glassboro', 'Clayton', 'Pitman', 'Deptford')\n\n\n\n\n\n\n\nAnswer\n\n\n\n\n\n\nnchar(towns)\n\n[1] 9 7 6 8\n\n\n\n\n\n\n\nThe strsplit() function\n\nstrsplit() splits a string into words.\n\n\nstrsplit('Data science is fun and challenging', split = ' ')\n\n[[1]]\n[1] \"Data\"        \"science\"     \"is\"          \"fun\"         \"and\"        \n[6] \"challenging\"\n\n\n💻 Hands-On\nWrite R code extract words in the following string:\n\n#&gt; 'Name,Age,Major,GPA,Hobbies'\n\n\n\n\n\n\n\nAnswer\n\n\n\n\n\n\nstrsplit('Name,Age,Major,GPA,Hobbies', split = ',')\n\n[[1]]\n[1] \"Name\"    \"Age\"     \"Major\"   \"GPA\"     \"Hobbies\"\n\n\n\n\n\n\n\nThe paste() function\n\npaste() concatenates elements of character vectors\n\n\npaste(towns, 'NJ')\n\n[1] \"Glassboro NJ\" \"Clayton NJ\"   \"Pitman NJ\"    \"Deptford NJ\" \n\npaste(towns, 'NJ', sep = ' ')\n\n[1] \"Glassboro NJ\" \"Clayton NJ\"   \"Pitman NJ\"    \"Deptford NJ\" \n\npaste(towns, 'NJ', sep = ', ')\n\n[1] \"Glassboro, NJ\" \"Clayton, NJ\"   \"Pitman, NJ\"    \"Deptford, NJ\" \n\npaste(towns, 'NJ', sep = ' in ')\n\n[1] \"Glassboro in NJ\" \"Clayton in NJ\"   \"Pitman in NJ\"    \"Deptford in NJ\" \n\n\n💻 Hands-On\nWrite R code to generate the following output:\n\n#&gt; [1] \"Glassboro Township\" \"Clayton Township\"   \"Pitman Township\"   \n#&gt; [4] \"Deptford Township\"\n\n\n\n\n\n\n\nAnswer\n\n\n\n\n\n\npaste(towns, 'Township', sep = ' ')\n\n[1] \"Glassboro Township\" \"Clayton Township\"   \"Pitman Township\"   \n[4] \"Deptford Township\" \n\n\n\n\n\n💻 Hands-On\nWhat does the paste0() function does?\n\ntowns &lt;- c('Glassboro', 'Clayton', 'Pitman', 'Deptford')\n\npaste0(towns, 'NJ')\n\n[1] \"GlassboroNJ\" \"ClaytonNJ\"   \"PitmanNJ\"    \"DeptfordNJ\" \n\n\n\n\n\n\n\n\nAnswer\n\n\n\n\n\npaste0 is a shortcut for paste(..., sep = '') (no separator)\n\ntowns &lt;- c('Glassboro', 'Clayton', 'Pitman', 'Deptford')\n\npaste0(towns, 'NJ')\n\n[1] \"GlassboroNJ\" \"ClaytonNJ\"   \"PitmanNJ\"    \"DeptfordNJ\" \n\n\n\n\n\n\nThanks to vectorization, paste() allows corresponding elements to be concatenated.\n\n\nfirst_names &lt;- c('James', 'Robert', 'Mary')\nlast_names  &lt;- c('Smith', 'Williams', 'Brown')\n\npaste(first_names, last_names)\n\n[1] \"James Smith\"     \"Robert Williams\" \"Mary Brown\"     \n\n\n💻 Hands-On\nWrite R code to generate the following output:\n\n#&gt; [1] \"Smith, James\"     \"Williams, Robert\" \"Brown, Mary\"\n\n\n\n\n\n\n\nAnswer\n\n\n\n\n\n\npaste(last_names, first_names, collapse = ', ')\n\n[1] \"Smith James, Williams Robert, Brown Mary\"\n\n\n\n\n\n💻 Hands-On\nWrite R code to generate the following output:\n\n#&gt; [1] \"Glassboro, NJ 08028\" \"Clayton, NJ 08312\"   \"Pitman, NJ 08071\"   \n#&gt; [4] \"Deptford, NJ 08096\" \n\n\n\n\n\n\n\nAnswer\n\n\n\n\n\n\nzip_code &lt;- c('08028', '08312', '08071', '08096')\n\npaste0(towns, ', NJ', zip_code)\n\n[1] \"Glassboro, NJ08028\" \"Clayton, NJ08312\"   \"Pitman, NJ08071\"   \n[4] \"Deptford, NJ08096\"",
+    "crumbs": [
+      "Base R programming",
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>2C: Character Vector and Factor</span>"
+    ]
+  },
+  {
+    "objectID": "ls2c_vector.html#factor",
+    "href": "ls2c_vector.html#factor",
+    "title": "2C: Character Vector and Factor",
+    "section": "Factor",
+    "text": "Factor\n\nA factor is a specialized data structure for categories, especially ordinal categories.\nIt behaves like a vector but has additional attributes.\nA factor displays categories (levels) but stores them internally as integers.\nA factor is created from a character vector using the factor() function.\n\n\n### Nominal factor\n\n#&gt; [1] O  A  AB O  O  B  A  B  AB\n#&gt; Levels: A B AB O\n\n### Ordinal factor\n\n#&gt;  [1] extra hot mild      hot       mild      medium    extra hot mild     \n#&gt;  [8] medium    extra hot medium    extra hot mild     \n#&gt; Levels: mild &lt; medium &lt; hot &lt; extra hot\n\n💻 Hands-On\nCreate a nominal factor from the following character vector:\n\nblood &lt;- c('O', 'A', 'AB', 'O', 'O', 'B', 'A', 'B', 'AB')\n\n\n\n\n\n\n\nAnswer\n\n\n\n\n\n\nfactor(blood, levels = c('O', 'A', 'B', 'AB'))\n\n[1] O  A  AB O  O  B  A  B  AB\nLevels: O A B AB\n\n\n\n\n\n💻 Hands-On\nCreate an ordinal factor from the following character vector:\n\npepper &lt;- c('extra hot', 'mild', 'hot', 'mild', 'medium', 'extra hot', \n            'mild', 'medium', 'extra hot', 'medium', 'extra hot', 'mild')\n\n\n\n\n\n\n\nAnswer\n\n\n\n\n\n\nfactor(pepper, levels = c('mild', 'medium', 'hot', 'extra hot'), ordered = TRUE)\n\n [1] extra hot mild      hot       mild      medium    extra hot mild     \n [8] medium    extra hot medium    extra hot mild     \nLevels: mild &lt; medium &lt; hot &lt; extra hot\n\n\n\n\n\n💻 Hands-On\nCreate an ordinal factor from the following character vector:\n\nshirts &lt;- c('L', 'XL', 'XL', 'L', 'M', 'S', 'S', 'XL', 'M', 'S', 'L', 'S')\n\n\n\n\n\n\n\nAnswer\n\n\n\n\n\n\nfactor(shirts, levels = c('S', 'M', 'L', 'XL'),\n       labels = c('Small', 'Medium', 'Large', 'Extra Large'))\n\n [1] Large       Extra Large Extra Large Large       Medium      Small      \n [7] Small       Extra Large Medium      Small       Large       Small      \nLevels: Small Medium Large Extra Large",
+    "crumbs": [
+      "Base R programming",
+      "<span class='chapter-number'>4</span>  <span class='chapter-title'>2C: Character Vector and Factor</span>"
+    ]
+  }
+]

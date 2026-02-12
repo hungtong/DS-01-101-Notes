@@ -1,0 +1,528 @@
+---
+toc: true
+toc-depth: 3
+echo: true
+eval: true
+output: true
+---
+
+# 3A: Data Frame
+
+## Readings
+
+From **R Coding Basics: An Introduction to the Basics of Coding in R** by Dr. Gaston Sanchez:
+
+-   [Data Frames](https://www.gastonsanchez.com/R-coding-basics/4-02-data-frames.html)
+
+## Topics
+
+-   Data frame and matrix
+
+-   Creating a data frame
+
+-   Selecting elements in a data frame
+
+-   Adding, removing, and transforming a column
+
+## Data Frame
+
+-   A **matrix** is a tabular data structure containing values of the [same]{.underline} type.
+
+-   A **data frame** is a matrix-like data structure in which each column may have a [different]{.underline} type.
+
+```{r}
+#   Age Height Weight Gender
+# 1  25    168     65 Female
+# 2  32    175     70   Male
+# 3  28    160     55 Female
+# 4  40    180     80   Male
+```
+
+-   To create a data frame, we can combine multiple vectors using
+
+```{r}
+
+age <- c(25, 32, 28, 40)
+hei <- c(168, 175, 160, 180)
+wei <- c(65, 70, 55, 80)
+gen <- c("Female", "Male", "Female", "Male")
+
+data.frame(age, hei, wei, gen)
+```
+
+-   It is possible to specify the column names.
+
+```{r}
+
+age <- c(25, 32, 28, 40)
+hei <- c(168, 175, 160, 180)
+wei <- c(65, 70, 55, 80)
+gen <- c('Female', 'Male', 'Female', 'Male')
+
+data.frame(Age = age, Height = hei, Weight = wei, Gender = gen)
+```
+
+-   We can also type in the values directly.
+
+```{r}
+
+data.frame(
+  Age    = c(25, 32, 28, 40), 
+  Height = c(168, 175, 160, 180), 
+  Weight = c(65, 70, 55, 80), 
+  Gender = c('Female', 'Male', 'Female', 'Male')
+)
+```
+
+💻 **Hands-On**
+
+Create a data frame from the following data set
+
+| Student | Score | Allergy |
+|---------|:-----:|:-------:|
+| Alice   |  92   | peanut  |
+| Bob     |  88   |  none   |
+| Calvin  |  95   | seafood |
+
+::: {.callout-tip collapse="true"}
+## Answer
+
+```{r}
+
+data.frame(
+  Student = c('Alice', 'Bob', 'Calvin'), 
+  Score   = c(92, 88, 95), 
+  Allergy = c('peanut', 'none', 'seafood')
+)
+```
+:::
+
+## Subsetting
+
+### The dollar operator `$`
+
+-   A specific column (variable) can be quickly accessed using the dollar operator `$`
+
+-   Note that the output is a vector, not a data frame.
+
+```{r}
+
+df <- data.frame(
+  Age    = c(25, 32, 28, 40), 
+  Height = c(168, 175, 160, 180), 
+  Weight = c(65, 70, 55, 80), 
+  Gender = c('Female', 'Male', 'Female', 'Male')
+)
+
+df$Height
+```
+
+💻 **Hands-On**
+
+Write R code to subset each individual column of `df`
+
+```{r}
+#| eval: false
+
+#   Age Height Weight Gender
+# 1  25    168     65 Female
+# 2  32    175     70   Male
+# 3  28    160     55 Female
+# 4  40    180     80   Male
+```
+
+::: {.callout-tip collapse="true"}
+## Answer
+
+```{r}
+
+df$Age
+
+df$Height
+
+df$Weight
+
+df$Gender
+```
+:::
+
+💻 **Hands-On**
+
+Try the following R code to see what it returns.
+
+```{r}
+#| eval: false
+
+df$Gender == 'Male'
+
+df$Gender == 'Female'
+
+df$Age < 30
+
+df$Height[df$Gender == 'Male']
+
+df$Height[df$Gender == 'Female']
+
+df$Height[df$Age < 30]
+```
+
+::: {.callout-tip collapse="true"}
+## Answer
+
+In this activity, we use logical indexing to subset observations that satisfy certain characteristic.
+
+```{r}
+
+df$Gender == 'Male'
+
+df$Gender == 'Female'
+
+df$Age < 30
+
+df$Height[df$Gender == 'Male']
+
+df$Height[df$Gender == 'Female']
+
+df$Height[df$Age < 30]
+```
+:::
+
+💻 **Hands-On**
+
+Write R code to find the following:
+
+-   Weights of all male individuals
+
+-   Ages of all female individuals
+
+-   Heights of those whose weights are at least 65
+
+::: {.callout-tip collapse="true"}
+## Answer
+
+```{r}
+
+df$Weight[df$Gender == 'Male']
+
+df$Age[df$Gender == 'Female']
+
+df$Height[df$Weight >= 65]
+```
+:::
+
+### The brackets `[]`
+
+-   Certain elements of a data frame can be subset using the brackets `[]`
+
+![From Dr. Gaston Sanchez](https://github.com/hungtong/DS-01-101/blob/main/image/3_dat_index.png?raw=true){fig-cap="From Dr. Gaston Sanchez"}
+
+💻 **Hands-On**
+
+Write R code to subset the indicated values of `df`
+
+```{r}
+#| eval: false
+
+#   Age Height Weight Gender
+# 1  25    168     65 Female
+# 2  32    175     70   Male
+# 3  28    160     55 Female
+# 4  40    180     80   Male
+
+# row 1, column 3
+
+# row 4, column 4
+
+# row 3, column 2
+```
+
+::: {.callout-tip collapse="true"}
+## Answer
+
+```{r}
+
+# row 1, column 3
+df[1, 3]
+
+# row 4, column 4
+df[4, 4]
+
+# row 3, column 2
+df[3, 2]
+```
+:::
+
+### Subsetting rows
+
+-   Subsetting rows can be done using numeric indexing with the brackets `[]`
+
+![From Dr. Gaston Sanchez](https://github.com/hungtong/DS-01-101/blob/main/image/3_dat_rows.png?raw=true){fig-cap="From Dr. Gaston Sanchez"}
+
+💻 **Hands-On**
+
+Write R code to subset the indicated values of `df`
+
+```{r}
+#| eval: false
+
+#   Age Height Weight Gender
+# 1  25    168     65 Female
+# 2  32    175     70   Male
+# 3  28    160     55 Female
+# 4  40    180     80   Male
+
+# row 3
+
+# rows 2 to 4 (2, 3, 4)
+
+# rows 1, 2, and 4 only
+```
+
+::: {.callout-tip collapse="true"}
+## Answer
+
+```{r}
+
+# row 3
+df[3, ]
+
+# rows 2 to 4 (2, 3, 4)
+df[2:4, ]
+
+# rows 1, 2, and 4 only
+df[c(1, 2, 4), ]
+```
+:::
+
+💻 **Hands-On**
+
+Try the following R code to see what it returns.
+
+```{r}
+#| eval: false
+
+df[df$Gender == 'Male', ]
+
+df[df$Gender == 'Female', ]
+
+df[df$Age < 30, ]
+```
+
+::: {.callout-tip collapse="true"}
+## Answer
+
+```{r}
+
+df[df$Gender == 'Male', ]
+
+df[df$Gender == 'Female', ]
+
+df[df$Age < 30, ]
+```
+:::
+
+💻 **Hands-On**
+
+Write R code to find the following all individuals who are:
+
+-   Older than 25
+
+-   Shorter than 170
+
+-   Heavier than 60
+
+::: {.callout-tip collapse="true"}
+## Answer
+
+```{r}
+
+df[df$Age > 25, ]
+
+df[df$Height < 170, ]
+
+df[df$Weight > 60, ]
+```
+:::
+
+### Subsetting columns
+
+![From Dr. Gaston Sanchez](https://github.com/hungtong/DS-01-101/blob/main/image/3_dat_cols.png?raw=true)
+
+💻 **Hands-On**
+
+Write R code to subset the indicated values of `df`
+
+```{r}
+#| eval: false
+
+#   Age Height Weight Gender
+# 1  25    168     65 Female
+# 2  32    175     70   Male
+# 3  28    160     55 Female
+# 4  40    180     80   Male
+
+# column 1
+
+# columns 1 to 3 (1, 2, 3)
+
+# columns 1, 3, and 4 only
+```
+
+::: {.callout-tip collapse="true"}
+## Answer
+
+```{r}
+
+# column 1
+df[, 1]
+
+# columns 1 to 3 (1, 2, 3)
+df[, 1:3]
+
+# columns 1, 3, and 4 only
+df[c(1, 3, 4), ]
+```
+:::
+
+-   Another way to subset column(s) of a data frame is to use the brackets `[]` with column name(s). If more than one column name are given, the output is a data frame. 
+
+```{r}
+df[, c('Age', 'Gender')]
+```
+
+-   Otherwise, the ouput is a vector.
+
+```{r}
+df[, 'Height']
+```
+
+💻 **Hands-On**
+
+Write R code to subset the indicated column(s) of `df` using the brackets `[]`
+
+```{r}
+#| eval: false
+
+#   Age Height Weight Gender
+# 1  25    168     65 Female
+# 2  32    175     70   Male
+# 3  28    160     55 Female
+# 4  40    180     80   Male
+
+# Height, Weight
+
+# Gender, Weight, Age
+
+# Gender
+
+# Age
+```
+
+::: {.callout-tip collapse="true"}
+## Answer
+
+```{r}
+
+# Height, Weight
+df[, c('Height', 'Weight')]
+
+# Gender, Weight, Age
+df[, c('Gender', 'Weight', 'Age')]
+
+# Gender
+df[, 'Gender']
+
+# Age
+df[, 'Age']
+```
+:::
+
+## Adding a column
+
+-   Using the dollar operator `$` is the easiest way to add a column
+
+```{r}
+df <- data.frame(
+  Age    = c(25, 32, 28, 40), 
+  Height = c(168, 175, 160, 180), 
+  Weight = c(65, 70, 55, 80), 
+  Gender = c('Female', 'Male', 'Female', 'Male')
+)
+
+df$Home <- c('Pitman', 'Glassboro', 'Clayton', 'Deptford')
+df
+```
+
+💻 **Hands-On**
+
+Create a new data frame as follows:
+
+```{r}
+#| eval: false
+
+#>   Age Height Weight Gender      Home Married Savings
+#> 1  25    168     65 Female    Pitman    TRUE   10000
+#> 2  32    175     70   Male Glassboro    TRUE   25000
+#> 3  28    160     55 Female   Clayton   FALSE    7000
+#> 4  40    180     80   Male  Deptford    TRUE   40000
+```
+
+::: {.callout-tip collapse="true"}
+## Answer
+
+```{r}
+
+df$Married <- c(TRUE, TRUE, FALSE, TRUE)
+df$Savings <- c(10000, 25000, 7000, 40000)
+df
+```
+:::
+
+## Removing a column
+
+-   Removing a column can be done with the dollar operator `$` as follows:
+
+```{r}
+
+df$Home <- NULL
+df
+
+```
+
+💻 **Hands-On**
+
+Remove the column `Married` in `df`
+
+::: {.callout-tip collapse="true"}
+## Answer
+
+```{r}
+
+df$Married <- NULL
+df
+```
+:::
+
+## Transforming a column
+
+-   The dollar operator `$` allows us to subset and transform a column.
+
+```{r}
+
+df$Savings <- df$Savings / 1000
+df
+```
+
+💻 **Hands-On**
+
+Convert `Weight` in kilograms to lbs
+
+::: {.callout-tip collapse="true"}
+## Answer
+
+```{r}
+
+df$Weight <- df$Weight * 2.20462
+df
+```
+:::
