@@ -1,0 +1,395 @@
+---
+toc: true
+toc-depth: 3
+echo: true
+eval: true
+output: true
+---
+
+# 3B: Importing Data Frame
+
+## Readings
+
+From **R Coding Basics: An Introduction to the Basics of Coding in R** by Dr. Gaston Sanchez:
+
+-   [Import Data Tables](https://www.gastonsanchez.com/R-coding-basics/6-02-import-tables.html)
+
+## Topics
+
+-   Built-in data sets
+
+-   Importing data
+
+-   Inspecting a data frame
+
+-   Storing data and objects
+
+## Built-in data frames
+
+R has many built-in data sets:
+
+-   `faithful` Old Faithful Gayser Data
+
+```{r}
+
+head(faithful)
+```
+
+-   `iris` Edgar Anderson's Iris Data
+
+```{r}
+
+head(iris)
+```
+
+-   `mtcars` Motor Trend Car Road Tests
+
+```{r}
+
+head(mtcars)
+```
+
+-   `USArrests` Violent Crime Rates by US State
+
+```{r}
+
+head(USArrests)
+```
+
+## Reading data from the clipboard
+
+A data frame can be made by reading from the clipboard as follows:
+
+-   Select and copy the content from a data file
+
+    ![](https://github.com/hungtong/DS-01-101/blob/main/image/3_loan50.png?raw=true){fig-cap="From OpenIntro"}
+
+-   Use the `read.delim()` function
+
+```{r}
+#| eval: false
+
+read.delim('clipboard')
+```
+
+## Importing data with `read.table()` and `read.csv()`
+
+-   Small and medium-size data sets are usually stored in a **text file** `.txt`
+
+-   Data in a text file are separated by a **delimiter** such as white space, comma, tab, or semi-colon.
+
+-   A text file in which data are separated by a comma is equivalent to a **comma-separated value** file `.csv`, which is commonly used in statistics and data science due to portability.
+
+```{r}
+#| eval: false
+
+### comma-separated value
+
+floor,bed,lease,pool,rent
+first,0,9,yes,1200
+second,1,12,no,1550
+first,2,12,yes,1900
+second,1,9,no,1650
+first,0,12,yes,1300
+```
+
+-   The `read.table()` function is a general function to read data from a text file. Before using the function, it is best to move the text file under the current working directory.
+
+```{r}
+#| eval: false
+
+read.table('file_name.csv', header = TRUE, sep = ' ')
+
+read.table('file_name.csv', header = TRUE, sep = ',')
+
+read.table('file_name.csv', header = TRUE, sep = '\t')
+
+read.table('file_name.csv', header = TRUE, sep = ';')
+```
+
+-   The `read.csv()` function is just a wrapper of the `read.table()` function for importing comma-separated value file `.csv`
+
+```{r}
+#| eval: false
+
+
+read.csv('file_name.csv')    # same as read.table('file_name.csv', sep = ',')
+```
+
+💻 **Hands-On**
+
+Import the `apartment` data.
+
+::: {.callout-tip collapse="true"}
+## Answer
+
+The below code assumes that we have `apartment.txt` and `apartment.csv` in our current working directory. To identify our current working directory, type in the console `getwd()`.
+
+```{r}
+#| eval: false
+
+read.table('apartment.txt', header = TRUE, sep = ';')
+
+read.csv('apartment.csv')
+```
+:::
+
+## Inspecting a data frame
+
+Given a data frame,
+
+-   `str()` shows its overall structure
+
+-   `head()` returns its first few rows
+
+-   `tail()` returns its last few rows
+
+-   `dim()` returns a vector dimensions
+
+-   `nrow()` returns its number of rows
+
+-   `ncol()` returns its number of columns
+
+-   `colnames()` and `names()` returns its column names
+
+-   `rownames()` returns its row names
+
+-   `summary()` shows descriptive statistics for its columns
+
+-   `complete.cases()` returns a logical vector indicating which observations have no missing values.
+
+💻 **Hands-On**
+
+Inspect the `iris` data.
+
+::: {.callout-tip collapse="true"}
+## Answer
+
+```{r}
+
+# overall structure
+str(iris)
+
+# first few rows
+head(iris)
+
+# last few rows
+tail(iris)
+
+# vector of dimension
+dim(iris)
+
+# number of rows
+nrow(iris)
+
+# number of columns
+ncol(iris)
+
+# variable names
+colnames(iris)
+
+# row names if any; iris does not have special row names
+rownames(iris)
+
+# descriptive statistics for each variable (column)
+summary(iris)
+
+# TRUE if an observation has no missing values; iris has no missing values
+complete.cases(iris)
+```
+:::
+
+💻 **Hands-On**
+
+Import and inspect the `loan50` data from [OpenIntro](https://www.openintro.org/data/index.php?data=loan50).
+
+> This data set represents 50 loans made through the Lending Club platform, which is a platform that allows individuals to lend to other individuals. Of course, not all loans are created equal. Someone who is a essentially a sure bet to pay back a loan will have an easier time getting a loan with a low interest rate than someone who appears to be riskier. And for people who are very risky? They may not even get a loan offer, or they may not have accepted the loan offer due to a high interest rate.
+
+-   `state` - Two-letter state code.
+
+-   `emp_length` - Number of years in the job, rounded down. If longer than 10 years, then this is represented by the value 10.
+
+-   `term` - The number of months of the loan the applicant received.
+
+-   `home_ownership` - The ownership status of the applicant's residence.
+
+-   `annual_income` - Annual income.
+
+-   `verified_income` - Type of verification of the applicant's income.
+
+-   `debt_to_income` - Debt-to-income ratio.
+
+-   `total_credit_limit` - Total available credit, e.g. if only credit cards, then the total of all the credit limits. This excludes a mortgage.
+
+-   `total_credit_utilized` - Total credit balance, excluding a mortgage.
+
+-   `num_cc_carrying_balance` - Number of credit cards that are carrying a balance.
+
+-   `loan_amount` - The amount of the loan the applicant received.
+
+-   `grade` - Grade associated with the loan.
+
+-   `interest_rate` - Interest rate of the loan the applicant received.
+
+-   `public_record_bankrupt` - Number of bankruptcies listed in the public record for this applicant.
+
+-   `loan_status` - Status of the loan.
+
+-   `has_second_income` - Whether the applicant has a secondary income.
+
+-   `total_income` - The applicant's total income.
+
+::: {.callout-tip collapse="true"}
+## Answer
+
+If we have `loan50.csv` in our current working directory, we can also use `read.csv('loan50.csv')`. Otherwise, we can read the data set as follows:
+
+```{r}
+
+loan <- read.csv(url('https://raw.githubusercontent.com/hungtong/DS-01-101/refs/heads/main/dataset/loan50.csv'))
+```
+
+Once we have the data set in R, we can inspect the data as below.
+
+```{r}
+
+# overall structure
+str(loan)
+
+# first few rows
+head(loan)
+
+# last few rows
+tail(loan)
+
+# vector of dimension
+dim(loan)
+
+# number of rows
+nrow(loan)
+
+# number of columns
+ncol(loan)
+
+# variable names
+colnames(loan)
+
+# row names if any; loan does not have special row names
+rownames(loan)
+
+# descriptive statistics for each variable (column)
+summary(loan)
+
+# TRUE if an observation has no missing values; loan has no missing values
+complete.cases(loan)
+```
+:::
+
+## Storing data with `write.table()` and `write.csv()`
+
+-   To export a data frame to `.txt` or `.csv` files, we can use the `write.table()` and `write.csv()` functions with different delimiters.
+
+```{r}
+#| eval: false
+
+write.table(data_to_store, file = 'file_name.txt', sep = '')
+
+write.table(data_to_store, file = 'file_name.txt', sep = '\t')
+
+write.csv(data_to_store, file = 'file_name.csv')
+```
+
+💻 **Hands-On**
+
+Export loans that are fully paid from the `loan50` data to `.txt` or `.csv` files.
+
+::: {.callout-tip collapse="true"}
+## Answer
+
+One example to save the fully paid loans is
+
+```{r}
+#| eval: false
+
+loan_paid <- loan[loan$loan_status == 'Fully Paid', ]
+
+write.table(loan_paid, file = 'fully_paid_loan.txt', sep = ',')
+
+write.csv(loan_paid, file = 'fully_paid_loan.csv')
+```
+:::
+
+## Storing objects with `dput()`
+
+-   The `dput()` function writes an R object in a plain-text format that can be used to reproduce the object.
+
+```{r}
+#| eval: false
+
+dput(some_object)
+```
+
+💻 **Hands-On**
+
+Write loans that are fully paid from the `loan50` data in a plain-text format.
+
+::: {.callout-tip collapse="true"}
+## Answer
+
+The output can be ugly but running it in the console will reproduce the object.
+
+```{r}
+
+loan_paid <- loan[loan$loan_status == 'Fully Paid', ]
+
+dput(loan_paid)
+```
+:::
+
+## Storing objects with `save()`
+
+-   The `save()` allows us to store multiple objects in `.rdata` or `.rda`.
+
+```{r}
+#| eval: false
+
+save(object1, object2, object3, file = 'file_name.rdata')
+```
+
+💻 **Hands-On**
+
+Identify the following objects from the `loan50` data and store them in `.rdata`
+
+-   `loan_mortgage` - loans associated with homeownership that is mortgage
+
+-   `loan_20k` - loans with the loan amount at least $20,000$
+
+-   `loan_low_interest` - loans with interest rate less than $7\%$
+
+::: {.callout-tip collapse="true"}
+## Answer
+
+If we run the following code, a `special_loans.rdata` file will be created in the current working directory. If we share this file with someone else and they double-click it, the three saved objects `loan_mortgage`, `loan_20k`, and `loan_low_interest` will be made ready on their end.
+
+```{r}
+#| eval: false
+
+loan_mortgage <- loan[loan$homeownership == 'mortage', ]
+
+loan_20k <- loan[loan$loan_amount >= 20000, ]
+
+loan_low_interest <- loan[loan$interest_rate < 7, ]
+
+save(loan_mortgage, loan_20k, loan_low_interest, file = 'special_loans.rdata')
+```
+:::
+
+## Miscellaneous functions
+
+-   `ls()` shows all the created objects
+
+-   `rm()` removes certain objects
+
+-   `getwd()` returns the file path of the current working directory
+
+-   `setwd()` sets a new working directory
