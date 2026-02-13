@@ -1,0 +1,248 @@
+---
+title: "Lesson 4A: Examining Categorical Variables"
+subtitle: "DS 01-101: In-Depth Introduction to Data Science (Spring 2026)"
+author: "Hung Tong"
+institute: "Rowan University"
+editor: visual
+toc: true
+toc-depth: 3
+echo: true
+eval: false
+output: false
+format: 
+  html:
+    self-contained: true
+---
+
+```{r}
+#| include: false
+#| eval: true
+
+load(url('https://github.com/hungtong/DS-01-101/raw/refs/heads/main/dataset/l4a_data.rdata'))
+load(url('https://github.com/hungtong/DS-01-101/raw/refs/heads/main/dataset/cdc.rdata'))
+```
+
+## Topics
+
+-   Basic variable types
+
+-   Frequency distribution, mode, and bar plot
+
+-   Stacked and side-by-side bar plot
+
+## Basic variable types
+
+-   Data are commonly organized into a **data matrix**. In this format, each row is an **observation** and each column is a **variable** or **feature**.
+
+![](https://github.com/hungtong/DS-01-101/blob/main/image/4_matr.png?raw=true){fig-align="center" width="523"}
+
+-   Roughly speaking, a variable can be **numerical** or **categorical**.
+
+![](https://github.com/hungtong/DS-01-101/blob/main/image/4_var_type.png?raw=true)
+
+-   A **numerical variable** represents numbers that are meaningful to add, subtract, or take averages.
+
+-   A **categorical variable** refers to specific categories that describe a characteristic.
+
+## Examining a categorical variable
+
+-   A **frequency distribution** is a tabular summary of data showing the number (frequency) of observations in each categories.
+
+![](https://github.com/hungtong/DS-01-101/blob/main/image/4_freq.png?raw=true){fig-align="center" width="276"}
+
+-   The **mode** is the category that appears the most. There can be multiple modes.
+
+-   A **bar plot** visualizes the frequency distribution of a categorical variable using bars of different heights.
+
+## Examining two categorical variables
+
+-   A **contingency table** is a tabular summary of data for two categorical variables showing the frequency of their shared characteristics.
+
+![](https://github.com/hungtong/DS-01-101/blob/main/image/4_twoway.png?raw=true){fig-align="center" width="479"}
+
+-   **Stacked bar plot** can be used to visualize the contingency table.
+
+![](https://github.com/hungtong/DS-01-101/blob/main/image/4_stacked.png?raw=true){fig-align="center" width="444"}
+
+-   **Side-by-side bar plot** is also a good option.
+
+![](https://github.com/hungtong/DS-01-101/blob/main/image/4_side_bar.png?raw=true){fig-align="center" width="411"}
+
+## Obtaining frequency distribution and bar plot in R
+
+-   Frequency distribution for a categorical variable can be obtained using the `table()` function.
+
+-   Bar plot can be generated using the `barplot()` function. Horizontal or vertical bars can be made by adjusting `horiz = TRUE`.
+
+-   Common graphical parameters in base R plotting include:
+
+    -   `col` - add color to the plot
+    -   `main` - main title label
+    -   `xlab` - label for x-axis
+    -   `ylab` - label for y-axis
+    -   `xlim` - x-axis range
+    -   `ylim` - y-axis range
+    -   `cex.main` - size of main title
+    -   `cex.lab` - size of axis labels
+    -   `cex.axis` - size of tick labels
+
+-   For predefined and hex-value colors, check out the following websites:
+
+    -   [R Charts](https://r-charts.com/colors/)
+    -   [color-hex](https://www.color-hex.com/)
+    -   [Color Brewer 2.0](https://colorbrewer2.org/#type=sequential&scheme=BuGn&n=3)
+
+**Hands-On**
+
+Obtain the frequency distribution and bar plot of the `soft_drink` data set.
+
+**Answer:**
+
+```{r}
+#| eval: true
+#| output: true
+
+### R code here
+```
+
+**Hands-On**
+
+Try the following code and describe the difference between the two methods of generating a bar plot for the `activity` data set.
+
+```{r}
+
+freq <- table(activity)
+
+# Method 1
+barplot(freq)
+
+# Method 2
+barplot(
+  c(2183, 757, 1520), 
+  names.arg = c('Sedentary', 'Active', 'Very Active')
+)  
+```
+
+**Answer:**
+
+```{r}
+#| eval: true
+#| output: true
+
+### R code here
+```
+
+## Stacked and side-by-side bar plot in R
+
+-   For two categorical variables, the `table()` function produces a contingency table.
+
+-   By default, stacked bar plot will be made. However, side-by-side bar plot can be made by setting `beside = TRUE`.
+
+-   Setting `legend = TRUE` and giving a vector of colors to `col` will help differentiate the categories.
+
+**Hands-On**
+
+Obtain the contingency table and bar plot of the `pet` and `vacation` data set.
+
+**Answer:**
+
+```{r}
+#| eval: true
+#| output: true
+
+### R code here
+```
+
+## Behavioral survey from the Centers for Disease Control and Prevention (CDC)
+
+The data set is slightly modified from [OpenIntro](https://www.openintro.org/book/statdata/?data=cdc),
+
+> The Behavioral Risk Factor Surveillance System (BRFSS) is an annual telephone survey of 350,000 people in the United States collected by the Centers for Disease Control and Prevention (CDC). As its name implies, the BRFSS is designed to identify risk factors in the adult population and report emerging health trends. For example, respondents are asked about their diet and weekly physical activity, their HIV/AIDS status, possible tobacco use, and even their level of healthcare coverage. The [BRFSS Web site](https://www.openintro.org/redirect.php?go=cdc_data_brfss&referrer=data_set_page) contains a complete description of the survey, the questions that were asked and even research results that have been derived from the data.
+>
+> This data set is a random sample of 20,000 people from the BRFSS survey conducted in 2000. While there are over 200 questions or variables in this dataset, this data set only includes 9 variables.
+
+The data set has the following variables:
+
+-   `genhlth` - General health, with categories Excellent, Very Good, Good, Fair, and Poor
+
+-   `exerany` - Whether the respondent exercised in the past month
+
+-   `hlthplan` - Whether respondent has some form of health coverage
+
+-   `smoke100` - Whether respondent has smoked at least 100 cigarettes in their entire life
+
+-   `height` - Respondent's height in inches
+
+-   `weight` - Respondent's weight in pounds
+
+-   `wtdesire` - Respondent's desired weight in pounds
+
+-   `age` - Respondent's age in years
+
+-   `gender` - Respondent's gender
+
+**Hands-On**
+
+Retrieve the first few respondents, a vector of variable names, and the structure of the `cdc` data set. 
+
+**Answer:**
+
+```{r}
+
+### R code here
+```
+
+**Hands-On**
+
+How many respondents are there? How many variables? Identify the type of each variable.
+
+**Answer:**
+
+```{r}
+
+### R code here
+```
+
+**Hands-On**
+
+Are there any missing values in the data set?
+
+**Answer:**
+
+```{r}
+
+### R code here
+```
+
+**Hands-On**
+
+Examine the general health of respondents using appropriate summary statistics and graphical displays.
+
+**Answer:**
+
+```{r}
+
+### R code here
+```
+
+**Hands-On**
+
+Examine the number of respondents who have smoked 100 cigarettes in their lifetime using appropriate summary statistics and graphical displays.
+
+**Answer:**
+
+```{r}
+
+### R code here
+```
+
+**Hands-On**
+
+What is the relationship between smoking habits and general health?
+
+**Answer:**
+
+```{r}
+
+### R code here
+```
