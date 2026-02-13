@@ -17,6 +17,7 @@ book:
           - ls2b_vector.qmd
           - ls2c_vector.qmd
           - ls3a_data_frame.qmd
+          - ls3b_data_frame.qmd
         
     # - summary.qmd
     # - references.qmd

@@ -28,7 +28,7 @@ From **R Coding Basics: An Introduction to the Basics of Coding in R** by Dr. Ga
 
 R has many built-in data sets:
 
--   `faithful` Old Faithful Gayser Data
+-   `faithful` Old Faithful Geyser Data
 
 ```{r}
 
