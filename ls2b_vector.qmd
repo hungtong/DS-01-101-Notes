@@ -336,20 +336,10 @@ c(T, F, F, T, T)
 | `!=`                 | Not equal to             |
 
 
--   Consider the following vector
-
 ```{r}
-#| eval: true
-#| output: true
+#| eval: false
 
 x <- c(-2, -1, 0, 1, 2, 3)
-```
-
--   We have
-
-```{r}
-#| eval: true
-#| output: true
 
 # less than
 x < 0     
@@ -702,22 +692,11 @@ which(temps < 18 | temps > 28)
 
 -   Numeric indexing means telling R the specific indices to return values.
 
--   Consider the following vector
-
 ```{r}
-#| eval: true
-#| output: true
+#| eval: false
 
 #       1   2   3   4   5   6   7
 v <- c(70, 66, 82, 85, 78, 90, 73)
-```
-
--   We have
-
-```{r}
-#| eval: true
-#| output: true
-#| error: true
 
 # 1st value
 v[1]            
@@ -735,9 +714,7 @@ v[320]
 -   Numeric indexing can also use a vector of multiple indices.
 
 ```{r}
-#| eval: true
-#| output: true
-#| error: true
+#| eval: false
 
 # at 2nd, 3rd, 4th, 5th
 v[2:5]                 
@@ -752,9 +729,7 @@ v[c(3, 1, 3, 5, 2)]
 -   Note that negative indices mean all but the specified indices.
 
 ```{r}
-#| eval: true
-#| output: true
-#| error: true
+#| eval: false
 
 # all but 1st value
 v[-1]                    
@@ -839,16 +814,10 @@ v[-c(2, 6)]
 -   Consider the following vector
 
 ```{r}
-#| eval: true
-#| output: true
+#| eval: false
 
 #       1   2   3   4   5   6   7
 v <- c(70, 66, 82, 85, 78, 90, 73)
-```
-
-```{r}
-#| eval: true
-#| output: true
 
 # 1st, 6th
 v[c(TRUE, FALSE, FALSE, FALSE, FALSE, TRUE, FALSE)]    

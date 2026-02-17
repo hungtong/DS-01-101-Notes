@@ -67,11 +67,11 @@ load(url('https://github.com/hungtong/DS-01-101/raw/refs/heads/main/dataset/l4b_
 
 -   A distribution with exactly two peaks is called **bimodal**.
 
-    ![](https://github.com/hungtong/DS-01-101/blob/main/image/4_bimodal.png?raw=true)
+    ![](https://github.com/hungtong/DS-01-101/blob/main/image/4_bimodal.png?raw=true){fig-align="center"}
 
 -   When a distribution has more than one peak, it is called **multimodal**.
 
-    ![](https://github.com/hungtong/DS-01-101/blob/main/image/4_multimodal.png?raw=true){width="397"}
+    ![](https://github.com/hungtong/DS-01-101/blob/main/image/4_multimodal.png?raw=true){width="397", fig-align="center"}
 
 ## Histogram in R
 
