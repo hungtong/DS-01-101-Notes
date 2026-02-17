@@ -33,6 +33,7 @@ format:
     theme: cosmo
     toc: true
     self-contained: true
+    math: mathjax
   pdf:
     documentclass: scrreprt
 
