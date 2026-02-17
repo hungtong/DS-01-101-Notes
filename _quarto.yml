@@ -18,6 +18,8 @@ book:
           - ls2c_vector.qmd
           - ls3a_data_frame.qmd
           - ls3b_data_frame.qmd
+          - ls4a_plotting.qmd
+          - ls4b_plotting.qmd
         
     # - summary.qmd
     # - references.qmd

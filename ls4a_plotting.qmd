@@ -1,22 +1,16 @@
 ---
-title: "Lesson 4A: Examining Categorical Variables"
-subtitle: "DS 01-101: In-Depth Introduction to Data Science (Spring 2026)"
-author: "Hung Tong"
-institute: "Rowan University"
-editor: visual
 toc: true
 toc-depth: 3
 echo: true
-eval: false
-output: false
-format: 
-  html:
-    self-contained: true
+eval: true
+output: true
 ---
 
+# 4A: Examining Categorical Variables
+
+## Data Sets
+
 ```{r}
-#| include: false
-#| eval: true
 
 load(url('https://github.com/hungtong/DS-01-101/raw/refs/heads/main/dataset/l4a_data.rdata'))
 load(url('https://github.com/hungtong/DS-01-101/raw/refs/heads/main/dataset/cdc.rdata'))
@@ -92,24 +86,41 @@ load(url('https://github.com/hungtong/DS-01-101/raw/refs/heads/main/dataset/cdc.
     -   [color-hex](https://www.color-hex.com/)
     -   [Color Brewer 2.0](https://colorbrewer2.org/#type=sequential&scheme=BuGn&n=3)
 
-**Hands-On**
+💻 **Hands-On**
 
 Obtain the frequency distribution and bar plot of the `soft_drink` data set.
 
-**Answer:**
+::: {.callout-tip collapse="true"}
+## Answer
+
+To obtain the frequency distribution and bar plot of the `soft_drink` data set, we use the `table()` and `barplot()` functions.
 
 ```{r}
-#| eval: true
-#| output: true
 
-### R code here
+freq <- table(soft_drink)
+freq
+
+barplot(
+  freq,
+  col       = "#FFCC00",       # add color
+  main      = "Bar Plot",      # main title
+  xlab      = "Soft Drink",    # label for x-axis
+  ylab      = "Frequency",     # label for y-axis
+  cex.main  = 1.5,             # size of title
+  cex.lab   = 1.2,             # size of axis labels 
+  cex.axis  = 1.2,             # size of tick labels
+  cex.names = 1.2,             # size of categories
+  ylim      = c(0, 20)         # y-axis range
+)
 ```
+:::
 
-**Hands-On**
+💻 **Hands-On**
 
 Try the following code and describe the difference between the two methods of generating a bar plot for the `activity` data set.
 
 ```{r}
+#| eval: false
 
 freq <- table(activity)
 
@@ -123,14 +134,33 @@ barplot(
 )  
 ```
 
-**Answer:**
+::: {.callout-tip collapse="true"}
+## Answer
+
+Note the frequency distribution of the `activity` data set.
 
 ```{r}
-#| eval: true
-#| output: true
-
-### R code here
+freq <- table(activity)
+freq
 ```
+
+Using method 1, we obtain
+
+```{r}
+# Method 1
+barplot(freq)
+```
+
+By default, `table()` and `barplot()` will arrange categories in the alphabetical order, which is not necessarily the natural order of ordinal categories. For ordinal categories, it is better than to manually rearrange the categories as in method 2.
+
+```{r}
+# Method 2
+barplot(
+  c(2183, 757, 1520), 
+  names.arg = c('Sedentary', 'Active', 'Very Active')
+)  
+```
+:::
 
 ## Stacked and side-by-side bar plot in R
 
@@ -140,18 +170,33 @@ barplot(
 
 -   Setting `legend = TRUE` and giving a vector of colors to `col` will help differentiate the categories.
 
-**Hands-On**
+💻 **Hands-On**
 
 Obtain the contingency table and bar plot of the `pet` and `vacation` data set.
 
-**Answer:**
+::: {.callout-tip collapse="true"}
+## Answer
+
+To obtain the contingency table and bar plot of the `pet` and `vacation` data set, we use the `table()` and `barplot()` functions.
 
 ```{r}
-#| eval: true
-#| output: true
+conti_tab <- table(pet, vacation)
+conti_tab
 
-### R code here
+barplot(
+  conti_tab, 
+  beside    = TRUE, 
+  legend    = TRUE, 
+  col       = c("steelblue4", "steelblue1"),
+  xlab      = "Preferred Vacation Type",    
+  ylab      = "Frequency",                     
+  cex.lab   = 1.2,                        
+  cex.axis  = 1.2,                       
+  cex.names = 1.2,                      
+  ylim      = c(0, 50)                     
+)
 ```
+:::
 
 ## Behavioral survey from the Centers for Disease Control and Prevention (CDC)
 
@@ -181,68 +226,136 @@ The data set has the following variables:
 
 -   `gender` - Respondent's gender
 
-**Hands-On**
+💻 **Hands-On**
 
-Retrieve the first few respondents, a vector of variable names, and the structure of the `cdc` data set. 
+Retrieve the first few respondents, a vector of variable names, and the structure of the `cdc` data set.
 
-**Answer:**
+::: {.callout-tip collapse="true"}
+## Answer
+
+The first few respondents are
 
 ```{r}
 
-### R code here
+head(cdc)
 ```
 
-**Hands-On**
+A vector of variable names is
+
+```{r}
+colnames(cdc)    # names(cdc)
+```
+
+The structure of the `cdc` data set is described as follows:
+
+```{r}
+str(cdc)
+```
+
+:::
+
+💻 **Hands-On**
 
 How many respondents are there? How many variables? Identify the type of each variable.
 
-**Answer:**
+::: {.callout-tip collapse="true"}
+## Answer
+
+The number of respondents is
 
 ```{r}
-
-### R code here
+nrow(cdc) 
 ```
 
-**Hands-On**
+The number of variables is
+
+```{r}
+ncol(cdc)
+```
+
+A different way to explore the number of respondents and variables is
+
+```{r}
+dim(cdc)
+```
+
+In the data set, `height`, `weight`, `wtdesire`, and `age` are numerical, while the rest are categorical.
+
+:::
+
+💻 **Hands-On**
 
 Are there any missing values in the data set?
 
-**Answer:**
+::: {.callout-tip collapse="true"}
+## Answer
+
+There are no missing values in the data set. Recall that the `complete.cases()` function gives a logical vector indicating which observations have no missing values. 
 
 ```{r}
 
-### R code here
+sum(!complete.cases(cdc))
 ```
 
-**Hands-On**
+:::
+
+💻 **Hands-On**
 
 Examine the general health of respondents using appropriate summary statistics and graphical displays.
 
-**Answer:**
+::: {.callout-tip collapse="true"}
+## Answer
+
+`genhlth` represents the general health of respondents. This is an ordinal categorical variable with 5 levels. To summarize this variable, we can look at its frequency distribution and bar plot.
 
 ```{r}
 
-### R code here
-```
+freq <- table(cdc$genhlth)
+freq
 
-**Hands-On**
+barplot(freq, col = 'tomato', main = 'General Health')
+```
+Most respondents have `Very Good` and `Good` health, which is a positive thing. `Fair` and `Poor` are much less common. 
+
+:::
+
+💻 **Hands-On**
 
 Examine the number of respondents who have smoked 100 cigarettes in their lifetime using appropriate summary statistics and graphical displays.
 
-**Answer:**
+::: {.callout-tip collapse="true"}
+## Answer
+
+`smoke100` indicates respondents who respondents who have smoked 100 cigarettes in their lifetime. This is a nomial categorical variable with two levels.
 
 ```{r}
 
-### R code here
-```
+freq <- table(cdc$smoke100)
+freq
 
-**Hands-On**
+barplot(freq, col = 'chartreuse3', main = 'Smoking Status')
+```
+There are more non-smokers but the number of smokers is close to half of the data set.
+
+:::
+
+💻 **Hands-On**
 
 What is the relationship between smoking habits and general health?
 
-**Answer:**
+::: {.callout-tip collapse="true"}
+## Answer
+
+To explore the relationship between two categorical variables, smoking habit `smoke100` and general health `genhlth`, we can use contingency table and side-by-side bar plots.
 
 ```{r}
 
-### R code here
+conti_tab <- table(cdc$smoke100, cdc$genhlth)
+conti_tab
+
+barplot(conti_tab, beside = TRUE, legend = TRUE,
+        col = c("aquamarine1", "cadetblue4"))
 ```
+Respondents with `Excellent` and `Very Good` health tend to be non-smokers (especially `Excellent`), whereas respondents with `Fair` and `Poor` health tend to be smokers.  
+
+:::

@@ -1,0 +1,244 @@
+[
+  {
+    "objectID": "ls4a_plotting.html",
+    "href": "ls4a_plotting.html",
+    "title": "4A: Examining Categorical Variables",
+    "section": "",
+    "text": "Data Sets\nload(url('https://github.com/hungtong/DS-01-101/raw/refs/heads/main/dataset/l4a_data.rdata'))\nload(url('https://github.com/hungtong/DS-01-101/raw/refs/heads/main/dataset/cdc.rdata'))",
+    "crumbs": [
+      "Base R programming",
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>4A: Examining Categorical Variables</span>"
+    ]
+  },
+  {
+    "objectID": "ls4a_plotting.html#topics",
+    "href": "ls4a_plotting.html#topics",
+    "title": "4A: Examining Categorical Variables",
+    "section": "Topics",
+    "text": "Topics\n\nBasic variable types\nFrequency distribution, mode, and bar plot\nStacked and side-by-side bar plot",
+    "crumbs": [
+      "Base R programming",
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>4A: Examining Categorical Variables</span>"
+    ]
+  },
+  {
+    "objectID": "ls4a_plotting.html#basic-variable-types",
+    "href": "ls4a_plotting.html#basic-variable-types",
+    "title": "4A: Examining Categorical Variables",
+    "section": "Basic variable types",
+    "text": "Basic variable types\n\nData are commonly organized into a data matrix. In this format, each row is an observation and each column is a variable or feature.\n\n\n\n\n\n\n\nRoughly speaking, a variable can be numerical or categorical.\n\n\n\nA numerical variable represents numbers that are meaningful to add, subtract, or take averages.\nA categorical variable refers to specific categories that describe a characteristic.",
+    "crumbs": [
+      "Base R programming",
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>4A: Examining Categorical Variables</span>"
+    ]
+  },
+  {
+    "objectID": "ls4a_plotting.html#examining-a-categorical-variable",
+    "href": "ls4a_plotting.html#examining-a-categorical-variable",
+    "title": "4A: Examining Categorical Variables",
+    "section": "Examining a categorical variable",
+    "text": "Examining a categorical variable\n\nA frequency distribution is a tabular summary of data showing the number (frequency) of observations in each categories.\n\n\n\n\n\n\n\nThe mode is the category that appears the most. There can be multiple modes.\nA bar plot visualizes the frequency distribution of a categorical variable using bars of different heights.",
+    "crumbs": [
+      "Base R programming",
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>4A: Examining Categorical Variables</span>"
+    ]
+  },
+  {
+    "objectID": "ls4a_plotting.html#examining-two-categorical-variables",
+    "href": "ls4a_plotting.html#examining-two-categorical-variables",
+    "title": "4A: Examining Categorical Variables",
+    "section": "Examining two categorical variables",
+    "text": "Examining two categorical variables\n\nA contingency table is a tabular summary of data for two categorical variables showing the frequency of their shared characteristics.\n\n\n\n\n\n\n\nStacked bar plot can be used to visualize the contingency table.\n\n\n\n\n\n\n\nSide-by-side bar plot is also a good option.",
+    "crumbs": [
+      "Base R programming",
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>4A: Examining Categorical Variables</span>"
+    ]
+  },
+  {
+    "objectID": "ls4a_plotting.html#obtaining-frequency-distribution-and-bar-plot-in-r",
+    "href": "ls4a_plotting.html#obtaining-frequency-distribution-and-bar-plot-in-r",
+    "title": "4A: Examining Categorical Variables",
+    "section": "Obtaining frequency distribution and bar plot in R",
+    "text": "Obtaining frequency distribution and bar plot in R\n\nFrequency distribution for a categorical variable can be obtained using the table() function.\nBar plot can be generated using the barplot() function. Horizontal or vertical bars can be made by adjusting horiz = TRUE.\nCommon graphical parameters in base R plotting include:\n\ncol - add color to the plot\nmain - main title label\nxlab - label for x-axis\nylab - label for y-axis\nxlim - x-axis range\nylim - y-axis range\ncex.main - size of main title\ncex.lab - size of axis labels\ncex.axis - size of tick labels\n\nFor predefined and hex-value colors, check out the following websites:\n\nR Charts\ncolor-hex\nColor Brewer 2.0\n\n\n💻 Hands-On\nObtain the frequency distribution and bar plot of the soft_drink data set.\n\n\n\n\n\n\nAnswer\n\n\n\n\n\nTo obtain the frequency distribution and bar plot of the soft_drink data set, we use the table() and barplot() functions.\n\nfreq &lt;- table(soft_drink)\nfreq\n\nsoft_drink\n Coca-Cola  Diet Coke Dr. Pepper      Pepsi     Sprite \n        19          8          5         13          5 \n\nbarplot(\n  freq,\n  col       = \"#FFCC00\",       # add color\n  main      = \"Bar Plot\",      # main title\n  xlab      = \"Soft Drink\",    # label for x-axis\n  ylab      = \"Frequency\",     # label for y-axis\n  cex.main  = 1.5,             # size of title\n  cex.lab   = 1.2,             # size of axis labels \n  cex.axis  = 1.2,             # size of tick labels\n  cex.names = 1.2,             # size of categories\n  ylim      = c(0, 20)         # y-axis range\n)\n\n\n\n\n\n\n\n\n\n\n\n💻 Hands-On\nTry the following code and describe the difference between the two methods of generating a bar plot for the activity data set.\n\nfreq &lt;- table(activity)\n\n# Method 1\nbarplot(freq)\n\n# Method 2\nbarplot(\n  c(2183, 757, 1520), \n  names.arg = c('Sedentary', 'Active', 'Very Active')\n)  \n\n\n\n\n\n\n\nAnswer\n\n\n\n\n\nNote the frequency distribution of the activity data set.\n\nfreq &lt;- table(activity)\nfreq\n\nactivity\n     Active   Sedentary Very Active \n        757        2183        1520 \n\n\nUsing method 1, we obtain\n\n# Method 1\nbarplot(freq)\n\n\n\n\n\n\n\n\nBy default, table() and barplot() will arrange categories in the alphabetical order, which is not necessarily the natural order of ordinal categories. For ordinal categories, it is better than to manually rearrange the categories as in method 2.\n\n# Method 2\nbarplot(\n  c(2183, 757, 1520), \n  names.arg = c('Sedentary', 'Active', 'Very Active')\n)",
+    "crumbs": [
+      "Base R programming",
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>4A: Examining Categorical Variables</span>"
+    ]
+  },
+  {
+    "objectID": "ls4a_plotting.html#stacked-and-side-by-side-bar-plot-in-r",
+    "href": "ls4a_plotting.html#stacked-and-side-by-side-bar-plot-in-r",
+    "title": "4A: Examining Categorical Variables",
+    "section": "Stacked and side-by-side bar plot in R",
+    "text": "Stacked and side-by-side bar plot in R\n\nFor two categorical variables, the table() function produces a contingency table.\nBy default, stacked bar plot will be made. However, side-by-side bar plot can be made by setting beside = TRUE.\nSetting legend = TRUE and giving a vector of colors to col will help differentiate the categories.\n\n💻 Hands-On\nObtain the contingency table and bar plot of the pet and vacation data set.\n\n\n\n\n\n\nAnswer\n\n\n\n\n\nTo obtain the contingency table and bar plot of the pet and vacation data set, we use the table() and barplot() functions.\n\nconti_tab &lt;- table(pet, vacation)\nconti_tab\n\n           vacation\npet         Beach City Mountain\n  No Pet       20   25       15\n  Pet Owner    30   22       25\n\nbarplot(\n  conti_tab, \n  beside    = TRUE, \n  legend    = TRUE, \n  col       = c(\"steelblue4\", \"steelblue1\"),\n  xlab      = \"Preferred Vacation Type\",    \n  ylab      = \"Frequency\",                     \n  cex.lab   = 1.2,                        \n  cex.axis  = 1.2,                       \n  cex.names = 1.2,                      \n  ylim      = c(0, 50)                     \n)",
+    "crumbs": [
+      "Base R programming",
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>4A: Examining Categorical Variables</span>"
+    ]
+  },
+  {
+    "objectID": "ls4a_plotting.html#behavioral-survey-from-the-centers-for-disease-control-and-prevention-cdc",
+    "href": "ls4a_plotting.html#behavioral-survey-from-the-centers-for-disease-control-and-prevention-cdc",
+    "title": "4A: Examining Categorical Variables",
+    "section": "Behavioral survey from the Centers for Disease Control and Prevention (CDC)",
+    "text": "Behavioral survey from the Centers for Disease Control and Prevention (CDC)\nThe data set is slightly modified from OpenIntro,\n\nThe Behavioral Risk Factor Surveillance System (BRFSS) is an annual telephone survey of 350,000 people in the United States collected by the Centers for Disease Control and Prevention (CDC). As its name implies, the BRFSS is designed to identify risk factors in the adult population and report emerging health trends. For example, respondents are asked about their diet and weekly physical activity, their HIV/AIDS status, possible tobacco use, and even their level of healthcare coverage. The BRFSS Web site contains a complete description of the survey, the questions that were asked and even research results that have been derived from the data.\nThis data set is a random sample of 20,000 people from the BRFSS survey conducted in 2000. While there are over 200 questions or variables in this dataset, this data set only includes 9 variables.\n\nThe data set has the following variables:\n\ngenhlth - General health, with categories Excellent, Very Good, Good, Fair, and Poor\nexerany - Whether the respondent exercised in the past month\nhlthplan - Whether respondent has some form of health coverage\nsmoke100 - Whether respondent has smoked at least 100 cigarettes in their entire life\nheight - Respondent’s height in inches\nweight - Respondent’s weight in pounds\nwtdesire - Respondent’s desired weight in pounds\nage - Respondent’s age in years\ngender - Respondent’s gender\n\n💻 Hands-On\nRetrieve the first few respondents, a vector of variable names, and the structure of the cdc data set.\n\n\n\n\n\n\nAnswer\n\n\n\n\n\nThe first few respondents are\n\nhead(cdc)\n\n    genhlth exerany hlthplan smoke100 height weight wtdesire age gender\n1      Good      No      Yes       No     70    175      175  77   Male\n2      Good      No      Yes      Yes     64    125      115  33 Female\n3      Good     Yes      Yes      Yes     60    105      105  49 Female\n4      Good     Yes      Yes       No     66    132      124  42 Female\n5 Very Good      No      Yes       No     61    150      130  55 Female\n6 Very Good     Yes      Yes       No     64    114      114  55 Female\n\n\nA vector of variable names is\n\ncolnames(cdc)    # names(cdc)\n\n[1] \"genhlth\"  \"exerany\"  \"hlthplan\" \"smoke100\" \"height\"   \"weight\"   \"wtdesire\"\n[8] \"age\"      \"gender\"  \n\n\nThe structure of the cdc data set is described as follows:\n\nstr(cdc)\n\n'data.frame':   20000 obs. of  9 variables:\n $ genhlth : Factor w/ 5 levels \"Excellent\",\"Very Good\",..: 3 3 3 3 2 2 2 2 3 3 ...\n $ exerany : Factor w/ 2 levels \"Yes\",\"No\": 2 2 1 1 2 1 1 2 2 1 ...\n $ hlthplan: Factor w/ 2 levels \"Yes\",\"No\": 1 1 1 1 1 1 1 1 1 1 ...\n $ smoke100: Factor w/ 2 levels \"Yes\",\"No\": 2 1 1 2 2 2 2 2 1 2 ...\n $ height  : num  70 64 60 66 61 64 71 67 65 70 ...\n $ weight  : int  175 125 105 132 150 114 194 170 150 180 ...\n $ wtdesire: int  175 115 105 124 130 114 185 160 130 170 ...\n $ age     : int  77 33 49 42 55 55 31 45 27 44 ...\n $ gender  : Factor w/ 2 levels \"Male\",\"Female\": 1 2 2 2 2 2 1 1 2 1 ...\n\n\n\n\n\n💻 Hands-On\nHow many respondents are there? How many variables? Identify the type of each variable.\n\n\n\n\n\n\nAnswer\n\n\n\n\n\nThe number of respondents is\n\nnrow(cdc) \n\n[1] 20000\n\n\nThe number of variables is\n\nncol(cdc)\n\n[1] 9\n\n\nA different way to explore the number of respondents and variables is\n\ndim(cdc)\n\n[1] 20000     9\n\n\nIn the data set, height, weight, wtdesire, and age are numerical, while the rest are categorical.\n\n\n\n💻 Hands-On\nAre there any missing values in the data set?\n\n\n\n\n\n\nAnswer\n\n\n\n\n\nThere are no missing values in the data set. Recall that the complete.cases() function gives a logical vector indicating which observations have no missing values.\n\nsum(!complete.cases(cdc))\n\n[1] 0\n\n\n\n\n\n💻 Hands-On\nExamine the general health of respondents using appropriate summary statistics and graphical displays.\n\n\n\n\n\n\nAnswer\n\n\n\n\n\ngenhlth represents the general health of respondents. This is an ordinal categorical variable with 5 levels. To summarize this variable, we can look at its frequency distribution and bar plot.\n\nfreq &lt;- table(cdc$genhlth)\nfreq\n\n\nExcellent Very Good      Good      Fair      Poor \n     4657      6972      5675      2019       677 \n\nbarplot(freq, col = 'tomato', main = 'General Health')\n\n\n\n\n\n\n\n\nMost respondents have Very Good and Good health, which is a positive thing. Fair and Poor are much less common.\n\n\n\n💻 Hands-On\nExamine the number of respondents who have smoked 100 cigarettes in their lifetime using appropriate summary statistics and graphical displays.\n\n\n\n\n\n\nAnswer\n\n\n\n\n\nsmoke100 indicates respondents who respondents who have smoked 100 cigarettes in their lifetime. This is a nomial categorical variable with two levels.\n\nfreq &lt;- table(cdc$smoke100)\nfreq\n\n\n  Yes    No \n 9441 10559 \n\nbarplot(freq, col = 'chartreuse3', main = 'Smoking Status')\n\n\n\n\n\n\n\n\nThere are more non-smokers but the number of smokers is close to half of the data set.\n\n\n\n💻 Hands-On\nWhat is the relationship between smoking habits and general health?\n\n\n\n\n\n\nAnswer\n\n\n\n\n\nTo explore the relationship between two categorical variables, smoking habit smoke100 and general health genhlth, we can use contingency table and side-by-side bar plots.\n\nconti_tab &lt;- table(cdc$smoke100, cdc$genhlth)\nconti_tab\n\n     \n      Excellent Very Good Good Fair Poor\n  Yes      1778      3214 2893 1108  448\n  No       2879      3758 2782  911  229\n\nbarplot(conti_tab, beside = TRUE, legend = TRUE,\n        col = c(\"aquamarine1\", \"cadetblue4\"))\n\n\n\n\n\n\n\n\nRespondents with Excellent and Very Good health tend to be non-smokers (especially Excellent), whereas respondents with Fair and Poor health tend to be smokers.",
+    "crumbs": [
+      "Base R programming",
+      "<span class='chapter-number'>7</span>  <span class='chapter-title'>4A: Examining Categorical Variables</span>"
+    ]
+  },
+  {
+    "objectID": "ls4b_plotting.html",
+    "href": "ls4b_plotting.html",
+    "title": "4A: Examining Categorical Variables",
+    "section": "",
+    "text": "Data Sets\nload(url('https://github.com/hungtong/DS-01-101/raw/refs/heads/main/dataset/l4b_data.rdata'))",
+    "crumbs": [
+      "Base R programming",
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>4A: Examining Categorical Variables</span>"
+    ]
+  },
+  {
+    "objectID": "ls4b_plotting.html#topics",
+    "href": "ls4b_plotting.html#topics",
+    "title": "4A: Examining Categorical Variables",
+    "section": "Topics",
+    "text": "Topics\n\nBasic variable types\nHistogram\nMean and median\nQuartiles and five-number summary\nInterquartile range (IQR), variance, and standard deviation\nBox plot\nScatter plot and correlation",
+    "crumbs": [
+      "Base R programming",
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>4A: Examining Categorical Variables</span>"
+    ]
+  },
+  {
+    "objectID": "ls4b_plotting.html#basic-data-types",
+    "href": "ls4b_plotting.html#basic-data-types",
+    "title": "4A: Examining Categorical Variables",
+    "section": "Basic Data Types",
+    "text": "Basic Data Types\n\nRecall that a variable can be numerical or categorical.\n\n\n\nA numerical variable represents numbers that are meaningful to add, subtract, or take averages.\nA categorical variable refers to specific categories that describe a characteristic.",
+    "crumbs": [
+      "Base R programming",
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>4A: Examining Categorical Variables</span>"
+    ]
+  },
+  {
+    "objectID": "ls4b_plotting.html#histogram",
+    "href": "ls4b_plotting.html#histogram",
+    "title": "4A: Examining Categorical Variables",
+    "section": "Histogram",
+    "text": "Histogram\n\nHistogram is like a bar plot for numerical data, but there is no separation between the bars. Numbers are divided into bins and the frequency distribution of these bins is displayed.\nFrom a histogram, we can learn about the data distribution\n\nShape: Is it symmetric, left-skewed, or right-skewed? Is it unimodal or multimodal? How many peaks?\nTypical Value: Where do most data values seem to concentrate?\nSpread: What is the approximate range of the data? How far are data points from the typical value?\n\nIn a symmetric distribution, the left tail approximately mirrors the right tail.\n\n\n\n\n\n\n\nA data distribution is said to be left-skewed if its tail extends further to the left.\n\nExample: age of retirement, lifetime.\n\nA distribution is said to be right-skewed if its tail extends further to the right.\n\nExample: housing prices, salaries.\n\nNote that skewness is about the skinny tail\n\n\n\n\n\n\n\nPrevious distributions with only one peak are called unimodal.\nA distribution with exactly two peaks is called bimodal.\n\nWhen a distribution has more than one peak, it is called multimodal.",
+    "crumbs": [
+      "Base R programming",
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>4A: Examining Categorical Variables</span>"
+    ]
+  },
+  {
+    "objectID": "ls4b_plotting.html#histogram-in-r",
+    "href": "ls4b_plotting.html#histogram-in-r",
+    "title": "4A: Examining Categorical Variables",
+    "section": "Histogram in R",
+    "text": "Histogram in R\n\nHistogram can be generated using the hist() function. The number of bins will be automatically determined by R, but we can also adjust by changing breaks.\nRecall common graphical parameters in base R plotting:\n\ncol - add color to the plot\nmain - main title label\nxlab - label for x-axis\nylab - label for y-axis\nxlim - x-axis range\nylim - y-axis range\ncex.main - size of main title\ncex.lab - size of axis labels\ncex.axis - size of tick labels\n\n\n💻 Hands-On\nThe bus_driver data set was collected from bus drivers employed by public corporations. Each data point gives the number of traffic accidents in which each bus driver was involved during a 4-year period. Obtain the histogram of this data set and comment on the data distribution.\n\n\n\n\n\n\nAnswer\n\n\n\n\n\nThe data distribution is right-skewed. A smaller number of accidents is more common, which is a good thing.\n\nhist(\n  bus_driver,\n  main = '',\n  col  = 'darkslategray3',    \n  xlab = 'Accidents by Bus Drivers'\n)\n\n\n\n\n\n\n\n\n\n\n\n💻 Hands-On\nThe math_sat data set contains the math-portion scores of the SAT exam in 2008. Each score is between 200 and 800. Obtain the histogram of this data set and comment on the data distribution.\n\n\n\n\n\n\nAnswer\n\n\n\n\n\nThe data distribution is symmetric. Most people get scores from 450 to 550. Very low or very high scores tend to be rare.\n\nhist(\n  math_sat,\n  main = '',\n  col  = 'darkorange',    \n  xlab = 'Math SAT Score'\n)\n\n\n\n\n\n\n\n\n\n\n\n💻 Hands-On\nThe lifetime data set contains ages at death for a group of individuals. Obtain the histogram of this data set and comment on the data distribution.\n\n\n\n\n\n\nAnswer\n\n\n\n\n\nThe data distribution is left-skewed. Deaths are more common when individuals are older rather than younger, which is sensible in practice.\n\nhist(\n  lifetime,\n  main = '',\n  col  = 'seagreen3',    \n  xlab = 'Age at Death'\n)",
+    "crumbs": [
+      "Base R programming",
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>4A: Examining Categorical Variables</span>"
+    ]
+  },
+  {
+    "objectID": "ls4b_plotting.html#mean-and-median",
+    "href": "ls4b_plotting.html#mean-and-median",
+    "title": "4A: Examining Categorical Variables",
+    "section": "Mean and median",
+    "text": "Mean and median\n\nWhen describing numerical data, it is common to report representative value(s), where representative implies that the data tend to be centered or located around these particular value.\nWhen the data distribution is unimodal, common measures to describe the data are:\n\nMean\nMedian\nMode (more useful for categorical data)\n\nThe mean is the average value of the data. Every observation has an equal contribution to the calculation of the mean, i.e., center of “mass.”\n\n\\[\n\\bar{x} = \\dfrac{x_1 + x_2 + \\dots + x_n}{n}\n\\]\n\nThe median is the middle value when the data are arranged in ascending order. It is also known as the \\(50\\)th percentile or the second quartile \\(Q_2\\).\nThe median divides the data into two parts: approximately half (\\(50\\%\\)) less than the median and approximately the other half (\\(50\\%\\)) greater than the median.\n\n\n\n\n\n\n\nCalculating the mean is relatively straightforward, while calculating the median requires sorting the data. However, the mean is easily influenced by skewness and outliers compared to the median.\n\n\n\n\n\n\n\nWhen the data distribution is multimodal, the mean and median of each sub-population should be reported instead.",
+    "crumbs": [
+      "Base R programming",
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>4A: Examining Categorical Variables</span>"
+    ]
+  },
+  {
+    "objectID": "ls4b_plotting.html#quartiles-and-five-number-summary",
+    "href": "ls4b_plotting.html#quartiles-and-five-number-summary",
+    "title": "4A: Examining Categorical Variables",
+    "section": "Quartiles and five-number summary",
+    "text": "Quartiles and five-number summary\n\nQuartiles are 3 specific percentiles that divide a dataset into four parts, with each part containing approximately one-fourth, or \\(25\\%\\), of the observations.\n\n\\(Q_1\\) - First quartile or \\(25\\)th percentile\n\\(Q_2\\) - Second quartile or \\(50\\)th percentile or the median\n\\(Q_3\\) - Third quartile or \\(75\\)th percentile\n\n\n\n\n\n\n\n\nQuartiles are robust to skewness and outliers.\nA five-number summary refers to the following \\(5\\) numbers to summarize the data\n\nMinimum (smallest value)\n\\(Q_1\\) - First quartile or \\(25\\)th percentile\n\\(Q_2\\) - Second quartile or \\(50\\)th percentile or the median\n\\(Q_3\\) - Third quartile or \\(75\\)th percentile\nMaximum (largest value)",
+    "crumbs": [
+      "Base R programming",
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>4A: Examining Categorical Variables</span>"
+    ]
+  },
+  {
+    "objectID": "ls4b_plotting.html#interquartile-range-iqr-variance-and-standard-deviation",
+    "href": "ls4b_plotting.html#interquartile-range-iqr-variance-and-standard-deviation",
+    "title": "4A: Examining Categorical Variables",
+    "section": "Interquartile range (IQR), variance, and standard deviation",
+    "text": "Interquartile range (IQR), variance, and standard deviation\n\nVariability is also known as spread. Variability refers to how much the data values are spread out.\n\nInterquartile range (IQR)\nVariance\nStandard deviation\n\nThe interquartile range (IQR) is the difference between the third and first quartiles.\nThe variance is a measure of variability that aims to quantify how much the data values are spread from the mean. The units associated with the variance are squared and the variance must be positive.\n\n\\[\n  s^2 = \\dfrac{\\sum_{i = 1}^n (x_i - \\bar{x})^2}{n - 1}\n\\]\n\nThe standard deviation is defined to be the positive square root of the variance.\n\n\\[\ns = \\sqrt{s^2}\n\\]\n\nUnlike the variance, the standard deviation is measured in the same units as the data, which is easier to interpret. The standard deviation must also be positive.\nThe standard deviation roughly describes how far away typical observations are from the mean.",
+    "crumbs": [
+      "Base R programming",
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>4A: Examining Categorical Variables</span>"
+    ]
+  },
+  {
+    "objectID": "ls4b_plotting.html#summary-statistics-in-r",
+    "href": "ls4b_plotting.html#summary-statistics-in-r",
+    "title": "4A: Examining Categorical Variables",
+    "section": "Summary statistics in R",
+    "text": "Summary statistics in R\nSummary statistics for a data set can be obtained as follows:\n\nmean() gives the sample mean\nmedian() gives the sample median\nmin() gives the minimum value\nmax() gives the maximum value\nrange() gives a vector containing the minimum and maximum\nsummary() gives the five-number summary and sample mean\nIQR() gives the interquartile range\nvar() gives the sample variance\nsd() gives the sample standard deviation\n\n💻 Hands-On\nFind summary statistics of the bus_driver, math_sat, and lifetime data sets.\n\n\n\n\n\n\nAnswer\n\n\n\n\n\nHere, we show summary statistics of the bus_driver data set only. Those of the math_sat and lifetime can be obtained in the same fashion. Recall the histogram of bus_driver\n\nhist(\n  bus_driver,\n  main = '',\n  col  = 'darkslategray3',    \n  xlab = 'Accidents by Bus Drivers'\n)\n\n\n\n\n\n\n\n\nNote that since bus_driver is right-skewed, we would expect the mean to be greater than the median because the mean is more sensitive to skewness and is thus dragged towards the skinny tail. In contrast, lifetime is left-skewed, we would expect the mean to be smaller than the median (the skinny tail is on the left). Since lifetime is symmetric, the mean and median are about the same.\n\nmean(bus_driver)\n\n[1] 2.257835\n\nmedian(bus_driver)\n\n[1] 2\n\nmin(bus_driver)\n\n[1] 0\n\nmax(bus_driver)\n\n[1] 8\n\nrange(bus_driver)\n\n[1] 0 8\n\nsummary(bus_driver)\n\n   Min. 1st Qu.  Median    Mean 3rd Qu.    Max. \n  0.000   1.000   2.000   2.258   3.000   8.000 \n\nIQR(bus_driver)\n\n[1] 2\n\nvar(bus_driver)\n\n[1] 3.070374\n\nsd(bus_driver)\n\n[1] 1.752248",
+    "crumbs": [
+      "Base R programming",
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>4A: Examining Categorical Variables</span>"
+    ]
+  },
+  {
+    "objectID": "ls4b_plotting.html#box-plot",
+    "href": "ls4b_plotting.html#box-plot",
+    "title": "4A: Examining Categorical Variables",
+    "section": "Box plot",
+    "text": "Box plot\n\nBox plot is a graphical display of the data based on a five-number summary.\nFrom a box plot, we can learn about the data distribution\n\nTypical Value: The median\nSpread: The range and interquartile range (IQR) of the data. The larger the interquartile range (IQR), the higher variability in the data\nOutliers: Potential outliers are marked automatically\n\n\n\n\n\n\n\n\nBox plot and histogram should both be made to complement each other.\nSide-by-side box plots are used to compare the distribution of a numerical variable across different categories.",
+    "crumbs": [
+      "Base R programming",
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>4A: Examining Categorical Variables</span>"
+    ]
+  },
+  {
+    "objectID": "ls4b_plotting.html#box-plot-in-r",
+    "href": "ls4b_plotting.html#box-plot-in-r",
+    "title": "4A: Examining Categorical Variables",
+    "section": "Box plot in R",
+    "text": "Box plot in R\n💻 Hands-On\nObtain the box plots of the bus_driver, math_sat, and lifetime data sets.\n\n\n\n\n\n\nAnswer\n\n\n\n\n\nThe box plots of the bus_driver, math_sat, and lifetime data sets can be obtained using the boxplot() function. The generated box plot is vertical by default, so setting horizontal = TRUE will generate horizontal box plot instead. Note that pch = 16 will mark outliers with solid dots.\n\nboxplot(bus_driver, horizontal = TRUE, col = 'darkslategray3', pch = 16)\n\n\n\n\n\n\n\nboxplot(math_sat, horizontal = TRUE, col = 'darkorange', pch = 16)\n\n\n\n\n\n\n\nboxplot(lifetime, horizontal = TRUE, col = 'seagreen3', pch = 16)\n\n\n\n\n\n\n\n\n\n\n\n💻 Hands-On\nObtain the side-by-side box plots of the iris data set to compare different species of flowers.\n\n\n\n\n\n\nAnswer\n\n\n\n\n\nWe can look at the first few observations of iris to get an idea about the data set.\n\nhead(iris)\n\n  Sepal.Length Sepal.Width Petal.Length Petal.Width Species\n1          5.1         3.5          1.4         0.2  setosa\n2          4.9         3.0          1.4         0.2  setosa\n3          4.7         3.2          1.3         0.2  setosa\n4          4.6         3.1          1.5         0.2  setosa\n5          5.0         3.6          1.4         0.2  setosa\n6          5.4         3.9          1.7         0.4  setosa\n\n\nThere are 3 species of iris flowers.\n\ntable(iris$Species)\n\n\n    setosa versicolor  virginica \n        50         50         50 \n\n\nThe side-by-side box plots of Sepal.Length show that setosa flowers tend to have the smallest sepal length, whereas virginica flowers tend to have the largest sepal length.\n\nboxplot(Sepal.Length ~ Species, data = iris, \n        col = c('mistyrose', 'plum', 'purple'),\n        ylab = 'Sepal Length')\n\n\n\n\n\n\n\n\nIn contrast, the side-by-side box plots of Sepal.Width show that setosa flowers tend to have the larger sepal width than virginica flowers.\n\nboxplot(Sepal.Width ~ Species, data = iris, \n        col = c('mistyrose', 'plum', 'purple'),\n        ylab = 'Sepal Width')",
+    "crumbs": [
+      "Base R programming",
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>4A: Examining Categorical Variables</span>"
+    ]
+  },
+  {
+    "objectID": "ls4b_plotting.html#scatter-plot-and-correlation",
+    "href": "ls4b_plotting.html#scatter-plot-and-correlation",
+    "title": "4A: Examining Categorical Variables",
+    "section": "Scatter plot and correlation",
+    "text": "Scatter plot and correlation\n\nScatter plot provides a view of the relationship between two numerical variables. One may be considered as the explanatory variable and the other one as the response.\n\n\n\n\n\n\n\nDifferent colors or point symbols can be used on a scatter plot to incorporate information from a categorical variable\n\n\n\n\n\n\n\nA linear relationship refers to one that can be approximated by a straight line on a scatter plot.\n\n\n\n\n\n\n\nCorrelation is a measure to quantify the strength of the linear relationship between two numerical variables. Correlation does not depend on the units of measurement.\nCorrelation is strictly between \\(-1\\) and \\(1\\).\n\nThe closer to \\(1\\), the stronger the positive linear relationship is.\nThe closer to \\(-1\\), the stronger the negative linear relationship is.",
+    "crumbs": [
+      "Base R programming",
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>4A: Examining Categorical Variables</span>"
+    ]
+  },
+  {
+    "objectID": "ls4b_plotting.html#scatter-plot-in-r",
+    "href": "ls4b_plotting.html#scatter-plot-in-r",
+    "title": "4A: Examining Categorical Variables",
+    "section": "Scatter plot in R",
+    "text": "Scatter plot in R\n\nScatter plot can be generated using the plot() or pairs() function.\nUseful graphical parameters include\n\ncex - adjust the size of data points\npch - plotting character (point symbol)\n\n\n\n\n\n\n\n💻 Hands-On\nThe cars data set gives speed in mph and stopping distance dist in ft of cars in 1920s. Obtain the correlation and scatter plot of speed and dist.\n\n\n\n\n\n\nAnswer\n\n\n\n\n\n\n### R code here\n\n\n\n\n💻 Hands-On\nThe USArrest data set contains crime statistics for assault, murder, and rape in each of the 50 US states in 1973. It also contain the percent of the population living in urban areas. Obtain the correlation and scatter plot of speed and dist.\n\n\n\n\n\n\nAnswer\n\n\n\n\n\n\n### R code here\n\n\n\n\n💻 Hands-On\nObtain the scatter plots of the iris data set. Use different colors and symbols to highlight different species of flowers.\n\n\n\n\n\n\nAnswer\n\n\n\n\n\n\n### R code here",
+    "crumbs": [
+      "Base R programming",
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>4A: Examining Categorical Variables</span>"
+    ]
+  },
+  {
+    "objectID": "ls4b_plotting.html#scatter-plot-and-correlation-in-r",
+    "href": "ls4b_plotting.html#scatter-plot-and-correlation-in-r",
+    "title": "4A: Examining Categorical Variables",
+    "section": "Scatter plot and correlation in R",
+    "text": "Scatter plot and correlation in R\n\nScatter plot can be generated using the plot() or pairs() function.\nUseful graphical parameters include\n\ncex - adjust the size of data points\npch - plotting character (point symbol)\n\nCorrelation can be computed using the cor() function.\n\n\n\n\n\n\n💻 Hands-On\nThe cars data set gives speed in mph and stopping distance dist in ft of cars in 1920s. Obtain the correlation and scatter plot of speed and dist.\n\n\n\n\n\n\nAnswer\n\n\n\n\n\nThe correlation of speed and dist implies a strong positive linear relationship, meaning a faster speed will require the car to take longer to stop. Their scatter plot show that a straight line provides a good approximation of their relationship.\n\ncor(cars$speed, cars$dist)\n\n[1] 0.8068949\n\nplot(cars$speed, cars$dist, cex = 1.5, pch = 18, col = 'hotpink3',\n     xlab = 'Speed (mpg)', ylab = 'Stopping Distance (ft)')\n\n\n\n\n\n\n\n\n\n\n\n💻 Hands-On\nThe USArrest data set contains crime statistics for assault, murder, and rape in each of the 50 US states in 1973. It also contain the percent of the population living in urban areas. Obtain the correlation and scatter plot of variables in the data set.\n\n\n\n\n\n\nAnswer\n\n\n\n\n\nThe correlation matrix of USArrest shows strong positive linear relationship between Murder, Assault, and Rape crimes (to a lesser extent for Rape). UrbanPop seems to have weaker correlation with the crime measurements.\n\ncor(USArrests)\n\n             Murder   Assault   UrbanPop      Rape\nMurder   1.00000000 0.8018733 0.06957262 0.5635788\nAssault  0.80187331 1.0000000 0.25887170 0.6652412\nUrbanPop 0.06957262 0.2588717 1.00000000 0.4113412\nRape     0.56357883 0.6652412 0.41134124 1.0000000\n\npairs(USArrests, pch = 16, col = 'slateblue', lower.panel = NULL)\n\n\n\n\n\n\n\n\n\n\n\n💻 Hands-On\nObtain the scatter plots of the iris data set. Use different colors and symbols to highlight different species of flowers.\n\n\n\n\n\n\nAnswer\n\n\n\n\n\nA quick way to use different colors to highlight different species of flowers is\n\npairs(iris[, 1:4], pch = 16, col = iris$Species)\n\n\n\n\n\n\n\n\nA fancier way to use custom colors and different symbols is\n\ncols &lt;- c('steelblue', 'tomato', 'chartreuse3')\npchs &lt;- c(16, 17, 4)\n\npairs(iris[, 1:4], pch = pchs[iris$Species], col = cols[iris$Species])",
+    "crumbs": [
+      "Base R programming",
+      "<span class='chapter-number'>8</span>  <span class='chapter-title'>4A: Examining Categorical Variables</span>"
+    ]
+  }
+]
