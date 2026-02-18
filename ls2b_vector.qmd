@@ -688,7 +688,7 @@ which(temps < 18 | temps > 28)
 
     -   Character indexing (if the vector has names; not covered here)
 
-## Numeric indexing
+### Numeric indexing
 
 -   Numeric indexing means telling R the specific indices to return values.
 
@@ -803,7 +803,7 @@ v[-c(2, 6)]
 ```
 :::
 
-## Logical Indexing
+### Logical Indexing
 
 -   **Logical indexing** means telling R which values to return and which values not to return.
 

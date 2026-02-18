@@ -1,0 +1,188 @@
+---
+toc: true
+toc-depth: 3
+echo: true
+eval: true
+output: true
+---
+
+# 4C: Behavioral Survey from the Centers for Disease Control and Prevention (CDC)
+
+## About the Data Set
+
+```{r}
+#| include: false
+
+load(url('https://github.com/hungtong/DS-01-101/raw/refs/heads/main/dataset/cdc.rdata'))
+```
+
+The data set is slightly modified from [OpenIntro](https://www.openintro.org/book/statdata/?data=cdc),
+
+> The Behavioral Risk Factor Surveillance System (BRFSS) is an annual telephone survey of 350,000 people in the United States collected by the Centers for Disease Control and Prevention (CDC). As its name implies, the BRFSS is designed to identify risk factors in the adult population and report emerging health trends. For example, respondents are asked about their diet and weekly physical activity, their HIV/AIDS status, possible tobacco use, and even their level of healthcare coverage. The [BRFSS Web site](https://www.openintro.org/redirect.php?go=cdc_data_brfss&referrer=data_set_page) contains a complete description of the survey, the questions that were asked and even research results that have been derived from the data.
+>
+> This data set is a random sample of 20,000 people from the BRFSS survey conducted in 2000. While there are over 200 questions or variables in this dataset, this data set only includes 9 variables.
+
+The data set has the following variables:
+
+-   `genhlth` - General health, with categories Excellent, Very Good, Good, Fair, and Poor
+
+-   `exerany` - Whether the respondent exercised in the past month
+
+-   `hlthplan` - Whether respondent has some form of health coverage
+
+-   `smoke100` - Whether respondent has smoked at least 100 cigarettes in their entire life
+
+-   `height` - Respondent's height in inches
+
+-   `weight` - Respondent's weight in pounds
+
+-   `wtdesire` - Respondent's desired weight in pounds
+
+-   `age` - Respondent's age in years
+
+-   `gender` - Respondent's gender
+
+The hands-on activities below are adapted from the [Introduction to data lab](https://htmlpreview.github.io/?https://github.com/andrewpbray/oiLabs-base-R/blob/master/intro_to_data/intro_to_data.html) developed by Dr. Andrew Bray.
+
+💻 **Hands-On**
+
+Describe the data distributions of variables `height`, `weight`, and `age` in the `cdc` data set.
+
+::: {.callout-tip collapse="true"}
+## Answer
+
+Looking at their histograms, the data distribution of `height` is symmetric, whereas the data distributions of `weight` and `age` are right-skewed. 
+
+```{r}
+
+hist(cdc$height, col = 'lightskyblue', main = '', xlab = 'Height')
+
+hist(cdc$weight, col = 'salmon', main = '', xlab = 'Weight')
+
+hist(cdc$age, col = 'olivedrab3', main = '', xlab = 'Age')
+```
+
+:::
+
+💻 **Hands-On**
+
+Obtain numerical summaries and box plots of `height`, `weight`, and `age` in the `cdc` data set.
+
+::: {.callout-tip collapse="true"}
+## Answer
+
+```{r}
+
+summary(cdc$height)
+boxplot(cdc$height, col = 'lightskyblue', horizontal = TRUE, xlab = 'Height')
+
+summary(cdc$weight)
+boxplot(cdc$weight, col = 'salmon', horizontal = TRUE, xlab = 'Weight')
+
+summary(cdc$age)
+boxplot(cdc$age, col = 'olivedrab3', horizontal = TRUE, xlab = 'Age')
+```
+:::
+
+💻 **Hands-On**
+
+Compare `height` and `weight` of male and female individuals.
+
+::: {.callout-tip collapse="true"}
+## Answer
+
+```{r}
+
+boxplot(height ~ gender, data = cdc, pch = 16, col = c('royalblue1', 'indianred1'))
+
+boxplot(weight ~ gender, data = cdc, pch = 16, col = c('royalblue1', 'indianred1'))
+```
+:::
+
+💻 **Hands-On**
+
+Add a new variable `bmi` to the `cdc` data set to represent body mass index (BMI).
+
+$$
+\text{BMI} = \dfrac{\text{weight}~(\text{lb})}{\text{height}~(\text{in})^2} \times 703
+$$
+
+::: {.callout-tip collapse="true"}
+## Answer
+
+```{r}
+
+### R code here
+```
+
+:::
+
+💻 **Hands-On**
+
+According to standard guidelines, BMI is categorized as underweight (less than 18.5), healthy (between 18.5 and 24.9), overweight (between 25 and 29.9), and obese (30 or higher). How many people are considered underweight in the data set? How many people are considered healthy in the data set?
+
+::: {.callout-tip collapse="true"}
+## Answer
+
+```{r}
+
+### R code here
+```
+
+:::
+
+💻 **Hands-On**
+
+Obtain the correlation and scatter plot of `weight` and desired weight `wtdesire`.
+
+::: {.callout-tip collapse="true"}
+## Answer
+
+```{r}
+
+### R code here
+```
+
+:::
+
+💻 **Hands-On**
+
+Add a new variable `wdiff` to the `cdc` data set to represent the difference between desired weight `wtdesire` and current weight `weight`.
+
+::: {.callout-tip collapse="true"}
+## Answer
+
+```{r}
+
+### R code here
+```
+
+:::
+
+💻 **Hands-On**
+
+Describe the data distribution of `wdiff` in the `cdc` data set.
+
+::: {.callout-tip collapse="true"}
+## Answer
+
+```{r}
+
+### R code here
+```
+
+:::
+
+💻 **Hands-On**
+
+Compare `wdiff` of male and female individuals. What conclusion can you make about how people feel about their current weight?
+
+::: {.callout-tip collapse="true"}
+## Answer
+
+```{r}
+
+### R code here
+```
+
+:::

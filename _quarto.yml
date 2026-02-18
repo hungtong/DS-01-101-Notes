@@ -20,6 +20,7 @@ book:
           - ls3b_data_frame.qmd
           - ls4a_plotting.qmd
           - ls4b_plotting.qmd
+          - ls4c_plotting.qmd
         
     # - summary.qmd
     # - references.qmd
