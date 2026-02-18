@@ -6,7 +6,7 @@ eval: true
 output: true
 ---
 
-# 4A: Examining Categorical Variables
+# 4B: Examining Numerical Variables
 
 ## Data Sets
 

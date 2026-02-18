@@ -52,6 +52,37 @@ v <- c('Data', 'science', 'is', 'fun', 'and', 'challenging')
 nchar(v)
 ```
 
+-   `strsplit()` splits a string into words.
+
+```{r}
+
+strsplit('Data science is fun and challenging', split = ' ')
+```
+
+-   `paste()` concatenates elements of character vectors
+
+```{r}
+towns <- c('Glassboro', 'Clayton', 'Pitman', 'Deptford')
+
+paste(towns, 'NJ')
+
+paste(towns, 'NJ', sep = ' ')
+
+paste(towns, 'NJ', sep = ', ')
+
+paste(towns, 'NJ', sep = ' in ')
+```
+
+-   Thanks to vectorization, `paste()` allows corresponding elements to be concatenated.
+
+```{r}
+
+first_names <- c('James', 'Robert', 'Mary')
+last_names  <- c('Smith', 'Williams', 'Brown')
+
+paste(first_names, last_names)
+```
+
 💻 **Hands-On**
 
 Write R code to count the number of characters of the following vector:
@@ -64,19 +95,9 @@ towns <- c('Glassboro', 'Clayton', 'Pitman', 'Deptford')
 ## Answer
 
 ```{r}
-
 nchar(towns)
 ```
 :::
-
-### The `strsplit()` function
-
--   `strsplit()` splits a string into words.
-
-```{r}
-
-strsplit('Data science is fun and challenging', split = ' ')
-```
 
 💻 **Hands-On**
 
@@ -96,19 +117,6 @@ strsplit('Name,Age,Major,GPA,Hobbies', split = ',')
 :::
 
 ### The `paste()` function
-    
--   `paste()` concatenates elements of character vectors
-
-```{r}
-
-paste(towns, 'NJ')
-
-paste(towns, 'NJ', sep = ' ')
-
-paste(towns, 'NJ', sep = ', ')
-
-paste(towns, 'NJ', sep = ' in ')
-```
 
 💻 **Hands-On**
 
@@ -152,16 +160,6 @@ towns <- c('Glassboro', 'Clayton', 'Pitman', 'Deptford')
 paste0(towns, 'NJ')
 ```
 :::
-
--   Thanks to vectorization, `paste()` allows corresponding elements to be concatenated.
-
-```{r}
-
-first_names <- c('James', 'Robert', 'Mary')
-last_names  <- c('Smith', 'Williams', 'Brown')
-
-paste(first_names, last_names)
-```
 
 💻 **Hands-On**
 
