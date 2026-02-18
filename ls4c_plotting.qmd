@@ -71,6 +71,8 @@ Obtain numerical summaries and box plots of `height`, `weight`, and `age` in the
 ::: {.callout-tip collapse="true"}
 ## Answer
 
+Note that there are very extreme values of `weight`. Some people are very malnourished while some are heavier than the common belief. This can be the nature of the data or there are errors. It is best to consult someone with domain expertise if further analyses are needed.
+
 ```{r}
 
 summary(cdc$height)
@@ -112,7 +114,7 @@ $$
 
 ```{r}
 
-### R code here
+cdc$bmi <- (cdc$weight / cdc$height^2) * 703
 ```
 
 :::
@@ -124,9 +126,16 @@ According to standard guidelines, BMI is categorized as underweight (less than 1
 ::: {.callout-tip collapse="true"}
 ## Answer
 
-```{r}
+The number of people who are considered underweight is
 
-### R code here
+```{r}
+sum(cdc$weight < 18.5)
+```
+
+The number of people who are considered healthy is 
+
+```{r}
+sum(cdc$weight >= 18.5 & cdc$weight <= 24.9)
 ```
 
 :::
@@ -138,9 +147,17 @@ Obtain the correlation and scatter plot of `weight` and desired weight `wtdesire
 ::: {.callout-tip collapse="true"}
 ## Answer
 
-```{r}
+The correlation of `weight` and desired weight `wtdesire` is strongly positive, meaning these measures tend to go in the same direction. However, it is not very clear whether people tend to like gaining or losing weights.
 
-### R code here
+```{r}
+cor(cdc$weight, cdc$wtdesire)
+```
+
+The scatter plot of `weight` and desired weight `wtdesire` is given below.
+
+```{r}
+plot(cdc$weight, cdc$wtdesire, pch = 16, cex = 0.8, col = 'goldenrod1', 
+     xlab = 'Current Weight', ylab = 'Weight Desired',)
 ```
 
 :::
@@ -152,9 +169,11 @@ Add a new variable `wdiff` to the `cdc` data set to represent the difference bet
 ::: {.callout-tip collapse="true"}
 ## Answer
 
+Note that a positive `wdiff` implies that the person wants to gain weight and a negative `wdiff` implies that the person wants to lose weight.  
+
 ```{r}
 
-### R code here
+cdc$wdiff <- cdc$wtdesire - cdc$weight
 ```
 
 :::
@@ -166,9 +185,11 @@ Describe the data distribution of `wdiff` in the `cdc` data set.
 ::: {.callout-tip collapse="true"}
 ## Answer
 
+Most `wdiff` concentrate below 0, meaning people tend to want to lose weight than to gain weight.
+
 ```{r}
 
-### R code here
+hist(cdc$wdiff, col = 'hotpink2', main = '', xlab = 'Weight Difference')
 ```
 
 :::
@@ -180,9 +201,11 @@ Compare `wdiff` of male and female individuals. What conclusion can you make abo
 ::: {.callout-tip collapse="true"}
 ## Answer
 
+The side-by-side box plots indicate comparable `wdiff` between male and female individuals. Most values are below zero. From this data set, it seems like people regardless of their gender tend to want to lose weight.  
+
 ```{r}
 
-### R code here
+boxplot(wdiff ~ gender, data = cdc, pch = 16, col = c('paleturquoise', 'tan1'))
 ```
 
 :::
