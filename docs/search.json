@@ -1,0 +1,123 @@
+[
+  {
+    "objectID": "ls5a_ggplot2.html",
+    "href": "ls5a_ggplot2.html",
+    "title": "5A: Data Visualization with ggplot2",
+    "section": "",
+    "text": "Readings\nFrom R for Data Science by Drs. Hadley Wickham, Garrett Grolemund, and Mine Çetinkaya-Rundel:\nFrom ggplot2: Elegant Graphics for Data Analysis (3e) by Dr. Hadley Wickham:\nAlso check out Data Tidying from Data Science with R by Dr. Garrett Grolemund for more in-depth explanation of tidy data.",
+    "crumbs": [
+      "The Tidyverse",
+      "<span class='chapter-number'>10</span>  <span class='chapter-title'>5A: Data Visualization with ggplot2</span>"
+    ]
+  },
+  {
+    "objectID": "ls5a_ggplot2.html#readings",
+    "href": "ls5a_ggplot2.html#readings",
+    "title": "5A: Data Visualization with ggplot2",
+    "section": "",
+    "text": "Introduction\nData Tidying\n\n\n\nIntroduction\nFirst steps",
+    "crumbs": [
+      "The Tidyverse",
+      "<span class='chapter-number'>10</span>  <span class='chapter-title'>5A: Data Visualization with ggplot2</span>"
+    ]
+  },
+  {
+    "objectID": "ls5a_ggplot2.html#topics",
+    "href": "ls5a_ggplot2.html#topics",
+    "title": "5A: Data Visualization with ggplot2",
+    "section": "Topics",
+    "text": "Topics\n\nThe tidyverse\nTidy data\nTibble\nggplot2 and the grammar of graphics\nData visualization with ggplot2",
+    "crumbs": [
+      "The Tidyverse",
+      "<span class='chapter-number'>10</span>  <span class='chapter-title'>5A: Data Visualization with ggplot2</span>"
+    ]
+  },
+  {
+    "objectID": "ls5a_ggplot2.html#the-tidyverse",
+    "href": "ls5a_ggplot2.html#the-tidyverse",
+    "title": "5A: Data Visualization with ggplot2",
+    "section": "The tidyverse",
+    "text": "The tidyverse\n\n\n\n\n\n\nThe tidyverse package is a collection of packages for data science developed by Hadley Wickham and his team at Posit:\n\nggplot2 for data visualization\ndplyr for data manipulation\ntidyr for getting data in “tidy” format\ntibble for enhancing data frames\nreadr for importing rectangular data (like csv, tsv, and fwf)\nhaven for importing and exporting SPSS, Stata and SAS files\npurrr for functional programming\nstringr for working with strings\nforcats for handling categorical data\nlubridate for working with date-times\n\nWe can install tidyverse as follows\n\n\ninstall.packages(\"tidyverse\")\n\n\nTo use tidyverse, we need to load it as follows\n\n\nlibrary(tidyverse)\n\n\nWe may encounter some variation of following message and that is okay\n\n\n# ── Attaching core tidyverse packages ─────────────────────── tidyverse 2.0.0 ──\n# ✔ dplyr     1.1.4     ✔ readr     2.1.5\n# ✔ forcats   1.0.0     ✔ stringr   1.5.1\n# ✔ ggplot2   4.0.0     ✔ tibble    3.2.1\n# ✔ lubridate 1.9.4     ✔ tidyr     1.3.1\n# ✔ purrr     1.0.2     \n# ── Conflicts ───────────────────────────────────────── tidyverse_conflicts() ──\n# ✖ tidyr::expand() masks Matrix::expand()\n# ✖ dplyr::filter() masks stats::filter()\n# ✖ dplyr::lag()    masks stats::lag()\n# ✖ tidyr::pack()   masks Matrix::pack()\n# ✖ dplyr::select() masks MASS::select()\n# ✖ tidyr::unpack() masks Matrix::unpack()\n# ℹ Use the conflicted package to force all conflicts to become errors\n\n\nTidy data\n\nTabular data are often organized in a wide format or a long format.\nThe wide format typically uses more columns and requires less repetition.\n\n\n\n\nFrom Kei Saito\n\n\n\nOn the other hand, the long format tends to be less compacted with more rows.\n\n\n\n\nFrom Kei Saito\n\n\n\nTabular data is tidy if each variable forms a column, each observation forms a row, and each cell is a single measurement. Tidy data is often in a long format.\n\n\n\n\n\n\n\ntidyverse believes that tidy data in a long format is ideal for doing data science with R, because it is easier to extract every value of a variable to build a plot or to compute a summary statistic.\n\n💻 Hands-On\nThe heights in centimeters and weights in kilograms of Amy and Ben are measured at ages 11, 14, and 18. The data are organized in a long format and a wide format. If we want to convert heights to inches and weights to pounds, which format is easier to work with?\n\nlong_df &lt;- data.frame(\n  name   = c('Amy', 'Amy', 'Amy', 'Ben', 'Ben', 'Ben'),\n  age    = c(11, 14, 18, 11, 14, 18),\n  height = c(144, 160, 167, 146, 158, 165),\n  weight = c(36, 50, 58, 38, 48,55)\n)\n\nwide_df &lt;- data.frame(\n  name   = c('Amy', 'Ben'),\n  height_11 = c(144, 146),\n  height_14 = c(160, 158),\n  height_18 = c(167, 165),\n  weight_11 = c(36, 38),\n  weight_14 = c(50, 58),\n  weight_18 = c(58, 55)\n)\n\n\n\n\n\n\n\nAnswer\n\n\n\n\n\nExtracting, transforming, and modifying variables can be easier with the long format compared to the wide format.\n\n# With long format\nlong_df$height\n\n# With wide format\nwide_df[, c('height_11', 'height_14', 'height_18')]",
+    "crumbs": [
+      "The Tidyverse",
+      "<span class='chapter-number'>10</span>  <span class='chapter-title'>5A: Data Visualization with ggplot2</span>"
+    ]
+  },
+  {
+    "objectID": "ls5a_ggplot2.html#tibble",
+    "href": "ls5a_ggplot2.html#tibble",
+    "title": "5A: Data Visualization with ggplot2",
+    "section": "Tibble",
+    "text": "Tibble\n\nA tibble is an enhanced version of base R data frame developed in tidyverse.\nOne noticeable difference is that a tibble has better printing capabilities.\nFor a comprehensive list of Differences between tibbles vs data.frames, check out the video of Dr. Johsua French.\n\n💻 Hands-On\nTry the following code and describe the difference between a traditional data frame and a tibble.\n\n# Loan data\nloan &lt;- read.csv(url('https://raw.githubusercontent.com/hungtong/DS-01-101/refs/heads/main/dataset/loan50.csv'))\n\n# Traditional data frame\nloan\n\n# Tibble\nas_tibble(loan)\n\n\n\n\n\n\n\nAnswer\n\n\n\n\n\nSince loan has 50 observations and 18 variables, printing loan as a data frame will take a lot of space in the console. Tibble presents the data more compactly and descriptively.\n\n# # A tibble: 50 × 18\n#    state emp_length  term homeownership annual_income verified_income\n#    &lt;chr&gt;      &lt;int&gt; &lt;int&gt; &lt;chr&gt;                 &lt;int&gt; &lt;chr&gt;          \n#  1 NJ             3    60 rent                  59000 Not Verified   \n#  2 CA            10    36 rent                  60000 Not Verified   \n#  3 SC            NA    36 mortgage              75000 Verified       \n#  4 CA             0    36 rent                  75000 Not Verified   \n#  5 OH             4    60 mortgage             254000 Not Verified   \n#  6 IN             6    36 mortgage              67000 Source Verified\n#  7 NY             2    36 rent                  28800 Source Verified\n#  8 MO            10    36 mortgage              80000 Not Verified   \n#  9 FL             6    60 rent                  34000 Not Verified   \n# 10 FL             3    60 mortgage              80000 Source Verified\n# # ℹ 40 more rows\n# # ℹ 12 more variables: debt_to_income &lt;dbl&gt;, total_credit_limit &lt;int&gt;,\n# #   total_credit_utilized &lt;int&gt;, num_cc_carrying_balance &lt;int&gt;,\n# #   loan_purpose &lt;chr&gt;, loan_amount &lt;int&gt;, grade &lt;chr&gt;, interest_rate &lt;dbl&gt;,\n# #   public_record_bankrupt &lt;int&gt;, loan_status &lt;chr&gt;, has_second_income &lt;lgl&gt;,\n# #   total_income &lt;int&gt;\n# # ℹ Use `print(n = ...)` to see more rows",
+    "crumbs": [
+      "The Tidyverse",
+      "<span class='chapter-number'>10</span>  <span class='chapter-title'>5A: Data Visualization with ggplot2</span>"
+    ]
+  },
+  {
+    "objectID": "ls5a_ggplot2.html#fuel-economy-data-mpg",
+    "href": "ls5a_ggplot2.html#fuel-economy-data-mpg",
+    "title": "5A: Data Visualization with ggplot2",
+    "section": "Fuel economy data mpg",
+    "text": "Fuel economy data mpg\n\nFor this lesson, we will work with the data set mpg from ggplot2.\nmpg contains information about the fuel economy of popular car models between 1999 and 2008 collected by the Environmental Protection Agency (EPA). The data set is a subset from https://fueleconomy.gov/.\n\n\nlibrary(ggplot2)\n\nmpg\n\n# A tibble: 234 × 11\n   manufacturer model      displ  year   cyl trans drv     cty   hwy fl    class\n   &lt;chr&gt;        &lt;chr&gt;      &lt;dbl&gt; &lt;int&gt; &lt;int&gt; &lt;chr&gt; &lt;chr&gt; &lt;int&gt; &lt;int&gt; &lt;chr&gt; &lt;chr&gt;\n 1 audi         a4           1.8  1999     4 auto… f        18    29 p     comp…\n 2 audi         a4           1.8  1999     4 manu… f        21    29 p     comp…\n 3 audi         a4           2    2008     4 manu… f        20    31 p     comp…\n 4 audi         a4           2    2008     4 auto… f        21    30 p     comp…\n 5 audi         a4           2.8  1999     6 auto… f        16    26 p     comp…\n 6 audi         a4           2.8  1999     6 manu… f        18    26 p     comp…\n 7 audi         a4           3.1  2008     6 auto… f        18    27 p     comp…\n 8 audi         a4 quattro   1.8  1999     4 manu… 4        18    26 p     comp…\n 9 audi         a4 quattro   1.8  1999     4 auto… 4        16    25 p     comp…\n10 audi         a4 quattro   2    2008     4 manu… 4        20    28 p     comp…\n# ℹ 224 more rows\n\n\n\nThe data set contains the following categorical variables:\n\nmanufacturer name\nmodel name\nyear of manufacture\ntrans - type of transmission\ndrv - type of drive train, front-wheel f, rear-wheel r, or four-wheel 4\nfl - fuel type\nclass - type of car\n\n\n\n\n\nFrom The Engineering Choice\n\n\n\nThe data set contains the following numerical variables:\n\ndispl - engine displacement (size), in litres\ncyl - number of cylinders\ncty - miles per gallon for city driving\nhwy - miles per gallon for highway driving\n\n\n\n\n\nFrom SENZA\n\n\n\nFor this lesson, we are interested in the relationship of engine size and fuel economy. Note that engine size can be indicated by displ.\n\n💻 Hands-On\nTry the following code and describe the difference between str() and glimpse(). Note that str() is from base R and glimpse() is from the tidyverse.\n\n# Base R\nstr(mpg)\n\n# Tidyverse\nglimpse(mpg)\n\n\n\n\n\n\n\nAnswer\n\n\n\n\n\nglimpse() is similar to str() but seems to be formatted better.\n\n# Rows: 234\n# Columns: 11\n# $ manufacturer &lt;chr&gt; \"audi\", \"audi\", \"audi\", \"audi\", \"audi\", \"audi\", \"audi\", \"aud…\n# $ model        &lt;chr&gt; \"a4\", \"a4\", \"a4\", \"a4\", \"a4\", \"a4\", \"a4\", \"a4 quattro\", \"a4 …\n# $ displ        &lt;dbl&gt; 1.8, 1.8, 2.0, 2.0, 2.8, 2.8, 3.1, 1.8, 1.8, 2.0, 2.0, 2.8, …\n# $ year         &lt;int&gt; 1999, 1999, 2008, 2008, 1999, 1999, 2008, 1999, 1999, 2008, …\n# $ cyl          &lt;int&gt; 4, 4, 4, 4, 6, 6, 6, 4, 4, 4, 4, 6, 6, 6, 6, 6, 6, 8, 8, 8, …\n# $ trans        &lt;chr&gt; \"auto(l5)\", \"manual(m5)\", \"manual(m6)\", \"auto(av)\", \"auto(l5…\n# $ drv          &lt;chr&gt; \"f\", \"f\", \"f\", \"f\", \"f\", \"f\", \"f\", \"4\", \"4\", \"4\", \"4\", \"4\", …\n# $ cty          &lt;int&gt; 18, 21, 20, 21, 16, 18, 18, 18, 16, 20, 19, 15, 17, 17, 15, …\n# $ hwy          &lt;int&gt; 29, 29, 31, 30, 26, 26, 27, 26, 25, 28, 27, 25, 25, 25, 25, …\n# $ fl           &lt;chr&gt; \"p\", \"p\", \"p\", \"p\", \"p\", \"p\", \"p\", \"p\", \"p\", \"p\", \"p\", \"p\", …\n# $ class        &lt;chr&gt; \"compact\", \"compact\", \"compact\", \"compact\", \"compact\", \"comp…",
+    "crumbs": [
+      "The Tidyverse",
+      "<span class='chapter-number'>10</span>  <span class='chapter-title'>5A: Data Visualization with ggplot2</span>"
+    ]
+  },
+  {
+    "objectID": "ls5a_ggplot2.html#ggplot2-and-the-grammar-of-graphic",
+    "href": "ls5a_ggplot2.html#ggplot2-and-the-grammar-of-graphic",
+    "title": "5A: Data Visualization with ggplot2",
+    "section": "ggplot2 and the grammar of graphic",
+    "text": "ggplot2 and the grammar of graphic\n\nggplot2 is an R package for data visualization which implements the grammar of graphics introduced by Leland Wilkinson.\nWhile base R graphics we have seen are generally fast, ggplot2 is versatile and widely used for making elegant and beautiful graphics.\nggplot2 is good for visualizing the relationship between multiple variables.\nThe grammar of graphic of Leland Wilkinson defines a statistical graph based on the following layers (components):\n\n\n\n\nFrom Saketh Ram Gangam\n\n\n\nggplot2 builds a plot by adding multiple layers, each of which has a specific role. At the most basic level, a ggplot2 consist of:\n\nThe data set to visualize\nAesthetics that map variables to visual properties\nGeometry to represent the observations\n\nCommon aesthetics include:\n\nx for the x-axis\ny for the y-axis\nfill for interior color (bars, areas, polygons, etc.)\ncolor for line or point color\nsize for the size of the observation\nalpha for adjusting transparency\nshape for the shape of the observation\n\nCommon geometries include:\n\ngeom_point for scatter plot\ngeom_bar for bar plot\ngeom_line for line plot\ngeom_smooth for smoothing line\ngeom_histogram for histogram\ngeom_density for density curve\ngeom_boxplot for box plot\ngeom_violin for violin plot\n\nFacets divide data into groups and display multiple plots to compare them.\nStatistics provide summaries and transformations.\nCoordinates control the position of data points: Cartesian, fixed-aspect ratio, or polar coordiate.\nTheme controls the appearance of the plot and annotations.\nThe R Graph Gallery provides a collection of graphs made with base R and ggplot2.",
+    "crumbs": [
+      "The Tidyverse",
+      "<span class='chapter-number'>10</span>  <span class='chapter-title'>5A: Data Visualization with ggplot2</span>"
+    ]
+  },
+  {
+    "objectID": "ls5a_ggplot2.html#scatter-plot-geom_point",
+    "href": "ls5a_ggplot2.html#scatter-plot-geom_point",
+    "title": "5A: Data Visualization with ggplot2",
+    "section": "Scatter plot geom_point()",
+    "text": "Scatter plot geom_point()\n\nThe first layer of the plot is the data set to visualize.\n\n\nggplot(mpg)\n\n\n\n\n\n\n\n\n\nThe second layer is the mapping of aesthetics.\n\n\nggplot(mpg, mapping = aes(x = displ, y = hwy))\n\n\n\n\n\n\n\n\n\nThe third layer indicates which geometry to represent the observations.\n\n\nggplot(mpg, mapping = aes(x = displ, y = hwy)) + \n  geom_point()\n\n\n\n\n\n\n\n\n\nColor, size, and transparency can be adjusted\n\n\nggplot(mpg, mapping = aes(x = displ, y = hwy)) + \n  geom_point(color = 'steelblue', size = 3, alpha = 0.7)\n\n\n\n\n\n\n\n\n\nFor scatter plots, adding a smoothing line with geom_smooth() can help us see the trend.\n\n\nggplot(mpg, mapping = aes(x = displ, y = hwy)) + \n  geom_point(color = 'steelblue') +\n  geom_smooth()\n\n`geom_smooth()` using method = 'loess' and formula = 'y ~ x'\n\n\n\n\n\n\n\n\n\n\ngeom_smooth() also allows for a linear regression line.\n\n\nggplot(mpg, mapping = aes(x = displ, y = hwy)) + \n  geom_point(color = 'steelblue') +\n  geom_smooth(method = 'lm')\n\n`geom_smooth()` using formula = 'y ~ x'\n\n\n\n\n\n\n\n\n\n\nMapping aesthetics is powerful for visualizing the relationship between multiple variables.\n\n\nggplot(mpg, mapping = aes(x = displ, y = hwy, color = drv)) + \n  geom_point()\n\n\n\n\n\n\n\n\n\nMapping aesthetics allows us to represent categories with different colors and shapes.\n\n\nggplot(mpg, mapping = aes(x = displ, y = hwy, color = drv, shape = drv)) + \n  geom_point()\n\n\n\n\n\n\n\n\n\nAdding a theme can make the plot look better.\n\n\nggplot(mpg, mapping = aes(x = displ, y = hwy, color = drv, shape = drv)) + \n  geom_point() +\n  theme_bw()\n\n\n\n\n\n\n\n\n\nAdding labels makes the plot more descriptive.\n\n\nggplot(mpg, mapping = aes(x = displ, y = hwy, color = drv, shape = drv)) + \n  geom_point() + \n  theme_bw() +\n  labs(x = 'Engine Displacement', \n       y = 'Highway Miles per Gallon',\n       color = 'Drive Train', \n       shape = 'Drive Train')\n\n\n\n\n\n\n\n\n\nFaceting divides the data into subsets according to a categorical variable and visualize each subset.\n\n\nggplot(mpg, mapping = aes(x = displ, y = hwy, color = drv, shape = drv)) + \n  geom_point() + \n  facet_wrap(~ drv) +\n  theme_bw() +\n  labs(x = 'Engine Displacement', \n       y = 'Highway Miles per Gallon',\n       color = 'Drive Train',\n       shape = 'Drive Train')\n\n\n\n\n\n\n\n\n💻 Hands-On\nReproduce the following scatter plot:\n\n\n\n\n\n\n\n\n\n\n\nAnswer\n\n\n\n\n\n\nggplot(mpg, mapping = aes(x = displ, y = hwy, color = drv)) + \n  geom_point() + \n  facet_wrap(~ drv) +\n  theme_bw() +\n  labs(x = 'Engine Displacement', \n       y = 'Highway Miles per Gallon',\n       color = 'Type of Car')",
+    "crumbs": [
+      "The Tidyverse",
+      "<span class='chapter-number'>10</span>  <span class='chapter-title'>5A: Data Visualization with ggplot2</span>"
+    ]
+  },
+  {
+    "objectID": "ls5a_ggplot2.html#bar-plot-geom_bar",
+    "href": "ls5a_ggplot2.html#bar-plot-geom_bar",
+    "title": "5A: Data Visualization with ggplot2",
+    "section": "Bar plot geom_bar()",
+    "text": "Bar plot geom_bar()\n\nVertical bar plot can be made with geom_bar()\n\n\nggplot(mpg, mapping = aes(x = drv)) +\n  geom_bar()\n\n\n\n\n\n\n\n\n\nChanging the mapping can create horizontal bar plot.\n\n\nggplot(mpg, mapping = aes(y = drv)) +\n  geom_bar()\n\n\n\n\n\n\n\n\n\nUnlike geom_point(), color is adjusted with fill rather than color.\n\n\nggplot(mpg, mapping = aes(x = drv)) +\n  geom_bar(fill = 'tomato')\n\n\n\n\n\n\n\n\n💻 Hands-On\nReproduce the following bar plot. Note that the color is burlywood2.\n\n\n\n\n\n\n\n\n\n\n\nAnswer\n\n\n\n\n\n\nggplot(mpg, mapping = aes(x = class)) +\n  geom_bar(fill = 'burlywood2') +\n  theme_bw() +\n  labs(x = 'Drive Train', \n       y = 'Frequency')",
+    "crumbs": [
+      "The Tidyverse",
+      "<span class='chapter-number'>10</span>  <span class='chapter-title'>5A: Data Visualization with ggplot2</span>"
+    ]
+  },
+  {
+    "objectID": "ls5a_ggplot2.html#histogram-geom_histogram-and-density-curve-geom_density",
+    "href": "ls5a_ggplot2.html#histogram-geom_histogram-and-density-curve-geom_density",
+    "title": "5A: Data Visualization with ggplot2",
+    "section": "Histogram geom_histogram() and density curve geom_density()",
+    "text": "Histogram geom_histogram() and density curve geom_density()\n\nHistogram can be made with geom_histogram().\n\n\n# R code here\n\n\nOverlaying histograms can be used to compare different groups.\n\n\n# R code here\n\n\nHowever, it can be more informative to use faceting in the case of histogram.\n\n\n# R code here\n\n\nDensity is the “smoothed” version of histogram.\n\n\n# R code here\n\n\nOverlaying density curves are also possible to make.\n\n\n# R code here\n\n\nIf we prefer non-overlapping density curves, we can consider faceting.\n\n\n# R code here\n\n💻 Hands-On\nReproduce the following histogram:\n\n\n\n\n\n\n\n\n\n\n\nAnswer\n\n\n\n\n\n\n# R code here",
+    "crumbs": [
+      "The Tidyverse",
+      "<span class='chapter-number'>10</span>  <span class='chapter-title'>5A: Data Visualization with ggplot2</span>"
+    ]
+  },
+  {
+    "objectID": "ls5a_ggplot2.html#box-plot-geom_boxplot-and-violin-plot-geom_violin",
+    "href": "ls5a_ggplot2.html#box-plot-geom_boxplot-and-violin-plot-geom_violin",
+    "title": "5A: Data Visualization with ggplot2",
+    "section": "Box plot geom_boxplot() and violin plot geom_violin()",
+    "text": "Box plot geom_boxplot() and violin plot geom_violin()\n\nBox plot can be made with geom_boxplot().\n\n\n# R code here\n\n\nSide-by-side box plots can be made using mapping.\n\n\n# R code here\n\n\nA violin plot is a good combination of histogram and box plot.\n\n\n# R code here\n\n💻 Hands-On\nReproduce the following box plots:\n\n\n\n\n\n\n\n\n\n\n\nAnswer\n\n\n\n\n\n\n# R code here",
+    "crumbs": [
+      "The Tidyverse",
+      "<span class='chapter-number'>10</span>  <span class='chapter-title'>5A: Data Visualization with ggplot2</span>"
+    ]
+  }
+]

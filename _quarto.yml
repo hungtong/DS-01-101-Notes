@@ -21,6 +21,9 @@ book:
           - ls4a_plotting.qmd
           - ls4b_plotting.qmd
           - ls4c_plotting.qmd
+          
+    - part: "The Tidyverse"
+      chapters:
           - ls5a_ggplot2.qmd
         
     # - summary.qmd
