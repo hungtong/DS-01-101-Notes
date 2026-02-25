@@ -21,6 +21,7 @@ book:
           - ls4a_plotting.qmd
           - ls4b_plotting.qmd
           - ls4c_plotting.qmd
+          - ls5a_ggplot2.qmd
         
     # - summary.qmd
     # - references.qmd
@@ -35,6 +36,7 @@ format:
     toc: true
     self-contained: true
     math: mathjax
+    code-overflow: wrap
   pdf:
     documentclass: scrreprt
 
