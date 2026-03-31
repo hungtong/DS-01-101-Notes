@@ -11,7 +11,7 @@ eval: false
 code-overflow: wrap
 format: 
   html:
-    self-contained: true
+    self-contained: false
 ---
 
 ## Readings
@@ -70,6 +70,7 @@ From **Stat 331/531 Statistical Computing with R** by Dr. Emily Robinson:
 
 ```{r}
 #| message: false
+#| warning: false
 #| eval: true
 
 library(tidyverse)
