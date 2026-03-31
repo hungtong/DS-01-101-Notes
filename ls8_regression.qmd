@@ -1,0 +1,295 @@
+---
+title: "Lesson 8A: Multiple Linear Regression"
+subtitle: "DS 01-101: In-Depth Introduction to Data Science (Spring 2026)"
+author: "Hung Tong"
+institute: "Rowan University"
+editor: visual
+toc: true
+toc-depth: 3
+echo: true
+eval: true
+code-overflow: wrap
+format: 
+  html:
+    self-contained: true
+---
+
+## Readings
+
+From **An Introduction to Statistical Learning with Applications in R** by Drs. Gareth James, Daniela Witten, Trevor Hastie, and Rob Tibshirani:
+
+-   Introduction
+
+-   Statistical Learning
+
+-   Linear Regression
+
+The book is freely available at https://www.statlearning.com/
+
+Also, check out the following videos:
+
+-   [Statistical Learning: 1.1 Opening Remarks - Drs. Trevor Hastie and Rob Tibshirani](https://youtu.be/LvySJGj-88U?si=bCpk45qvFUK3U0pJ)
+
+-   [What is Machine Learning? - Dr. Sebastian Raschka](https://youtu.be/z7RT6aAt_10?si=Gch7GXpR_qK3sEPz)
+
+## Topics
+
+-   Introduction to statistical learning
+
+-   Supervised and unsupervised learning
+
+-   Linear regression
+
+## Statistical learning and machine learning
+
+-   **Statistical learning** and **machine learning** refer to a set of computational tools for modeling data and gaining insights from data.
+
+-   Generally speaking, **statistical learning** is considered a subfield of statistics, while **machine learning** is a subfield of computer science.
+
+-   Traditionally, statisticians focus on understanding relationships and making inference, with an emphasis on mathematical properties and interpretability. On the other hand, computer scientists, focus on prediction and performance with large data.
+
+-   Regardless, statistical learning and machine learning have a significant overlap. Both requires knowledge of mathematics and programming.
+
+-   In this course, we will use statistical learning and machine learning intergeably.
+
+## Supervised and unsupervised learning
+
+-   Main tasks in statistical learning include:
+
+    -   **Regression:** Predict an outcome given some predictor variables
+    -   **Classification:** Assign data points to pre-defined groups
+    -   **Clustering:** Group similar data points together
+    -   **Dimension reduction:** Find a lower-dimensional representation to visualize data or identify important variables
+
+-   In the above, regression and classification are considered **supervised learning**, in which we already have some examples to train the model.
+
+-   Clustering and dimension reduction are considered **unsupervised learning**, in which we do not have any examples to train the model.
+
+## Multiple Linear Regression
+
+-   Consider a **response** $Y$ and $p$ **predictors** $X_1, X_2, \dots, X_p$. The **multiple linear regression** model approximates the relationship between the response and predictors variable as follows:
+
+$$
+Y = \beta_0 + \beta_1 X_1 + \beta_2 X_2 + \dots + \beta_p X_p + \epsilon,
+$$
+
+-   In the above, $\beta_0$ is the intercept, $\beta_1, \beta_2, \dots, \beta_p$ are coefficients, and $\epsilon$ is the unexplained random error.
+
+-   The unknown intercept $\beta_0$ and coefficients $\beta_1, \beta_2, \dots, \beta_p$ can be estimated by the **method of least squares**.
+
+$$
+\sum_{i = 1}^n (y_i - \beta_0 - \beta_1 x_{i1} - \beta_2 x_{i2} - \dots - \beta_p x_{ip})^2
+$$
+
+-   Geometrically, we look for a plane that minimizes the sum of the squared vertical distances between each observation and the plane.
+
+![From An Introduction to Statistical Learning](https://github.com/hungtong/DS-01-101/blob/main/image/8_projection.png?raw=true){fig-align="center" width="318"}
+
+-   The `Advertising` is available from <https://www.statlearning.com/resources-second-edition>. It also consists of sales of that product in 200 different markets. It also includes advertising budgets in thousand dollars for the product in each of those markets for three different media: TV, radio, and newspapers.
+
+![](https://github.com/hungtong/DS-01-101/blob/main/image/8_advertising.png?raw=true){fig-align="center"}
+
+```{r}
+
+load(url('https://github.com/hungtong/DS-01-101/raw/refs/heads/main/dataset/Advertising.rdata'))
+
+head(Advertising)
+```
+
+-   Fitting the multiple linear regression to the data set, we obtain
+
+```{r}
+
+mod <- lm(sales ~ TV + radio + newspaper, data = Advertising)
+summary(mod)
+```
+
+-   The **coefficient estimate** tells us the estimated change in the response variable for a one-unit increase in the predictor variable while [holding other predictors constant]{.underline}.
+
+```{r}
+
+# Intercept = 2.94. If TV = 0, radio = 0, and newspaper = 0 (we spend nothing on advertising), on average, the sales are 2.94 thousand dollars.
+
+# Coefficient TV = 0.05. For fixed values of radio and newspaper, for an additional thousand dollars increase (one-unit change) in TV, on average, the sales increase by 0.05 x 1000 = 50 dollars.
+
+# Coefficient radio = 0.19. For fixed values of TV and newspaper, for additional thousand dollars increase in radio, on average, the sales increase by 0.19 x 1000 = 190 dollars.
+
+# Coefficient newspaper = -0.001. For fixed values of TV and radio, for additional thousand dollars spent on newspaper, the sales decrease by -0.0001 * x 1000 = 1 dollar. (recall that the correlation between sales and newspaper is pretty low)
+```
+
+-   The **standard errors of the coefficients** tell us the average amount their estimates differ from the actual values. Thus, smaller standard errors mean more accurate estimates.
+
+-   A small **p-value**, such as less than a significance level $\alpha = 0.05$, indicates that there is statistically significant evidence of a substantial association between the predictor and the response.
+
+```{r}
+
+# The p-values for TV and radio are pretty small (2e-16 which is much smaller than 0.05), so they seem to be more useful predictors. On the other hand, the p-value for newspaper is 0.86, which is very large, so newspaper does not seem to be very useful.
+```
+
+-   The **residual standard error** is the average amount of the response deviates from the best regression. It is considered a measure of the **goodness of fit**. A smaller residual standard error is better, but since it is measured in the units of the response, it is not always clear what makes a good value.
+
+```{r}
+
+# In the fitted model, the residual standard error is 1.686
+```
+
+![](https://github.com/hungtong/DS-01-101/blob/main/image/8_pop_regr_line.png?raw=true){fig-align="center" width="534"}
+
+-   Another measure of the goodness of fit is the **multiple** $R^2$ which accounts for the proportion of variability in the response that can be explained the multiple linear regression model. However, including more predictors always increase the multiple $R^2$, regardless of whether a predictor is "useful" or not. The **adjusted** $R^2$ is a corrected version that addresses such an issue.
+
+```{r}
+
+# The multiple R-squared is 0.8972, meaning about 89.72% of variability in the response can be explained by the multiple linear regression model with TV, radio, and newspaper.
+
+
+# The multiple R-squared will always increase with more predictors. The adjusted R-squared only increase if the predictor is useful.
+```
+
+💻 **Hands-On**
+
+The `mtcars` was extracted from the 1974 Motor Trend US magazine, and comprises fuel consumption and 10 aspects of automobile design and performance for 32 automobiles (1973–74 models).
+
+Fit a multiple linear regression to learn how horsepower `hp`, weight `wt`, and number of cylinders `cyl` affect fuel efficiency `mpg`. Draw some insights from the model.
+
+::: {.callout-tip collapse="true"}
+## Answer
+
+`wt` has a very small p-value, so it appears to be a useful predictor. All the coefficient estimates are negative, meaning heavier cars with more horsepower and cyclinders tend to be less fuel efficient (lower `mpg`). The multiple R-squared is 0.8431, which is close to 1. About 84.31% of variability in the mpg can be explained by the multiple linear regression model with `hp`, `wt`, and `cyl`.
+
+```{r}
+
+mod <- lm(mpg ~ hp + wt + cyl, data = mtcars)
+
+summary(mod)
+```
+:::
+
+## Prediction and predictive performance
+
+-   **Fitted values** are the predicted values for the observations that were used to build the model.
+
+```{r}
+#| output: false
+
+mod <- lm(sales ~ TV + radio + newspaper, data = Advertising)
+
+fitted.values(mod)
+```
+
+-   **Predicted values** are the model’s predictions for new observations (data not used to fit the model).
+
+```{r}
+#| output: false
+
+new_data <- data.frame(
+  TV = c(145.0, 25.3, 210.5, 95.6, 12.4),
+  radio = c(23.1, 35.2, 18.4, 12.7, 41.8),
+  newspaper = c(45.0, 60.3, 30.5, 20.1, 72.4)
+)
+
+predict(mod, new_data)
+```
+
+-   A **residual** is the difference between the observed value and the fitted/predicted value.
+
+```{r}
+#| output: false
+
+y <- Advertising$sales
+y_hat <- fitted.values(mod)
+
+y - y_hat
+```
+
+-   The **root mean squared error (RMSE)** quantifies how far the fitted/predicted values are from the observed values on average. A smaller error means better accurary. This is a measure of **predictive performance**.
+
+$$
+\text{RMSE} = \sqrt{\dfrac{1}{n} \sum_{i = 1}^n (y_i - \hat{y}_i)^2}
+$$
+
+```{r}
+
+rmse <- sqrt( mean((y - y_hat)^2) )
+rmse
+```
+
+-   In practice, fitting a model to the entire data set and evaluating how well the model predicts those same observations is not very useful, because we already know the outcomes for those observations.
+
+-   We are more interested in seeing how the model predicts outcomes for new observations that were not used to fit the model.
+
+-   For this reason, we typically split the data into a **training set** and a **validation (test) set**. The model is fit using the training set, and predictive performance is evaluated on the test set. This gives a more realistic measure of how well the model will perform on new data.
+
+![From An Introduction to Statistical Learning](https://github.com/hungtong/DS-01-101/blob/main/image/8_validation.png?raw=true){fig-align="center"}
+
+```{r}
+
+n <- nrow(Advertising)
+
+# 0.7 * 200 = 140
+# 0.3 * 200 = 60
+
+set.seed(101)
+
+train_ids <- sample(1:n, size = 140)
+test_ids <- setdiff(1:n, train_ids)
+
+train_data <- Advertising[train_ids, ]
+test_data <- Advertising[test_ids, ]
+
+mod <- lm(sales ~ TV + radio + newspaper, data = train_data)
+
+# root mean squared errors for training data (1.7153)
+(train_data$sales - fitted(mod))^2 |>
+  mean() |>
+  sqrt()
+
+
+# root mean squared errors for test data (1.609)
+pred <- predict(mod, test_data[, c('TV', 'radio', 'newspaper')])
+
+(test_data$sales - pred)^2 |>
+  mean() |>
+  sqrt()
+```
+
+-   The validation error can depend on which observations happen to be placed in the validation set. To address this issue, we use $k$-fold **cross-validation**, where we repeatedly split the data into training and validation sets and average the prediction error across these splits. This gives a more reliable estimate of the model’s test error.
+
+![From An Introduction to Statistical Learning](https://github.com/hungtong/DS-01-101/blob/main/image/8_5_fold_CV.png?raw=true){fig-align="center"}
+
+💻 **Hands-On**
+
+Consider a multiple linear regression in which the response is fuel efficiency `mpg`, and the predictors are how horsepower `hp`, weight `wt`, and number of cylinders `cyl`. Split the data set into a training set (about 80%) and a test set (about 20%). Compute the root mean squared errors for the training and test sets.
+
+::: {.callout-tip collapse="true"}
+## Answer
+
+```{r}
+
+n <- nrow(mtcars)
+
+# train: 0.8 * 32 = 25.6 -> 26
+# test: 6
+
+set.seed(101)
+
+train_ids <- sample(1:n, size = 26)
+test_ids <- setdiff(1:n, train_ids)
+
+train_data <- mtcars[train_ids, ]
+test_data <- mtcars[test_ids, ]
+
+mod <- lm(mpg ~ hp + wt + cyl, data = train_data)
+
+# root mean squared errors for train data
+(train_data$mpg - fitted(mod))^2 |>
+  mean() |>
+  sqrt()
+
+# root mean squared errors for test data
+pred <- predict(mod, test_data[, c('hp', 'wt', 'cyl')])
+
+(test_data$mpg - pred)^2 |>
+  mean() |>
+  sqrt()
+```
+:::

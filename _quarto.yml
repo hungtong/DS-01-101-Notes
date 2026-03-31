@@ -25,6 +25,8 @@ book:
     - part: "The Tidyverse"
       chapters:
           - ls5a_ggplot2.qmd
+          - ls5b_ggplot2.qmd
+          - ls6a_dplyr.qmd
         
     # - summary.qmd
     # - references.qmd

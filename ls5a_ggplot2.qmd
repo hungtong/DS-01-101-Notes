@@ -439,13 +439,14 @@ Reproduce the following scatter plot:
 
 ```{r}
 
-ggplot(mpg, mapping = aes(x = displ, y = hwy, color = drv)) + 
+ggplot(mpg, mapping = aes(x = displ, y = hwy, color = class)) + 
   geom_point() + 
-  facet_wrap(~ drv) +
+  facet_wrap(~ class) +
   theme_bw() +
   labs(x = 'Engine Displacement', 
        y = 'Highway Miles per Gallon',
-       color = 'Type of Car')
+       color = 'Type of Car',
+       shape = 'Type of Car')
 ```
 
 :::
@@ -476,6 +477,57 @@ ggplot(mpg, mapping = aes(x = drv)) +
   geom_bar(fill = 'tomato')
 ```
 
+-   Stacked bar plot can be obtained as follows:
+
+```{r}
+
+ggplot(mpg, mapping = aes(x = drv, fill = class)) +
+  geom_bar()
+```
+
+-   Side-by-side bar plot can be obtained as follows:
+
+```{r}
+
+ggplot(mpg, mapping = aes(x = drv, fill = class)) +
+  geom_bar(position = 'dodge')
+```
+
+-   Sequential, diverging and qualitative color scales from ColorBrewer can improve the bar plots.
+
+```{r}
+
+ggplot(mpg, mapping = aes(x = drv, fill = class)) +
+  geom_bar(position = 'dodge') +
+  scale_fill_brewer(palette = 'Set1')
+
+ggplot(mpg, mapping = aes(x = drv, fill = class)) +
+  geom_bar(position = 'dodge') +
+  scale_fill_brewer(palette = 'Spectral')
+
+ggplot(mpg, mapping = aes(x = drv, fill = class)) +
+  geom_bar(position = 'dodge') +
+  scale_fill_brewer(palette = 'Pastel1')
+```
+
+-   Gray color scale is also available.
+
+```{r}
+
+ggplot(mpg, mapping = aes(x = drv, fill = class)) +
+  geom_bar(position = 'dodge') +
+  scale_fill_grey()
+```
+
+-   One can also specify their own color scale. Refer to (https://colorbrewer2.org/#type=sequential&scheme=BuGn&n=3) for color scales that are colorblind safe, print friendly, and/or photocopy safe.
+
+```{r}
+
+ggplot(mpg, mapping = aes(x = drv, fill = drv)) +
+  geom_bar() +
+  scale_fill_manual(values = c('#e5f5f9', '#99d8c9', '#2ca25f'))
+```
+
 💻 **Hands-On**
 
 Reproduce the following bar plot. Note that the color is `burlywood2`.
@@ -501,43 +553,54 @@ ggplot(mpg, mapping = aes(x = class)) +
 -   Histogram can be made with `geom_histogram()`.
 
 ```{r}
+#| message: false
 
-# R code here
+ggplot(mpg, mapping = aes(x = hwy)) +
+  geom_histogram(fill = 'chartreuse3')
 ```
 
 -   Overlaying histograms can be used to compare different groups.
 
 ```{r}
+#| message: false
 
-# R code here
+ggplot(mpg, mapping = aes(x = hwy, fill = drv)) +
+  geom_histogram()
 ```
 
 -   However, it can be more informative to use faceting in the case of histogram.
 
 ```{r}
+#| message: false
 
-# R code here
+ggplot(mpg, mapping = aes(x = hwy, fill = drv)) +
+  geom_histogram() +
+  facet_wrap(~ drv)
 ```
 
 -   Density is the "smoothed" version of histogram.
 
 ```{r}
 
-# R code here
+ggplot(mpg, mapping = aes(x = hwy)) +
+  geom_density(fill = 'chartreuse3')
 ```
 
 -   Overlaying density curves are also possible to make.
 
 ```{r}
 
-# R code here
+ggplot(mpg, mapping = aes(x = hwy, fill = drv)) +
+  geom_density()
 ```
 
 -   If we prefer non-overlapping density curves, we can consider faceting.
 
 ```{r}
 
-# R code here
+ggplot(mpg, mapping = aes(x = hwy, fill = drv)) +
+  geom_density() +
+  facet_wrap(~ drv)
 ```
 
 💻 **Hands-On**
@@ -551,7 +614,13 @@ Reproduce the following histogram:
 
 ```{r}
 
-# R code here
+ggplot(mpg, mapping = aes(x = hwy, fill = class)) +
+  geom_histogram() +
+  facet_wrap(~ class) +
+  theme_bw() +
+  labs(x = 'Highway Miles per Gallon',
+       y = 'Frequency',
+       fill = 'Type of Car')
 ```
 
 :::
@@ -562,21 +631,24 @@ Reproduce the following histogram:
 
 ```{r}
 
-# R code here
+ggplot(mpg, mapping = aes(y = hwy)) +
+  geom_boxplot(fill = 'gold')
 ```
 
 -   Side-by-side box plots can be made using mapping.
 
 ```{r}
 
-# R code here
+ggplot(mpg, mapping = aes(y = hwy, fill = drv)) +
+  geom_boxplot()
 ```
 
 -   A violin plot is a good combination of histogram and box plot.
 
 ```{r}
 
-# R code here
+ggplot(mpg, mapping = aes(y = hwy, x = drv, fill = drv)) +
+  geom_violin()
 ```
 
 💻 **Hands-On**
@@ -590,7 +662,12 @@ Reproduce the following box plots:
 
 ```{r}
 
-# R code here
+ggplot(mpg, mapping = aes(y = hwy, x = class, fill = class)) +
+  geom_boxplot() +
+  theme_bw() +
+  labs(y = 'Highway Miles per Gallon',
+       x = 'Type of Car',
+       fill = 'Type of Car')
 ```
 
 :::

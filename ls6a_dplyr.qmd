@@ -1,0 +1,875 @@
+---
+title: "Lesson 6A: Data Manipulation with dplyr"
+subtitle: "DS 01-101: In-Depth Introduction to Data Science (Spring 2026)"
+author: "Hung Tong"
+institute: "Rowan University"
+editor: visual
+toc: true
+toc-depth: 3
+echo: true
+eval: true
+code-overflow: wrap
+format: 
+  html:
+    self-contained: true
+---
+
+## Readings
+
+From **R for Data Science** by Drs. Hadley Wickham, Garrett Grolemund, and Mine Çetinkaya-Rundel:
+
+-   [Data Transformation](https://r4ds.hadley.nz/data-transform.html)
+
+From **Tidy Hurricanes: Analyzing Tropical Storms with Tidyverse Tools** by Dr. Hadley Wickham:
+
+-   [Data Manipulation with dplyr](https://www.gastonsanchez.com/R-tidy-hurricanes/2-02-intro-dplyr.html)
+
+-   [The Pipe Operators](https://www.gastonsanchez.com/R-tidy-hurricanes/2-03-intro-pipes.html)
+
+From **Stat 331/531 Statistical Computing with R** by Dr. Emily Robinson:
+
+-   [Data Cleaning and Manipulation](https://earobinson95.github.io/stat331-calpoly-text/03-data-cleaning-and-manipulation.html)
+
+## Topics
+
+-   `dplyr` and the grammar of data manipulation
+
+-   The pipe `%>%` and `|>` operators
+
+## `dplyr` and the grammar of data manipulation
+
+![](https://github.com/hungtong/DS-01-101/blob/main/image/6_dplyr_logo.png?raw=true){fig-align="center" width="226"}
+
+-   **Data wrangling**, also known as **data munging**, is the process of cleaning, transforming, and manipulating data so that the data are usable for visualization, analysis, and modeling.
+
+-   Much of data wrangling involves subsetting, e.g., removing unwanted rows and/or columns, modifying columns, summarizing data by groups.
+
+-   **dplyr** (dee-ply-er, "d" for data and "plyr" for pliers or tools), is a popular R package in the `tidyverse` that implements the **grammar of data manipulation**. It includes the following verbs:
+
+    -   `slice()` to subset rows using their positions
+
+    -   `filter()` to keep rows that match a condition
+
+    -   `select()` to keep or drop columns
+
+    -   `mutate()` to modify existing variables or add new variables
+
+    -   `arrange()` to reorder rows using column names
+
+    -   `summarize()` to reduce variables to values
+
+    -   `group_by()` to perform grouped (aggregated) operations
+
+-   Note that these functions never modify the original data set unless we choose to do so. In addition, extracting a variable using the dollar `$` operator is not necessary.
+
+## `classmates` data set
+
+![From Icon Scout](https://github.com/hungtong/DS-01-101/blob/main/image/6_classmates.png?raw=true){fig-align="center" width="329"}
+
+-   For this lesson, we will work with the following small data set:
+
+```{r}
+#| message: false
+#| eval: true
+
+library(tidyverse)
+
+classmates <- tibble(
+  name = c('Alice', 'Brianna', 'Carlos', 'David', 
+           'Emmett', 'Fiona', 'Grace', 'Helen',
+           'Issac', 'Jill', 'Leila', 'Nate'),
+  gender = c('female', 'female', 'male', 'male',
+             'male', 'female', 'female', 'female',
+             'male', 'female', 'female', 'male'),
+  height = c(5.4, 5.9, 5.2, 6.0, 5.6, 5.8, 5.3, 6.1, 5.5, 5.10, 5.4, 6.2),
+  weight = c(130, 165, 120, 185, 140, 170, 125, 160, 135, 170, 128, 210),
+  age = c(19, 21, 20, 22, 18, 23, 19, 21, 20, 22, 18, 23),
+  major = c('Math', 'CS', 'DS', 'CS', 'Math', 'DS', 'CS', 'Math', 'CS', 'CS', 
+            'Math', 'DS')
+)
+
+classmates
+```
+
+-   Note that `classmates` has no real references!
+
+## `slice()` to subset rows
+
+-   `slice()` allows us to select rows based on index position.
+
+```{r}
+
+# row 1
+slice(classmates, 1)
+
+# row 3
+slice(classmates, 3)
+
+# rows 5, 11, 9
+slice(classmates, 5, 11, 9)
+
+# rows 2, 3, 4, 5, 6
+slice(classmates, 2:6)
+```
+
+-   Recall that negative indexing means "all except".
+
+```{r}
+
+# all except row 1
+slice(classmates, -1)
+
+# all except row 3
+slice(classmates, -3)
+
+# all except rows 5, 11, 9
+slice(classmates, -5, -11, -9)
+
+# all except rows 2, 3, 4, 5, 6
+slice(classmates, -(2:6))
+```
+
+-   `slice_head()` allows us to select the first few rows by specifying the number `n` or the proportion `prop`.
+
+```{r}
+#| eval: false
+
+# first row
+slice_head(classmates)
+
+# first two rows
+slice_head(classmates, n = 2)
+
+# first 30% of the rows
+slice_head(classmates, prop = 0.3)
+```
+
+-   `slice_tail()` is for the last few rows.
+
+```{r}
+#| eval: false
+
+# last row
+slice_tail(classmates)
+
+# last four rows
+slice_tail(classmates, n = 4)
+
+# last 30% of the rows
+slice_tail(classmates, prop = 0.3)
+```
+
+-   `slice_sample()` randomly selects rows.
+
+```{r}
+#| eval: false
+
+# pseudo random generation
+set.seed(101)
+
+# 1 random row
+slice_sample(classmates)
+
+# 6 random rows
+slice_sample(classmates, n = 6)
+
+# 12 random rows
+slice_sample(classmates, n = 12)
+
+# a random sample of 80% of rows
+slice_sample(classmates, prop = 0.8)
+```
+
+-   `slice_min()` selects rows with the smallest of a variable.
+
+```{r}
+#| eval: false
+
+# classmate with the smallest weight
+slice_min(classmates, weight)
+
+# 2 classmates with the smallest weight
+slice_min(classmates, weight, n = 2)
+
+# 12 classmates with the smallest weight
+slice_min(classmates, weight, n = 12)
+
+# half of classmates from small to large weight
+slice_min(classmates, weight, prop = 0.5)
+```
+
+-   `slice_max()` selects rows with the largest of a variable.
+
+```{r}
+#| eval: false
+
+# classmate with the largest weight
+slice_max(classmates, weight)
+
+# 2 classmates with the largest weight
+slice_max(classmates, weight, n = 2)
+
+# 12 classmates with the largest weight
+slice_max(classmates, weight, n = 12)
+
+# half of classmates from large to small weight
+slice_max(classmates, weight, prop = 0.5)
+```
+
+💻 **Hands-On**
+
+Use `slice()` and related functions to return rows of the `classmates` data set.
+
+```{r}
+#| eval: false
+
+# row 4
+
+# row 11
+
+# rows 4, 5, 6, ..., 10
+
+# rows 7, 8, 9, ..., 12
+
+# rows 2, 10, 1, 5, 9
+
+# rows 12, 10, 2, 11, 6
+
+# all except row 5
+
+# all except rows 6, 7, 8, 9
+
+# first 5 rows
+
+# last 3 rows
+
+# about four youngest classmates
+
+# about three shortest classmates
+
+# about five oldest classmates
+
+# about two tallest classmates
+
+# a random sample of 7 rows
+
+# a random sample of two third of the rows
+```
+
+::: {.callout-tip collapse="true"}
+## Answer
+
+```{r}
+#| eval: false
+
+# row 4
+slice(classmates, 1)
+
+# row 11
+slice(classmates, 11)
+
+# rows 4, 5, 6, ..., 10
+slice(classmates, 4:10)
+
+# rows 7, 8, 9, ..., 12
+slice(classmates, 7:12)
+
+# rows 2, 10, 1, 5, 9
+slice(classmates, 2, 10, 1, 5, 9)
+
+# rows 12, 10, 2, 11, 6
+slice(classmates, 12, 10, 2, 11, 6)
+
+# all except row 5
+slice(classmates, -5)
+
+# all except rows 6, 7, 8, 9
+slice(classmates, -(6:9))
+
+# first 5 rows
+slice_head(classmates, n = 5)
+
+# last 3 rows
+slice_tail(classmates, n = 3)
+
+# about four youngest classmates
+slice_min(classmates, age, n = 4)
+
+# about three shortest classmates
+slice_min(classmates, height, n = 3)
+
+# about five oldest classmates
+slice_max(classmates, age, n = 5)
+
+# about two tallest classmates
+slice_max(classmates, height, n = 2)
+
+# a random sample of 7 rows
+slice_sample(classmates, n = 7)
+
+# a random sample of two third of the rows
+slice_sample(classmates, prop = 2/3)
+```
+:::
+
+## `filter()` to select rows with conditions
+
+-   `filter()` allows us to subset rows that satisfy some conditions.
+
+```{r}
+
+# CS majors
+filter(classmates, major == 'CS')
+
+# CS majors who are taller than 5.2
+filter(classmates, major == 'CS', height > 5.2)
+
+# CS majors who are taller than 5.2 and are female
+filter(classmates, major == 'CS', height > 5.2, gender == 'female')
+```
+
+💻 **Hands-On**
+
+Use `filter()` return rows of the `classmates` data set.
+
+```{r}
+
+# male classmates
+
+# male classmates who weigh less than 200 lbs
+
+# male classmates who weigh less than 200 lbs and are below 21
+
+# classmates shorter than 6 ft
+
+# classmates shorter than 6 ft and at least 21
+
+# Math majors
+
+# Math majors that are female
+```
+
+::: {.callout-tip collapse="true"} 
+## Answer
+
+```{r}
+
+# male classmates
+filter(classmates, gender == 'male')
+
+# male classmates who weigh less than 200 lbs
+filter(classmates, gender == 'male', weight < 200)
+
+# male classmates who weigh less than 200 lbs and are below 21
+filter(classmates, gender == 'male', weight < 200, age < 21)
+
+# classmates shorter than 6 ft
+filter(classmates, height < 6)
+
+# classmates shorter than 6 ft and at least 21
+filter(classmates, height < 6, age >= 21)
+
+# Math majors
+filter(classmates, major == 'Math')
+
+# Math majors that are female
+filter(classmates, major == 'Math', gender == 'female')
+```
+:::
+
+## `select()` to subset columns (variables)
+
+-   `select()` allows us to select columns (variables) by names.
+
+```{r}
+#| eval: false
+
+# column name
+select(classmates, name)
+
+# columns name, gender, major
+select(classmates, name, gender, major)
+
+# a range of columns
+select(classmates, height:major)
+```
+
+-   Although less common, it is also possible to select by index positions.
+
+```{r}
+#| eval: false
+
+# column name
+select(classmates, 1)
+
+# columns name, gender, major
+select(classmates, 1, 2, 6)
+
+# a range of columns
+select(classmates, 3:6)
+```
+
+-   Recall that negative indexing means "all except".
+
+```{r}
+#| eval: false
+
+# all except column name
+select(classmates, -name)
+
+# all except columns name, gender, major
+select(classmates, -name, -gender, -major)
+
+# all except a range of columns
+select(classmates, -(height:major))
+```
+
+💻 **Hands-On**
+
+Use `select()` to retrieve columns of the `classmates` data set.
+
+```{r}
+#| eval: false
+
+# column weight
+
+# column major
+
+# columns weight, weight, weight 
+
+# columns weight, major, weight, major
+
+# columns name, height, weight, age
+
+# all except column height
+
+# all except column age
+
+# all except columns name, height, weight, age
+```
+
+::: {.callout-tip collapse="true"}
+## Answer
+
+```{r}
+
+# column weight
+select(classmates, weight)
+
+# column major
+select(classmates, major)
+
+# columns weight, weight, weight 
+select(classmates, weight, weight, weight)
+
+# columns weight, major, weight, major
+select(classmates, weight, major, weight, major)
+
+# columns name, height, weight, age
+select(classmates, name, height, weight, age)
+
+# all except column height
+select(classmates, -height)
+
+# all except column age
+select(classmates, -age)
+
+# all except columns name, height, weight, age
+select(classmates, -name, -height, -weight, -age)
+```
+:::
+
+## `mutate()` to transform, add, or delete variables
+
+-   `mutate()` allows us perform do the following:
+    -   Transform existing columns (variables)
+    -   Add new columns (variables)
+    -   Delete existing columns (variables)
+-   The most common use of `mutate()` is to transform variable(s).
+
+```{r}
+#| eval: false
+
+# transform height from ft to cm
+mutate(classmates, height = height * 30.48)
+
+# transform weight from lbs to kg
+mutate(classmates, weight = weight * 0.454)
+
+# transform height from ft to cm and weight from lbs to kg at the same time
+mutate(classmates, height = height * 30.48, weight = weight * 0.454)
+```
+
+-   Note that `mutate()` does not modify the original data unless we choose to do so.
+
+```{r}
+#| eval: false
+
+classmates <- mutate(classmates, height = height * 30.48)
+```
+
+-   `mutate()` also allows us to add new variables.
+
+```{r}
+#| eval: false
+
+# add height_cm
+mutate(classmates, height_cm = height * 30.48)
+
+# add height_cm and weight_kg at the same time
+mutate(classmates, height_cm = height * 30.48, weight_kg = weight * 0.454)
+```
+
+-   `mutate()` can be used to delete variables.
+
+```{r}
+#| eval: false
+
+# delete height_cm and weight_kg
+mutate(classmates, height_cm = NULL, weight_kg = NULL)
+```
+
+💻 **Hands-On**
+
+Use `mutate()` to add the following variables the `classmates` data set:
+
+-   `height_in` gives height in inches (note that 1 foot = 12 inches)
+
+-   `can_drink` shows TRUE if a classmate is at least 21 and FALSE otherwise
+
+::: {.callout-tip collapse="true"} 
+## Answer
+
+```{r}
+
+mutate(classmates, height_in = height * 12, can_drink = age > 21)
+```
+:::
+
+## `arrange()` to order rows
+
+-   `arrange()` allows us to order rows according to selected variables. Note that the order of variables matters.
+
+```{r}
+#| eval: false
+
+# all female -> all male
+arrange(classmates, gender)
+
+# all female -> all male -> within female, sort by age -> within male, sort by age
+arrange(classmates, gender, age)
+
+# all 18 -> all 19 -> all 20 -> all 21 -> all 22 -> all 23 
+arrange(classmates, age)
+
+# all 18 -> all 19 -> all 20 -> all 21 -> all 22 -> all 23 
+# -> within 18, sort by gender
+# -> within 19, sort by gender
+# and so on
+arrange(classmates, age, gender)
+```
+
+-   By default, `arrange()` sorts rows in increasing order. To arrange rows in descending order, we need to use `desc()`.
+
+```{r}
+
+# all male -> all female
+arrange(classmates, desc(gender))
+
+# all 23 -> all 22 -> all 21 -> all 20 -> all 19 -> all 18 
+arrange(classmates, desc(age))
+```
+
+💻 **Hands-On**
+
+Use `arrange()` to order rows of the `classmates` data set.
+
+```{r}
+#| eval: false
+
+# major
+
+# major -> gender
+
+# major -> gender -> height
+
+# descending major
+
+# descending major -> descending age
+```
+
+::: {.callout-tip collapse="true"} 
+## Answer
+
+```{r}
+
+# major
+arrange(classmates, major)
+
+# major -> gender
+arrange(classmates, major, gender)
+
+# major -> gender -> height
+arrange(classmates, major, gender, height)
+
+# descending major
+arrange(classmates, desc(major))
+
+# descending major -> descending age
+arrange(classmates, desc(major), desc(age))
+```
+:::
+
+## `summarize()` to summarize values
+
+-   `summarize()` allows us to build a summary table. Note that extracting a variable using the dollar `$` operator is not necessary within `summarize()`.
+
+-   `summarize()` is most powerful when paired with `group_by()` to build summary tables for different groups.
+
+```{r}
+#| eval: true
+
+# summary statistics for the whole data set
+summarize(
+  classmates,
+  mean_height = mean(height),
+  median_height = median(height),
+  min_height = min(height),
+  max_height = max(height),
+  title = 'My Table'
+)
+
+```
+
+💻 **Hands-On**
+
+Use `summarize()` to build a summary table of the `classmates` data set that includes `mean_weight`, `median_weight`, `min_weight`, `max_weight`, `mean_age`, `median_age`, `min_age`, `max_age`.
+
+::: {.callout-tip collapse="true"} 
+## Answer
+
+```{r}
+#| eval: true
+
+summarize(
+  classmates,
+  mean_weight = mean(weight),
+  median_weight = median(weight),
+  min_weight = min(weight),
+  max_weight = max(weight),
+  mean_age = mean(age),
+  median_age = median(age),
+  min_age = min(age),
+  max_age = max(age),
+)
+```
+:::
+
+## `group_by()` to divide a data set by variables
+
+-   `group_by()` allows us to quickly divide a data set into subgroups.
+
+```{r}
+#| eval: false
+
+# female classmates and male classmates
+group_by(classmates, gender)
+
+# CS majors, DS majors, and Math majors
+group_by(classmates, major)
+
+# combination of gender and major
+group_by(classmates, gender, major)
+```
+
+-   Pairing `group_by()` with `summarize()` is a convenient way to obtain summary statistics for each group.
+
+```{r}
+#| eval: false
+
+# summary statistics by gender
+
+summarize(
+  group_by(classmates, gender),
+  mean_height = mean(height),
+  median_height = median(height),
+  min_height = min(height),
+  max_height = max(height)
+)
+```
+
+💻 **Hands-On**
+
+Use `group_by()` to obtain subsets of the `classmates` data set.
+
+```{r}
+
+# by different ages
+
+# by different names
+```
+
+::: {.callout-tip collapse="true"} 
+## Answer
+
+```{r}
+
+# by different ages
+group_by(classmates, age)
+
+# by different names
+group_by(classmates, name)
+```
+:::
+
+💻 **Hands-On**
+
+Use `group_by()` and `summarize()` to build a summary table of the `classmates` data set that includes `mean_weight`, `median_weight`, `min_weight`, `max_weight` for each `major`.
+
+::: {.callout-tip collapse="true"} 
+## Answer
+
+```{r}
+
+summarize(
+  group_by(classmates, major),
+  mean_weight = mean(weight),
+  median_weight = median(weight),
+  min_weight = min(weight),
+  max_weight = max(weight),
+)
+```
+:::
+
+## The pipe `%>%` and `|>` operators
+
+![](https://github.com/hungtong/DS-01-101/blob/main/image/6_magrittr.png?raw=true){fig-align="center" width="552"}
+
+-   In practice, data wrangling usually involves a combination of `slice()`, `filter()`, `select()`, `mutate()`, `summarize()`, `group_by()`, and other functions. Step-by-step computations can create extra variables or less human-readable code.
+
+-   The **pipe operators** aim to address step-by-step computations in a forward manner. There are two pipe operators with the same functionality:
+
+    -   `%>%` from the **magrittr** (muh-GREET-er) package
+    -   `|>` from base R
+
+-   In their most basic use, the pipe operators allow us to call a function with at least 2 arguments `f(x, y)` by `x |> f(y)`.
+
+```{r}
+#| eval: false
+
+# from classmates, extract row 3
+classmates |> slice(3)
+
+# from classmates, extract rows 5, 11, 9
+classmates |> slice(5, 11, 9)
+
+# from classmates, retrieve all CS majors
+classmates |> filter(major == 'CS')
+
+# from classmates, retrieve all CS majors who are taller than 5.2
+classmates |> filter(major == 'CS', height > 5.2)
+
+# from classmates, select column name
+classmates |> select(name)
+
+# from classmates, select columns name, gender, major
+classmates |> select(name, gender, major)
+
+# from classmates, transform height from ft to cm
+classmates |> mutate(height = height * 30.48)
+
+# from classmates, arrange data by gender
+classmates |> arrange(gender)
+
+# from classmates, arrange data by gender then by age
+classmates |> arrange(gender, age)
+
+# from classmates, summarize height 
+classmates |> summarize(mean_height = mean(height))
+
+# from classmates, group the data by gender
+classmates |> group_by(gender)
+
+```
+
+-   However, the pipe operators are most powerful with step-by-step computations.
+
+```{r}
+
+# retrieve all male classmates
+classmates |>
+  filter(gender == 'male')
+
+# from those male classmates, look at their height, weight, and major
+classmates |>
+  filter(gender == 'male') |>
+  select(height, weight, major)
+
+# then sort them by height
+classmates |>
+  filter(gender == 'male') |>
+  select(height, weight, major) |>
+  arrange(height)
+```
+
+💻 **Hands-On**
+
+Use the pipe operators to complete the following step-by-step computations
+
+```{r}
+
+# retrieve all CS majors
+
+
+# from those CS majors, look at their name, gender, and age
+
+
+# then sort them by gender
+
+
+# then group them by gender
+
+
+# then obtain their mean weight
+
+
+# with pipe operators
+
+```
+
+::: {.callout-tip collapse="true"} 
+## Answer
+
+```{r}
+
+# retrieve all CS majors
+classmates |> 
+  filter(major == 'CS')
+
+# from those CS majors, look at their name, gender, and age
+classmates |> 
+  filter(major == 'CS') |>
+  select(name, gender, age)
+
+# then sort them by gender
+classmates |> 
+  filter(major == 'CS') |>
+  select(name, gender, age) |>
+  arrange(gender)
+
+# then group them by gender
+classmates |> 
+  filter(major == 'CS') |>
+  select(name, gender, age) |>
+  arrange(gender) |>
+  group_by(gender)
+
+# then obtain their mean age
+classmates |>  
+  filter(major == 'CS') |>
+  select(name, gender, age) |>
+  arrange(gender) |>
+  group_by(gender) |>
+  summarize(mean_age = mean(age))
+```
+:::

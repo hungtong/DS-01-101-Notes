@@ -1,0 +1,216 @@
+---
+title: "Lesson 5B: Exploratory Data Analysis of Diamonds Price"
+subtitle: "DS 01-101: In-Depth Introduction to Data Science (Spring 2026)"
+author: "Hung Tong"
+institute: "Rowan University"
+editor: visual
+toc: true
+toc-depth: 3
+echo: true
+eval: true
+out-width: 50%
+fig-align: center
+code-overflow: wrap
+format: 
+  html:
+    self-contained: true
+---
+
+## Readings
+
+From **R for Data Science** by Drs. Hadley Wickham, Garrett Grolemund, and Mine Çetinkaya-Rundel:
+
+-   [Exploratory Data Analysis](https://r4ds.hadley.nz/EDA.html)
+
+## Exploratory Data Analysis
+
+-   **Exploratory data analysis (EDA)** is an [informal]{.underline}, [iterative]{.underline} process in which we generate questions about our data and explore them using statistical summaries and data visualization methods.
+
+-   The goal is to better understand the data, investigate ideas, identify challenges, and refine or generate new questions.
+
+-   Exploratory data analysis gives useful insights for data cleaning, data transformation, and model building.
+
+![](https://github.com/hungtong/DS-01-101/blob/main/image/5_eda_explore.png?raw=true){fig-align="center" width="216"}
+
+## The `diamonds` data set
+
+-   The `diamonds` data set from `ggplot2` contains the prices and other attributes of almost about 54,000 diamonds. This data set has 10 variables:
+
+    -   `price` - Price in US dollars: 326 to 18,823
+
+    -   `carat` - Weight of the diamond: 0.2 to 5.01
+
+    -   `cut` - Quality of the cut: Fair, Good, Very Good, Premium, Ideal
+
+    -   `color` - Diamond color: J (worst) to D (best)
+
+    -   `clarity` - How clear the diamond is: I1 (worst), SI2, SI1, VS2, VS1, VVS2, VVS1, IF (best)
+
+    -   `x` - Length in mm: 0 to 10.74
+
+    -   `y` - Width in mm: 0 to 58.9
+
+    -   `z` - Depth in mm: 0 to 31.8
+
+    -   `depth` - Total depth percentage: 43 to 79
+
+    -   `table` - Width of top relative to widest point: 43 to 95
+
+```{r}
+#| warning: false
+
+library(ggplot2)
+
+diamonds
+```
+
+-   The color grading of diamonds is given as follows:
+
+![From Dr. Çetinkaya-Rundel](https://github.com/hungtong/DS-01-101/blob/main/image/5_diamonds_color.png?raw=true){fig-align="center" width="497"}
+
+-   The clarity grading of diamonds is given as follows:
+
+![From Dr. Çetinkaya-Rundel](https://github.com/hungtong/DS-01-101/blob/main/image/5_diamonds_clarity.png?raw=true){fig-align="center" width="462"}
+
+-   `x`, `y`, `z`, `depth`, and `table` are measured as follows:
+
+![From Dr. Çetinkaya-Rundel](https://github.com/hungtong/DS-01-101/blob/main/image/5_diamonds_xyz.png?raw=true){fig-align="center" width="364"}
+
+## Exploring `diamonds` with `ggplot2`
+
+💻 **Hands-On**
+
+What type of variable is `cut`? How many diamonds are in each `cut` category? Which `cut` category is most/least common?
+
+::: {.callout-tip collapse="true"}
+## Answer
+
+`cut` is a categorical variable. Looking at the frequency distribution of `cut`, we see that `Fair` is the least common, while `Ideal` is the most common. To visualize the frequency distribution, we can use a bar plot.
+
+```{r}
+
+table(diamonds$cut)
+
+ggplot(diamonds, mapping = aes(x = cut)) +
+  geom_bar(fill = '#b8d8e7') +
+  theme_bw() +
+  labs(x = 'Quality of Cut',
+       y = 'Frequency')
+```
+:::
+
+💻 **Hands-On**
+
+What type of variable is `color`? Which `color` is most represented in the data set?
+
+::: {.callout-tip collapse="true"}
+## Answer
+
+`color` is a categorical variable. Given the bar plot of `color`, `G` is most represented in the data set (near colorless, with some yellow stain). 
+
+```{r}
+
+ggplot(diamonds, mapping = aes(x = color)) +
+  geom_bar(fill = '#b8d8e7') +
+  theme_bw() +
+  labs(x = 'Color Grading',
+       y = 'Frequency')
+```
+:::
+
+💻 **Hands-On**
+
+Explore the distribution of `clarity` using appropriate visualizations.
+
+::: {.callout-tip collapse="true"}
+## Answer
+
+`clarity` is a categorical variable, we can also use a bar plot to visualize its frequency distribution. Most common clarity ratings are SI2, SI1, and VS2, which contain some "dirt" in the diamonds.
+
+```{r}
+
+ggplot(diamonds, mapping = aes(x = clarity)) +
+  geom_bar(fill = '#b8d8e7') +
+  theme_bw() +
+  labs(x = 'Clarity Grading',
+       y = 'Frequency')
+```
+:::
+
+💻 **Hands-On**
+
+Explore the relationship between `cut` and `color`.
+
+::: {.callout-tip collapse="true"}
+## Answer
+
+Recall that both `cut` and `color` are both categorical variables. To explore their relationship, we can use side-by-side bar plots. From the plot, the frequency distribution of the quality of cut is similar across all color gradings. Within any color, `Ideal` cut is still most common, while `Fair` cut is least common.
+
+```{r}
+
+ggplot(diamonds, mapping = aes(x = color, fill = cut)) +
+  geom_bar(position = 'dodge') +
+  theme_bw() +
+  scale_fill_brewer(palette = 'Set1') +
+  labs(x = 'Color Grading',
+       y = 'Frequency',
+       fill = 'Quality of Cut')
+```
+:::
+
+💻 **Hands-On**
+
+What type of variable is `price`? What is the distribution of diamond prices? Are they symmetric or skewed? Does the shape of the distribution surprise us?
+
+::: {.callout-tip collapse="true"}
+## Answer
+
+`price` is a numerical variable. Looking at its histogram, we can see that the distribution is right-skewed, meaning lower-priced diamonds are more common. This is perhaps not very surprising, because we do expect some diamonds to be extremely expensive. Since the distribution is right-skewed, the median price is a better representative value compared to the mean.
+
+```{r}
+
+ggplot(diamonds, mapping = aes(x = price)) +
+  geom_histogram(fill = 'steelblue') +
+  theme_bw() + 
+  labs(x = 'Price',
+       y = 'Frequency')
+```
+:::
+
+💻 **Hands-On**
+
+Are there potential outliers in diamond prices? If so, describe their behaviors?
+
+::: {.callout-tip collapse="true"}
+## Answer
+
+To answer this question, it is helpful to make a box plot of `price`. There are quite many outliers. This is due to the distribution being right-skewed.
+
+```{r}
+
+ggplot(diamonds, mapping = aes(x = price)) +
+    geom_boxplot(fill = 'steelblue') +
+    theme_bw() + 
+    labs(x = 'Price')
+```
+:::
+
+💻 **Hands-On**
+
+Intuitively, diamonds with heavier `carat` weights are more expensive. Is that necessarily the case in this data set? Explore the relationship between `price` and `carat`? How does another variable, such as `cut` and `color`, affect this relationship?
+
+::: {.callout-tip collapse="true"}
+## Answer
+
+The scatter plot of `carat` and `price` confirms our intuition that heavier diamonds are more expensive.
+
+```{r}
+
+ggplot(diamonds, mapping = aes(x = carat, y = price, color = cut)) +
+  geom_point() +
+  theme_bw() +
+  labs(x = 'Weight',
+       y = 'Price',
+       color = 'Quality of Cut')
+```
+:::

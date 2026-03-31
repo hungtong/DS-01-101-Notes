@@ -1,0 +1,252 @@
+---
+title: "Lesson 7: Data Cleaning"
+subtitle: "DS 01-101: In-Depth Introduction to Data Science (Spring 2026)"
+author: "Hung Tong"
+institute: "Rowan University"
+editor: visual
+toc: true
+toc-depth: 3
+echo: true
+eval: false
+code-overflow: wrap
+format: 
+  html:
+    self-contained: true
+---
+
+## Readings
+
+From **R for Data Science** by Drs. Hadley Wickham, Garrett Grolemund, and Mine Çetinkaya-Rundel:
+
+-   [Missing Values](https://r4ds.hadley.nz/missing-values.html)
+
+## Topics
+
+-   Data cleaning
+-   Duplicate observations
+-   Missing values
+-   Inconsistent formats
+
+## Data cleaning
+
+![](https://github.com/hungtong/DS-01-101/blob/main/image/7_dirty_Data.png?raw=true){fig-align="center" width="382"}
+
+-   **Data cleaning** refers to the process of preparing "dirty" or "messy" data for further exploration and modeling. It is often the most time-consuming step in a data science project.
+
+-   Although data cleaning is open-ended in nature, it generally involves handling the following issues:
+
+    -   Duplicate observations
+
+    -   Outliers due to errors
+
+    -   Missing values
+
+    -   Inconsistent formats
+
+## Duplicate observations
+
+-   Duplicate observations can lead to biased results, so they should be identified and discarded.
+
+```{r}
+
+df <- data.frame(
+  FirstName = c('Marco', 'Sharon', 'Martin', 'Marco', 'Tanya', 'Michael'),
+  LastName = c('Bray', 'Turner', 'Lewis', 'Bray', 'Jones', 'Watson'),
+  Age = c(45, 38, 55, 45, 28, 60),
+  BirthPlace = c('New York', 'Chicago', 'Los Angeles', 'New York', 'Boston', 'Houston')
+)
+```
+
+-   The `duplicated()` function in base R can be used to identify observations that already appear earlier.
+
+```{r}
+
+# for a vector, TRUE if an observation is duplicated
+duplicated(df$FirstName)   
+
+# for a data frame, TRUE if a row is duplicated
+duplicated(df)   
+
+# return the duplicated observations
+df[duplicated(df), ]
+
+# return the non-duplicated (unique) observations
+df[!duplicated(df), ] 
+```
+
+-   The `distinct()` function in `dplyr` is also a convenient function to discard duplicate observations.
+
+```{r}
+#| message: false
+
+library(tidyverse)
+
+df |> distinct()
+```
+
+## Outliers due to errors
+
+-   Outliers can be extreme but valid values but they can also be due to errors. In the latter case, we want to identify and remove them.
+
+-   Consider data on sale price in millions of dollars and size in thousands of sq. ft. of some properties.
+
+```{r}
+#| eval: true
+
+properties <- data.frame(
+  Size = c(2166, 751, 5, 2422, 224, 3917, 2866, -451, 1698, 1046, 1108, 405),
+  Price = c(  10.6, 2.6, 12, 30.5, 1.8, 20.0,  8.0, 12.5, 10.0,  6.7,  5.8, 4.5)
+)
+```
+
+-   The data set has some unusual small properties. To remove them, we can do the following:
+
+```{r}
+#| eval: true
+
+properties <- properties[properties >= 100, ]
+```
+
+## Missing values
+
+-   Missing values refer to data that was not recorded, unavailable, or unknown during data collection or entry. In R, missing values are represented as `NA`.
+
+-   There are two common approaches to handling missing values:
+
+    -   **Listwise deletion** removes observations with missing values.
+
+    -   **Imputation** replaces missing values with new values. For example, mean imputation replaces missing values in a column by the mean of observed values in that column.
+
+-   The `pima` data set, originated from the National Institute of Diabetes and Digestive and Kidney Diseases, consists of 768 female patients of Pima Indian heritage, all aged at least $21$ and living near Phoenix, Arizona, USA. Among these patients, 268 were diagnosed with diabetes. Several medical variables were measured for these patients.
+
+![From Şafak Selim Sofioğlu](https://github.com/hungtong/DS-01-101/blob/main/image/7_pima.png?raw=true){fig-align="center" width="316"}
+
+```{r}
+#| eval: true
+#| message: false
+
+library(tidyverse)
+
+load(url('https://github.com/hungtong/DS-01-101/raw/refs/heads/main/dataset/pima.rdata'))
+
+pima <- as_tibble(pima)
+pima
+```
+
+-   `is.na()` is a useful function to identify missing values in a vector.
+
+```{r}
+
+# for a vector, TRUE if an observation is a missing value
+is.na(pima$Insulin)   
+
+# number of missing values for Insulin
+sum(is.na(pima$Insulin))   
+
+# number of observed values for Insulin
+sum(!is.na(pima$Insulin))
+
+# all observed values in Insulin
+pima$Insulin[!is.na(pima$Insulin)]  
+
+# mean of all observed values in Insulin
+mean(pima$Insulin[!is.na(pima$Insulin)])   
+```
+
+-   `complete.cases()` allows us to quickly identify observations without missing values in a data frame.
+
+```{r}
+
+# for a data frame, TRUE if a row has NO missing value
+complete.cases(pima)  
+
+# number of rows WITHOUT missing values
+sum(complete.cases(pima)) 
+
+# return rows WITHOUT missing values
+pima[complete.cases(pima), ]  
+```
+
+-   If our interest is to identify missing values, we can pair `complete.cases()` with the not `!` operator.
+
+```{r}
+
+# TRUE if a row DOES HAVE a missing value
+!complete.cases(pima)
+
+# number of rows WITH missing values
+sum(!complete.cases(pima))
+
+# return rows WITH missing values
+pima[!complete.cases(pima), ]
+```
+
+-   `na.omit()` removes rows with missing values.
+
+```{r}
+
+na.omit(pima)
+```
+
+-   `drop_na()` is a more flexible function to remove rows with missing values
+
+```{r}
+
+# remove all rows with missing values
+pima |> drop_na()
+
+# remove only rows with missing values on BMI
+pima |> drop_na(BMI)
+
+# remove only rows with missing values on BMI and SkinThickness
+pima |> drop_na(BMI, SkinThickness)
+```
+
+-   Mean imputation can be done as follow
+
+```{r}
+
+# method 1
+pima$Insulin[is.na(pima$Insulin)] <- mean(pima$Insulin[!is.na(pima$Insulin)]) 
+
+# method 2
+pima$Insulin[is.na(pima$Insulin)] <- mean(pima$Insulin, na.rm = TRUE)
+```
+
+## Inconsistent Format
+
+-   Inconsistent formats commonly occur with categorical and date/time variables.
+
+-   The `tips` data set contains information about restaurant bills, tips, and customers. Each observation represents a single dining party.
+
+-   `tota_bill` - Total bill amount (in dollars) for the meal, before the tip
+
+-   `tip` - Tip amount (in dollars) left by the customer
+
+-   `sex` - Gender of the person paying the bill.
+
+-   `day` - Day of the week when the meal occurred.
+
+-   `time`- Time of day the meal took place: `1` for lunch and `2` for dinner
+
+-   `size` - Number of people in the dining party.
+
+![From Adobe Stock](https://github.com/hungtong/DS-01-101/blob/main/image/7_tips.png?raw=true){fig-align="center" width="239"}
+
+```{r}
+#| eval: true
+
+load(url('https://github.com/hungtong/DS-01-101/raw/refs/heads/main/dataset/tips.rdata'))
+
+tips
+```
+
+-   The categories of `sex` and `day` are not consistent. To fix `sex`, we can do the following:
+
+```{r}
+#| eval: true
+
+tips$sex[tips$sex %in% c('f', 'F', 'female', 'Female', 'FEMALE', 'female', 'Female', 'female ', 'Female ')] <- 'female'
+
+tips$sex[tips$sex %in% c('m', 'M', 'male', 'Male', 'MALE', 'Male', 'Male ')] <- 'male'
+```

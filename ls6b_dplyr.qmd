@@ -1,0 +1,635 @@
+---
+title: "Lesson 6B: Using Data Manipulation to Understand Mammalian Sleep"
+subtitle: "DS 01-101: In-Depth Introduction to Data Science (Spring 2026)"
+author: "Hung Tong"
+institute: "Rowan University"
+editor: visual
+toc: true
+toc-depth: 3
+echo: true
+eval: false
+code-overflow: wrap
+format: 
+  html:
+    self-contained: true
+---
+
+![From Freepik](https://github.com/hungtong/DS-01-101/blob/main/image/6_mammal_sleep.png?raw=true){fig-align="center" width="278"}
+
+-   The `msleep` data set is an updated and expanded version of the mammals sleep data set. It is available in `ggplot2`. Updated sleep times and weights were taken from V. M. Savage and G. B. West. A quantitative, theoretical framework for understanding mammalian sleep. Proceedings of the National Academy of Sciences, 104 (3):1051-1056, 2007.
+
+```{r}
+#| message: false
+#| warning: false
+#| eval: true
+
+library(tidyverse)
+
+msleep
+```
+
+-   The data set has 83 observations and 11 variables:
+
+    -   name - common name
+    -   genus - taxonomic rank in biological classification
+    -   vore - carnivore, omnivore or herbivore?
+    -   order - specific levels in biological taxonomy
+    -   conservation - the conservation status of the animal
+    -   sleep_total - total amount of sleep, in hours
+    -   sleep_rem - rem sleep, in hours
+    -   sleep_cycle - length of sleep cycle, in hours
+    -   awake - amount of time spent awake, in hours
+    -   brainwt - brain weight in kilograms
+    -   bodywt - body weight in kilograms
+
+-   Broad types of diets in animals are:
+
+![From Science Notes](https://github.com/hungtong/DS-01-101/blob/main/image/6_animal_type.png?raw=true){fig-align="center" width="445"}
+
+-   Conservation statuses include:
+
+![From Reclaimed Earth](https://github.com/hungtong/DS-01-101/blob/main/image/6_conservation.png?raw=true){fig-align="center" width="417"}
+
+-   In this lesson, we will use **dplyr for data manipulation to better under mammalian sleep. Recall that `dplyr` implements the following verbs from the** grammar of data manipulation\*\*:
+
+    -   `slice()` to subset rows using their positions
+    -   `filter()` to keep rows that match a condition
+    -   `select()` to keep or drop columns
+    -   `mutate()` to modify existing variables or add new variables
+    -   `arrange()` to reorder rows using column names
+    -   `summarize()` to reduce variables to values
+    -   `group_by()` to perform grouped (aggregated) operations
+
+-   The **pipe operators** `%>%` from the `magrittr` (muh-GREET-er) package or `|>` from base R are useful for step-by-step computations in a forward manner.
+
+-   The hands-on activities below are adapted from the [Exercises: Introduction to dplyr](https://sjspielman.github.io/datascience_for_biologists/exercises/dplyr.html) developed by Stephanie J Spielman.
+
+## First Part
+
+💻 **Hands-On**
+
+Subset `msleep` to only herbivores. How many herbivores are there?
+
+::: {.callout-tip collapse="true"}
+## Answer
+
+There are 32 herbivores.
+
+```{r}
+
+msleep |>
+  filter(vore == 'herbi') |>
+  count()
+```
+:::
+
+💻 **Hands-On**
+
+Subset `msleep` to only animals who are awake for at least 12 hours of the day. How many such animals are there?
+
+::: {.callout-tip collapse="true"}
+## Answer
+
+There are 52 animals who are awake for at least 12 hours of the day.
+
+```{r}
+
+msleep |>
+  filter(awake >= 12) |>
+  count()
+```
+:::
+
+💻 **Hands-On**
+
+Subset `msleep` to only herbivores who are awake for at least 12 hours of the days. How many such animals are there?
+
+::: {.callout-tip collapse="true"}
+## Answer
+
+There are 18 herbivores who are awake for at least 12 hours of the days.
+
+```{r}
+
+msleep |>
+  filter(vore == 'herbi', awake >= 12) |>
+  count()
+```
+:::
+
+💻 **Hands-On**
+
+Subset `msleep` to include only herbivores and insectivores. You may find the operator `%in%` useful.
+
+::: {.callout-tip collapse="true"}
+## Answer
+
+There are two ways to do this: the or `|` operator and the `%in%` operator.
+
+```{r}
+
+# 'or' operator
+msleep |>
+  filter(vore == 'herbi' | vore == 'insecti')
+
+# %in%
+msleep |>
+  filter(vore %in% c('herbi', 'insecti'))
+```
+:::
+
+💻 **Hands-On**
+
+Subset `msleep` to include only herbivores and carnivores who sleep at least 12 hours a day.
+
+::: {.callout-tip collapse="true"}
+## Answer
+
+```{r}
+
+# 'or' operator
+msleep |>
+  filter(vore == 'herbi' | vore == 'carni', sleep_total >= 12)
+
+# %in%
+msleep |>
+  filter(vore %in% c('herbi', 'carni'), sleep_total >= 12)
+```
+:::
+
+💻 **Hands-On**
+
+Subset `msleep` to only carnivores who weigh more than 50 kg.
+
+::: {.callout-tip collapse="true"}
+## Answer
+
+```{r}
+
+msleep |>
+  filter(vore == 'carni', bodywt > 50)
+```
+:::
+
+💻 **Hands-On**
+
+Subset `msleep` to keep only the columns `name`, `awake`, `sleep_total`, `sleep_rem`, and `sleep_cycle`.
+
+::: {.callout-tip collapse="true"}
+## Answer
+
+```{r}
+
+msleep |>
+  select(name, awake, sleep_total, sleep_rem, sleep_cycle)
+```
+:::
+
+💻 **Hands-On**
+
+Subset `msleep` to keep all columns except `genus` and `order`.
+
+::: {.callout-tip collapse="true"}
+## Answer
+
+```{r}
+
+msleep |>
+  select(-genus, -order)
+```
+:::
+
+💻 **Hands-On**
+
+Move `vore` to the front of `msleep`. You may find the `everything()` function useful.
+
+::: {.callout-tip collapse="true"}
+## Answer
+
+The `everything()` function automatically includes all the variables that have not been selected.
+
+```{r}
+
+msleep |>
+  select(vore, everything())
+```
+:::
+
+💻 **Hands-On**
+
+Move `bodywt` and `brainwt` to the front of `msleep`.
+
+::: {.callout-tip collapse="true"}
+## Answer
+
+```{r}
+
+msleep |>
+  select(bodywt, brainwt, everything())
+```
+:::
+
+💻 **Hands-On**
+
+What does the following code do? You may find running the code line by line helpful.
+
+```{r}
+#| eval: false
+
+msleep |>
+  mutate(class = "Mammalia") |>
+  select(class)
+```
+
+::: {.callout-tip collapse="true"}
+## Answer
+
+The code creates a new column named `class` with only one value `Mammalia`.
+:::
+
+💻 **Hands-On**
+
+Create the following columns:
+
+-   `bodywt_g` which contains the body weight but in grams instead of kg
+
+-   `log_bodywt` that gives the natural logarithm of the body weight
+
+-   `percent_day_awake` that gives the percentage of the day that each species spends awake
+
+-   `sleep_awake_ratio` that has the ratio of total time spent asleep to total time spent awake Then, subset `msleep` to only these new columns.
+
+::: {.callout-tip collapse="true"}
+## Answer
+
+```{r}
+
+msleep |>
+  mutate(bodywt_g = bodywt * 100,
+         log_bodywt = log(bodywt),
+         percent_day_awake = awake * 100 / 24,
+         sleep_awake_ratio = sleep_total / awake) |>
+  select(bodywt_g, log_bodywt, percent_day_awake, sleep_awake_ratio)
+```
+:::
+
+💻 **Hands-On**
+
+What does the following code do? Modify the code to obtain the sample means of `brainwt` and `sleep_cycle`?
+
+```{r}
+#| eval: false
+
+msleep |>
+  drop_na(brainwt, sleep_cycle)
+```
+
+::: {.callout-tip collapse="true"}
+## Answer
+
+`drop_na()` removes rows (observations) containing missing values (NAs). If we put variable(s) in, it will remove only rows having missing values for those particular variable(s). Thus, after putting `brainwt` and `sleep_cycle` in `drop_na()`, we can find the sample means of these variables.
+
+```{r}
+
+msleep |>
+  drop_na(brainwt, sleep_cycle) |>
+  summarize(mean_brainwt = mean(brainwt),
+            mean_sleep_cycle = mean(sleep_cycle))
+```
+:::
+
+Another way without using `drop_na()` is as follows:
+
+```{r}
+
+msleep |>
+  summarize(mean_brainwt = mean(brainwt, na.rm = TRUE),
+            mean_sleep_cycle = mean(sleep_cycle, na.rm = TRUE))
+```
+
+💻 **Hands-On**
+
+Change column `conservation` to `conservation_status` and column `vore` to `food_preference`. You may find the `rename()` function useful.
+
+::: {.callout-tip collapse="true"}
+## Answer
+
+```{r}
+
+msleep |>
+  rename(conservation_status = conservation,
+         food_preference = vore)
+```
+:::
+
+💻 **Hands-On**
+
+What does the following code do? Can you think of a different way to obtain the same result?
+
+```{r}
+#| eval: false
+
+msleep |>
+  arrange(desc(sleep_cycle)) |>
+  slice(1:5) 
+```
+
+::: {.callout-tip collapse="true"}
+## Answer
+
+The code sorts the data in decreasing lengths of sleep cycle and then keeps the first five rows. This can be done with less code using `slice_max()`
+
+```{r}
+
+msleep |>
+  slice_max(sleep_cycle, n = 5)
+```
+:::
+
+💻 **Hands-On**
+
+Subset `msleep` to 3 carnivores with the smallest weights.
+
+::: {.callout-tip collapse="true"}
+## Answer
+
+```{r}
+
+msleep |> 
+  filter(vore == 'carni') |>
+  slice_min(bodywt, n = 3)
+```
+:::
+
+## Second Part
+
+💻 **Hands-On**
+
+What does the following code do? Modify the code so that missing values are removed.
+
+```{r}
+#| eval: false
+
+msleep |>
+  select(vore) |>
+  distinct()
+```
+
+::: {.callout-tip collapse="true"}
+## Answer
+
+The code keeps the `vore` column only and returns only unique (distinct) categories of this column. However, missing values `NA` are also considered a category. To avoid that, we should drop the missing values.
+
+```{r}
+
+msleep |>
+  select(vore) |>
+  distinct() |>
+  drop_na()
+```
+:::
+
+💻 **Hands-On**
+
+Subset `msleep` to distinct rows of `vore` and `conservation` that have no missing values.
+
+::: {.callout-tip collapse="true"}
+## Answer
+
+```{r}
+
+msleep |> 
+  select(vore, conservation) |>
+  distinct() |>
+  drop_na()
+```
+:::
+
+💻 **Hands-On**
+
+Subset `msleep` to only herbivores and then order the data by `name`.
+
+::: {.callout-tip collapse="true"}
+## Answer
+
+```{r}
+
+msleep |>
+  filter(vore == 'herbi') |>
+  arrange(name)
+```
+:::
+
+💻 **Hands-On**
+
+Subset `msleep` to only species whose conservation status is least concern. Then, remove column `conservation` and all rows with missing values.
+
+::: {.callout-tip collapse="true"}
+## Answer
+
+```{r}
+
+msleep |>
+  filter(conservation == 'lc') |>
+  mutate(conservation = NULL) |>
+  drop_na()
+```
+:::
+
+💻 **Hands-On**
+
+Subset `msleep` to all the mammals who are generally more awake than asleep.
+
+::: {.callout-tip collapse="true"}
+## Answer
+
+```{r}
+
+msleep |>
+  filter(awake > sleep_total)
+```
+:::
+
+💻 **Hands-On**
+
+Subset `msleep` to contain only carnivores with body weights greater than 50 kg. Then, arrange the data in ascending order of body weight. Finally, keep only columns `name`, `bodywt`, and `brainwt` in that order.
+
+::: {.callout-tip collapse="true"}
+## Answer
+
+```{r}
+
+msleep |>
+  filter(vore == 'carni', bodywt > 50) |>
+  arrange(bodywt) |>
+  select(name, bodywt, brainwt)
+```
+:::
+
+💻 **Hands-On**
+
+We want to subset `msleep` to all mammals whose brain weight is less than 2. However, the following code has an error. Fix the error in the code.
+
+```{r}
+#| eval: false
+
+msleep |>
+  select(bodywt, name) |>
+  filter(brainwt < 2) 
+```
+
+::: {.callout-tip collapse="true"}
+## Answer
+
+The given code has an error, because `brainwt` was not selected and there is thus no `brainwt` to filter. There are two ways to fix.
+
+```{r}
+
+# method 1: do include brainwt
+msleep |>
+  select(brainwt, bodywt, name) |>
+  filter(brainwt < 2) 
+
+# method 2: filter observations first before selecting columns
+msleep |>
+  filter(brainwt < 2) |>
+  select(brainwt, bodywt, name)
+```
+:::
+
+💻 **Hands-On**
+
+We want to subset `msleep` to show just the REM sleep amounts for carnivores, where data is arranged in order of `genus`. However, the following code has an error. Fix the error in the code.
+
+```{r}
+#| eval: false
+
+msleep |>
+  filter(vore == "carni") |>
+  select(sleep_rem) |>
+  arrange(genus)
+```
+
+::: {.callout-tip collapse="true"}
+## Answer
+
+The given code has an error, because `genus` was not selected when subsetting columns. It is better to arrange by `genus` before filtering rows or selecting columns.
+
+```{r}
+
+msleep |>
+  arrange(genus) |>
+  filter(vore == "carni") |>
+  select(sleep_rem)
+```
+:::
+
+💻 **Hands-On**
+
+What is the difference between these two code snippets?
+
+```{r}
+#| eval: false
+
+# snippet 1
+msleep |>
+  summarize(mean_awake = mean(awake))
+
+# snippet 2
+msleep |>
+  mutate(mean_awake = mean(awake))
+```
+
+::: {.callout-tip collapse="true"}
+## Answer
+
+In the given code, `summarize()` gives a single number showing the sample mean of the amount of time spent awake, while `mutate()` gives a whole column with a single value (sample mean of `awake`). To put it in another way, `summarize()` gives us summary statistics, while `mutate()` changes the column awake and returns the new data set
+:::
+
+💻 **Hands-On**
+
+Determine the average amount of time spent in REM sleep based on non-missing values.
+
+::: {.callout-tip collapse="true"}
+## Answer
+
+Consider the following ways:
+
+```{r}
+
+# method 1: drop NAs then calculate the sample mean
+msleep |>
+  select(sleep_rem) |>
+  drop_na() |>
+  summarize(mean_sleep_rem = mean(sleep_rem))
+
+# method 2: use the na.rm = TRUE option of mean()
+msleep |>
+  summarize(mean_sleep_rem = mean(sleep_rem, na.rm = TRUE))
+```
+:::
+
+💻 **Hands-On**
+
+Calculate the median body weight and the maximum brain weight of each `vore` group.
+
+::: {.callout-tip collapse="true"}
+## Answer
+
+```{r}
+
+msleep |>
+  select(vore, bodywt, brainwt) |>
+  drop_na() |>
+  group_by(vore) |>
+  summarize(median_body_weight = median(bodywt),
+            max_brain_weight = max(brainwt))
+```
+:::
+
+💻 **Hands-On**
+
+Calculate the mean body weight of each combination of `vore` and `conservation` groups.
+
+::: {.callout-tip collapse="true"}
+## Answer
+
+```{r}
+
+msleep |>
+  select(bodywt, vore, conservation) |>
+  drop_na() |>
+  group_by(vore, conservation) |>
+  summarize(mean_body_weight = mean(bodywt))
+```
+:::
+
+💻 **Hands-On**
+
+Count how many different taxonomic orders (see `order`) are in `msleep` and then sort the frequency in descending order.
+
+::: {.callout-tip collapse="true"}
+## Answer
+
+```{r}
+
+msleep |>
+  count(order) |>
+  arrange(desc(n))
+```
+:::
+
+💻 **Hands-On**
+
+Which group has the highest average body weight: herbivores or insectivores?
+
+::: {.callout-tip collapse="true"}
+## Answer
+
+```{r}
+msleep |>
+  filter(vore == 'herbi' | vore == 'insecti') |>
+  group_by(vore) |>
+  summarize(mean_body_weight = mean(bodywt))
+```
+:::
