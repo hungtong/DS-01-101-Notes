@@ -25,7 +25,7 @@ format:
 
 library(tidyverse)
 
-msleep
+glimpse(msleep)
 ```
 
 -   The data set has 83 observations and 11 variables:

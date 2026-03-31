@@ -27,6 +27,12 @@ book:
           - ls5a_ggplot2.qmd
           - ls5b_ggplot2.qmd
           - ls6a_dplyr.qmd
+          - ls6b_dplyr.qmd
+          - ls7_cleaning.qmd
+          
+    - part: "Introduction to Statistical and Machine Learning"
+      chapters:
+          - ls8_regression.qmd
         
     # - summary.qmd
     # - references.qmd

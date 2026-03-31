@@ -7,11 +7,11 @@ editor: visual
 toc: true
 toc-depth: 3
 echo: true
-eval: true
+eval: false
 code-overflow: wrap
 format: 
   html:
-    self-contained: true
+    self-contained: false
 ---
 
 ## Readings
@@ -90,6 +90,7 @@ $$
 ![](https://github.com/hungtong/DS-01-101/blob/main/image/8_advertising.png?raw=true){fig-align="center"}
 
 ```{r}
+#| eval: true
 
 load(url('https://github.com/hungtong/DS-01-101/raw/refs/heads/main/dataset/Advertising.rdata'))
 
@@ -99,6 +100,7 @@ head(Advertising)
 -   Fitting the multiple linear regression to the data set, we obtain
 
 ```{r}
+#| eval: true
 
 mod <- lm(sales ~ TV + radio + newspaper, data = Advertising)
 summary(mod)

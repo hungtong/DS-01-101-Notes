@@ -11,7 +11,7 @@ eval: false
 code-overflow: wrap
 format: 
   html:
-    self-contained: true
+    self-contained: false
 ---
 
 ## Readings
@@ -119,7 +119,7 @@ properties <- properties[properties >= 100, ]
 
 -   The `pima` data set, originated from the National Institute of Diabetes and Digestive and Kidney Diseases, consists of 768 female patients of Pima Indian heritage, all aged at least $21$ and living near Phoenix, Arizona, USA. Among these patients, 268 were diagnosed with diabetes. Several medical variables were measured for these patients.
 
-![From Şafak Selim Sofioğlu](https://github.com/hungtong/DS-01-101/blob/main/image/7_pima.png?raw=true){fig-align="center" width="316"}
+![From Şafak Selim Sofioğlu](https://github.com/hungtong/DS-01-101/blob/main/image/7_pima.png?raw=true){fig-align="center" width="386"}
 
 ```{r}
 #| eval: true
@@ -130,7 +130,7 @@ library(tidyverse)
 load(url('https://github.com/hungtong/DS-01-101/raw/refs/heads/main/dataset/pima.rdata'))
 
 pima <- as_tibble(pima)
-pima
+glimpse(pima)
 ```
 
 -   `is.na()` is a useful function to identify missing values in a vector.
@@ -231,14 +231,14 @@ pima$Insulin[is.na(pima$Insulin)] <- mean(pima$Insulin, na.rm = TRUE)
 
 -   `size` - Number of people in the dining party.
 
-![From Adobe Stock](https://github.com/hungtong/DS-01-101/blob/main/image/7_tips.png?raw=true){fig-align="center" width="239"}
+<!-- ![From Adobe Stock](https://github.com/hungtong/DS-01-101/blob/main/image/7_tips.png?raw=true){fig-align="center" width="239"} -->
 
 ```{r}
 #| eval: true
 
 load(url('https://github.com/hungtong/DS-01-101/raw/refs/heads/main/dataset/tips.rdata'))
 
-tips
+glimpse(tips)
 ```
 
 -   The categories of `sex` and `day` are not consistent. To fix `sex`, we can do the following:

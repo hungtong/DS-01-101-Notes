@@ -7,7 +7,7 @@ editor: visual
 toc: true
 toc-depth: 3
 echo: true
-eval: true
+eval: false
 code-overflow: wrap
 format: 
   html:
@@ -349,7 +349,7 @@ Use `filter()` return rows of the `classmates` data set.
 # Math majors that are female
 ```
 
-::: {.callout-tip collapse="true"} 
+::: {.callout-tip collapse="true"}
 ## Answer
 
 ```{r}
@@ -537,7 +537,7 @@ Use `mutate()` to add the following variables the `classmates` data set:
 
 -   `can_drink` shows TRUE if a classmate is at least 21 and FALSE otherwise
 
-::: {.callout-tip collapse="true"} 
+::: {.callout-tip collapse="true"}
 ## Answer
 
 ```{r}
@@ -598,7 +598,7 @@ Use `arrange()` to order rows of the `classmates` data set.
 # descending major -> descending age
 ```
 
-::: {.callout-tip collapse="true"} 
+::: {.callout-tip collapse="true"}
 ## Answer
 
 ```{r}
@@ -645,7 +645,7 @@ summarize(
 
 Use `summarize()` to build a summary table of the `classmates` data set that includes `mean_weight`, `median_weight`, `min_weight`, `max_weight`, `mean_age`, `median_age`, `min_age`, `max_age`.
 
-::: {.callout-tip collapse="true"} 
+::: {.callout-tip collapse="true"}
 ## Answer
 
 ```{r}
@@ -709,7 +709,7 @@ Use `group_by()` to obtain subsets of the `classmates` data set.
 # by different names
 ```
 
-::: {.callout-tip collapse="true"} 
+::: {.callout-tip collapse="true"}
 ## Answer
 
 ```{r}
@@ -726,7 +726,7 @@ group_by(classmates, name)
 
 Use `group_by()` and `summarize()` to build a summary table of the `classmates` data set that includes `mean_weight`, `median_weight`, `min_weight`, `max_weight` for each `major`.
 
-::: {.callout-tip collapse="true"} 
+::: {.callout-tip collapse="true"}
 ## Answer
 
 ```{r}
@@ -795,6 +795,7 @@ classmates |> group_by(gender)
 -   However, the pipe operators are most powerful with step-by-step computations.
 
 ```{r}
+#| eval: false
 
 # retrieve all male classmates
 classmates |>
@@ -837,10 +838,11 @@ Use the pipe operators to complete the following step-by-step computations
 
 ```
 
-::: {.callout-tip collapse="true"} 
+::: {.callout-tip collapse="true"}
 ## Answer
 
 ```{r}
+#| eval: false
 
 # retrieve all CS majors
 classmates |> 
