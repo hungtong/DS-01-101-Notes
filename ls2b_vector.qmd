@@ -4,6 +4,9 @@ toc-depth: 3
 echo: true
 eval: false
 output: false
+format: 
+  html:
+    self-contained: false
 ---
 
 # 2B: More on Vector

@@ -1,18 +1,15 @@
 ---
-title: "Lesson 11: Principal Component Analysis"
-subtitle: "DS 01-101: In-Depth Introduction to Data Science (Spring 2026)"
-author: "Hung Tong"
-institute: "Rowan University"
-editor: visual
 toc: true
 toc-depth: 3
 echo: true
 eval: true
-code-overflow: wrap
+output: true
 format: 
   html:
-    self-contained: true
+    self-contained: false
 ---
+
+# 11: Principal Component Analysis
 
 ## Readings
 
@@ -50,8 +47,7 @@ The book is freely available at <https://www.statlearning.com/>
 
 - Although $p$ components are required to reproduce the total variability, using the first few principal components is enough to explain most of this variability.
 
-- Geometrically, a linear combination of $p$ variables $X_1, X_2, \dots, X_p$ defines a new direction or axis.
-  $$a_1 X_1 + a_2 X_2 + \dots + a_p X_p $$
+- Geometrically, a linear combination of $p$ variables $X_1, X_2, \dots, X_p$ defines a new direction or axis. $$a_1 X_1 + a_2 X_2 + \dots + a_p X_p $$
 
 - A linear combination of $p = 2$ variables $X_1$ and $X_2$ may define a new axis as follows
 

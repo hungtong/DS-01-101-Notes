@@ -6,9 +6,8 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
-<meta name="author" content="Hung Tong">
 
-<title>Lesson 8A: k-Nearest Neighbors Classification – Data Science Course Notes</title>
+<title>9: k-Nearest Neighbors Classification – Data Science Course Notes</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -145,7 +144,7 @@ window.Quarto = {
       <button type="button" class="quarto-btn-toggle btn" data-bs-toggle="collapse" role="button" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">
         <i class="bi bi-layout-text-sidebar-reverse"></i>
       </button>
-        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./ls8_regression.html">Introduction to Statistical and Machine Learning</a></li><li class="breadcrumb-item"><a href="./ls9_knn.html"><span class="chapter-title">Lesson 8A: k-Nearest Neighbors Classification</span></a></li></ol></nav>
+        <nav class="quarto-page-breadcrumbs" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./ls8_regression.html">Introduction to Statistical and Machine Learning</a></li><li class="breadcrumb-item"><a href="./ls9_knn.html"><span class="chapter-title">9: k-Nearest Neighbors Classification</span></a></li></ol></nav>
         <a class="flex-grow-1" role="navigation" data-bs-toggle="collapse" data-bs-target=".quarto-sidebar-collapse-item" aria-controls="quarto-sidebar" aria-expanded="false" aria-label="Toggle sidebar navigation" onclick="if (window.quartoToggleHeadroom) { window.quartoToggleHeadroom(); }">      
         </a>
       <button type="button" class="btn quarto-search-button" aria-label="Search" onclick="window.quartoOpenSearch();">
@@ -248,22 +247,22 @@ window.Quarto = {
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./ls5b_ggplot2.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Lesson 5B: Exploratory Data Analysis of Diamonds Price</span></a>
+  <a href="./ls5b_ggplot2.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">5B: Exploratory Data Analysis of Diamonds Price</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./ls6a_dplyr.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Lesson 6A: Data Manipulation with dplyr</span></a>
+  <a href="./ls6a_dplyr.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">6A: Data Manipulation with dplyr</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./ls6b_dplyr.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Lesson 6B: Using Data Manipulation to Understand Mammalian Sleep</span></a>
+  <a href="./ls6b_dplyr.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">6B: Using Data Manipulation to Understand Mammalian Sleep</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./ls7_cleaning.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Lesson 7: Data Cleaning</span></a>
+  <a href="./ls7_cleaning.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">7: Data Cleaning</span></a>
   </div>
 </li>
       </ul>
@@ -279,22 +278,22 @@ window.Quarto = {
       <ul id="quarto-sidebar-section-3" class="collapse list-unstyled sidebar-section depth1 show">  
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./ls8_regression.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Lesson 8A: Multiple Linear Regression</span></a>
+  <a href="./ls8_regression.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">8A: Multiple Linear Regression</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./ls9_knn.html" class="sidebar-item-text sidebar-link active"><span class="chapter-title">Lesson 8A: k-Nearest Neighbors Classification</span></a>
+  <a href="./ls9_knn.html" class="sidebar-item-text sidebar-link active"><span class="chapter-title">9: k-Nearest Neighbors Classification</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./ls10_kmeans.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Lesson 10: k-Means Clustering</span></a>
+  <a href="./ls10_kmeans.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">10: k-Means Clustering</span></a>
   </div>
 </li>
           <li class="sidebar-item">
   <div class="sidebar-item-container"> 
-  <a href="./ls11_pca.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">Lesson 11: Principal Component Analysis</span></a>
+  <a href="./ls11_pca.html" class="sidebar-item-text sidebar-link"><span class="chapter-title">11: Principal Component Analysis</span></a>
   </div>
 </li>
       </ul>
@@ -319,30 +318,16 @@ window.Quarto = {
 <!-- main -->
 <main class="content" id="quarto-document-content">
 
-<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./ls8_regression.html">Introduction to Statistical and Machine Learning</a></li><li class="breadcrumb-item"><a href="./ls9_knn.html"><span class="chapter-title">Lesson 8A: k-Nearest Neighbors Classification</span></a></li></ol></nav>
+<header id="title-block-header" class="quarto-title-block default"><nav class="quarto-page-breadcrumbs quarto-title-breadcrumbs d-none d-lg-block" aria-label="breadcrumb"><ol class="breadcrumb"><li class="breadcrumb-item"><a href="./ls8_regression.html">Introduction to Statistical and Machine Learning</a></li><li class="breadcrumb-item"><a href="./ls9_knn.html"><span class="chapter-title">9: k-Nearest Neighbors Classification</span></a></li></ol></nav>
 <div class="quarto-title">
-<h1 class="title"><span class="chapter-title">Lesson 8A: k-Nearest Neighbors Classification</span></h1>
-<p class="subtitle lead">DS 01-101: In-Depth Introduction to Data Science (Spring 2026)</p>
+<h1 class="title"><span class="chapter-title">9: k-Nearest Neighbors Classification</span></h1>
 </div>
 
 
-<div class="quarto-title-meta-author">
-  <div class="quarto-title-meta-heading">Author</div>
-  <div class="quarto-title-meta-heading">Affiliation</div>
-  
-    <div class="quarto-title-meta-contents">
-    <p class="author">Hung Tong </p>
-  </div>
-  <div class="quarto-title-meta-contents">
-        <p class="affiliation">
-            Rowan University
-          </p>
-      </div>
-  </div>
 
 <div class="quarto-title-meta">
 
-      
+    
   
     
   </div>
@@ -432,47 +417,75 @@ window.Quarto = {
 <span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a></span>
 <span id="cb1-8"><a href="#cb1-8" aria-hidden="true" tabindex="-1"></a><span class="fu">plot</span>(mowers[, <span class="sc">-</span><span class="dv">1</span>], <span class="at">col =</span> mowers<span class="sc">$</span>Ownership, <span class="at">pch =</span> <span class="dv">16</span>)</span>
 <span id="cb1-9"><a href="#cb1-9" aria-hidden="true" tabindex="-1"></a><span class="fu">points</span>(new_households, <span class="at">cex =</span> <span class="fl">1.2</span>)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output-display">
+<div>
+<figure class="figure">
+<p><img src="ls9_knn_files/figure-html/unnamed-chunk-1-1.png" class="img-fluid figure-img" width="672"></p>
+</figure>
+</div>
+</div>
 </div>
 <ul>
 <li>Ownership prediction may vary using different numbers of neighbors <span class="math inline">\(k\)</span>.</li>
 </ul>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(class)</span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a>pred_k1 <span class="ot">&lt;-</span> <span class="fu">knn</span>(mowers[, <span class="sc">-</span><span class="dv">1</span>], new_households, mowers<span class="sc">$</span>Ownership, <span class="at">k =</span> <span class="dv">1</span>)</span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a>pred_k3 <span class="ot">&lt;-</span> <span class="fu">knn</span>(mowers[, <span class="sc">-</span><span class="dv">1</span>], new_households, mowers<span class="sc">$</span>Ownership, <span class="at">k =</span> <span class="dv">3</span>)</span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a>pred_k5 <span class="ot">&lt;-</span> <span class="fu">knn</span>(mowers[, <span class="sc">-</span><span class="dv">1</span>], new_households, mowers<span class="sc">$</span>Ownership, <span class="at">k =</span> <span class="dv">5</span>)</span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a>pred_k7 <span class="ot">&lt;-</span> <span class="fu">knn</span>(mowers[, <span class="sc">-</span><span class="dv">1</span>], new_households, mowers<span class="sc">$</span>Ownership, <span class="at">k =</span> <span class="dv">7</span>)</span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="fu">cbind</span>(new_households, pred_k1, pred_k3, pred_k5, pred_k7)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb2"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">library</span>(class)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stderr">
+<pre><code>Warning: package 'class' was built under R version 4.5.3</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>pred_k1 <span class="ot">&lt;-</span> <span class="fu">knn</span>(mowers[, <span class="sc">-</span><span class="dv">1</span>], new_households, mowers<span class="sc">$</span>Ownership, <span class="at">k =</span> <span class="dv">1</span>)</span>
+<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a>pred_k3 <span class="ot">&lt;-</span> <span class="fu">knn</span>(mowers[, <span class="sc">-</span><span class="dv">1</span>], new_households, mowers<span class="sc">$</span>Ownership, <span class="at">k =</span> <span class="dv">3</span>)</span>
+<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a>pred_k5 <span class="ot">&lt;-</span> <span class="fu">knn</span>(mowers[, <span class="sc">-</span><span class="dv">1</span>], new_households, mowers<span class="sc">$</span>Ownership, <span class="at">k =</span> <span class="dv">5</span>)</span>
+<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a>pred_k7 <span class="ot">&lt;-</span> <span class="fu">knn</span>(mowers[, <span class="sc">-</span><span class="dv">1</span>], new_households, mowers<span class="sc">$</span>Ownership, <span class="at">k =</span> <span class="dv">7</span>)</span>
+<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="fu">cbind</span>(new_households, pred_k1, pred_k3, pred_k5, pred_k7)</span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>  Income LotSize  pred_k1  pred_k3  pred_k5  pred_k7
+1     40      18 Nonowner Nonowner Nonowner Nonowner
+2     87      22    Owner    Owner    Owner    Owner
+3     60      20    Owner    Owner    Owner Nonowner
+4     78      19 Nonowner    Owner    Owner    Owner</code></pre>
+</div>
 </div>
 <ul>
 <li><p>Choosing the number of neighbors <span class="math inline">\(k\)</span> is an important decision. Generally speaking, if <span class="math inline">\(k\)</span> is too low, we may get misleading signal. If <span class="math inline">\(k\)</span> is too high, we will not learn the local structure in the data.</p></li>
 <li><p>In practice, to choose <span class="math inline">\(k\)</span>, we typically split the data into a <strong>training set</strong> and a <strong>validation (test) set</strong>. We then try several different values of <span class="math inline">\(k\)</span>, for each of which we train the model, predict the labels of the validation (test) data, and compute the accuracy. The value of <span class="math inline">\(k\)</span> that gives the highest accuracy on the validation set is typically chosen as the best one.</p></li>
 </ul>
 <div class="cell">
-<div class="sourceCode cell-code" id="cb3"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="fu">nrow</span>(mowers)</span>
-<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">101</span>)</span>
-<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a>train_ids <span class="ot">&lt;-</span> <span class="fu">sample</span>(<span class="dv">1</span><span class="sc">:</span>n, <span class="at">size =</span> <span class="dv">17</span>)     <span class="co"># 24 * 0.7 = 17</span></span>
-<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a>test_ids <span class="ot">&lt;-</span> <span class="fu">setdiff</span>(<span class="dv">1</span><span class="sc">:</span>n, train_ids)     <span class="co"># 24 - 17 = 7</span></span>
-<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a>X_train <span class="ot">&lt;-</span> mowers[train_ids, <span class="sc">-</span><span class="dv">1</span>]</span>
-<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a>X_test <span class="ot">&lt;-</span> mowers[test_ids, <span class="sc">-</span><span class="dv">1</span>]</span>
-<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a>y_train <span class="ot">&lt;-</span> mowers<span class="sc">$</span>Ownership[train_ids]</span>
-<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a>y_test <span class="ot">&lt;-</span> mowers<span class="sc">$</span>Ownership[test_ids]</span>
-<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a>pred_k1 <span class="ot">&lt;-</span> <span class="fu">knn</span>(X_train, X_test, y_train, <span class="at">k =</span> <span class="dv">1</span>)</span>
-<span id="cb3-15"><a href="#cb3-15" aria-hidden="true" tabindex="-1"></a>pred_k3 <span class="ot">&lt;-</span> <span class="fu">knn</span>(X_train, X_test, y_train, <span class="at">k =</span> <span class="dv">3</span>)</span>
-<span id="cb3-16"><a href="#cb3-16" aria-hidden="true" tabindex="-1"></a>pred_k5 <span class="ot">&lt;-</span> <span class="fu">knn</span>(X_train, X_test, y_train, <span class="at">k =</span> <span class="dv">5</span>)</span>
-<span id="cb3-17"><a href="#cb3-17" aria-hidden="true" tabindex="-1"></a>pred_k7 <span class="ot">&lt;-</span> <span class="fu">knn</span>(X_train, X_test, y_train, <span class="at">k =</span> <span class="dv">7</span>)</span>
-<span id="cb3-18"><a href="#cb3-18" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb3-19"><a href="#cb3-19" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(pred_k1 <span class="sc">==</span> y_test)    <span class="co"># 0.7142857</span></span>
-<span id="cb3-20"><a href="#cb3-20" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(pred_k3 <span class="sc">==</span> y_test)    <span class="co"># 0.7142857</span></span>
-<span id="cb3-21"><a href="#cb3-21" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(pred_k5 <span class="sc">==</span> y_test)    <span class="co"># 0.5714286</span></span>
-<span id="cb3-22"><a href="#cb3-22" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(pred_k7 <span class="sc">==</span> y_test)    <span class="co"># 0.7142857</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb6"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb6-1"><a href="#cb6-1" aria-hidden="true" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="fu">nrow</span>(mowers)</span>
+<span id="cb6-2"><a href="#cb6-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-3"><a href="#cb6-3" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">101</span>)</span>
+<span id="cb6-4"><a href="#cb6-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-5"><a href="#cb6-5" aria-hidden="true" tabindex="-1"></a>train_ids <span class="ot">&lt;-</span> <span class="fu">sample</span>(<span class="dv">1</span><span class="sc">:</span>n, <span class="at">size =</span> <span class="dv">17</span>)     <span class="co"># 24 * 0.7 = 17</span></span>
+<span id="cb6-6"><a href="#cb6-6" aria-hidden="true" tabindex="-1"></a>test_ids <span class="ot">&lt;-</span> <span class="fu">setdiff</span>(<span class="dv">1</span><span class="sc">:</span>n, train_ids)     <span class="co"># 24 - 17 = 7</span></span>
+<span id="cb6-7"><a href="#cb6-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-8"><a href="#cb6-8" aria-hidden="true" tabindex="-1"></a>X_train <span class="ot">&lt;-</span> mowers[train_ids, <span class="sc">-</span><span class="dv">1</span>]</span>
+<span id="cb6-9"><a href="#cb6-9" aria-hidden="true" tabindex="-1"></a>X_test <span class="ot">&lt;-</span> mowers[test_ids, <span class="sc">-</span><span class="dv">1</span>]</span>
+<span id="cb6-10"><a href="#cb6-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-11"><a href="#cb6-11" aria-hidden="true" tabindex="-1"></a>y_train <span class="ot">&lt;-</span> mowers<span class="sc">$</span>Ownership[train_ids]</span>
+<span id="cb6-12"><a href="#cb6-12" aria-hidden="true" tabindex="-1"></a>y_test <span class="ot">&lt;-</span> mowers<span class="sc">$</span>Ownership[test_ids]</span>
+<span id="cb6-13"><a href="#cb6-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-14"><a href="#cb6-14" aria-hidden="true" tabindex="-1"></a>pred_k1 <span class="ot">&lt;-</span> <span class="fu">knn</span>(X_train, X_test, y_train, <span class="at">k =</span> <span class="dv">1</span>)</span>
+<span id="cb6-15"><a href="#cb6-15" aria-hidden="true" tabindex="-1"></a>pred_k3 <span class="ot">&lt;-</span> <span class="fu">knn</span>(X_train, X_test, y_train, <span class="at">k =</span> <span class="dv">3</span>)</span>
+<span id="cb6-16"><a href="#cb6-16" aria-hidden="true" tabindex="-1"></a>pred_k5 <span class="ot">&lt;-</span> <span class="fu">knn</span>(X_train, X_test, y_train, <span class="at">k =</span> <span class="dv">5</span>)</span>
+<span id="cb6-17"><a href="#cb6-17" aria-hidden="true" tabindex="-1"></a>pred_k7 <span class="ot">&lt;-</span> <span class="fu">knn</span>(X_train, X_test, y_train, <span class="at">k =</span> <span class="dv">7</span>)</span>
+<span id="cb6-18"><a href="#cb6-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb6-19"><a href="#cb6-19" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(pred_k1 <span class="sc">==</span> y_test)    <span class="co"># 0.7142857</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.7142857</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb8"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(pred_k3 <span class="sc">==</span> y_test)    <span class="co"># 0.7142857</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.7142857</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb10"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb10-1"><a href="#cb10-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(pred_k5 <span class="sc">==</span> y_test)    <span class="co"># 0.5714286</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.5714286</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb12"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(pred_k7 <span class="sc">==</span> y_test)    <span class="co"># 0.7142857</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.7142857</code></pre>
+</div>
 </div>
 <p>💻 <strong>Hands-On</strong></p>
 <p>Consider the <code>iris</code> data set, where the response variable is the flower species and the predictors are the four length and width measurements. Split the dataset into a training set (about 70%) and a test set (about 30%). Using the K-nearest neighbors (KNN) method, fit models with different values of <span class="math inline">\(k\)</span>, such as <span class="math inline">\(k = 1, 3, 5, 7, 9\)</span>.</p>
@@ -491,28 +504,40 @@ Answer
 <div id="callout-1" class="callout-1-contents callout-collapse collapse">
 <div class="callout-body-container callout-body">
 <div class="cell">
-<div class="sourceCode cell-code" id="cb4"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="fu">nrow</span>(iris)</span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">101</span>)</span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a>train_ids <span class="ot">&lt;-</span> <span class="fu">sample</span>(<span class="dv">1</span><span class="sc">:</span>n, <span class="at">size =</span> <span class="dv">105</span>)    <span class="co"># 150 * 0.7 = 105</span></span>
-<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a>test_ids <span class="ot">&lt;-</span> <span class="fu">setdiff</span>(<span class="dv">1</span><span class="sc">:</span>n, train_ids)</span>
-<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a>X_train <span class="ot">&lt;-</span> iris[train_ids, <span class="sc">-</span><span class="dv">5</span>]</span>
-<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a>X_test <span class="ot">&lt;-</span> iris[test_ids, <span class="sc">-</span><span class="dv">5</span>]</span>
-<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a>y_train <span class="ot">&lt;-</span> iris<span class="sc">$</span>Species[train_ids]</span>
-<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a>y_test <span class="ot">&lt;-</span> iris<span class="sc">$</span>Species[test_ids]</span>
-<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a>pred_k1 <span class="ot">&lt;-</span> <span class="fu">knn</span>(X_train, X_test, y_train, <span class="at">k =</span> <span class="dv">1</span>)</span>
-<span id="cb4-15"><a href="#cb4-15" aria-hidden="true" tabindex="-1"></a>pred_k3 <span class="ot">&lt;-</span> <span class="fu">knn</span>(X_train, X_test, y_train, <span class="at">k =</span> <span class="dv">3</span>)</span>
-<span id="cb4-16"><a href="#cb4-16" aria-hidden="true" tabindex="-1"></a>pred_k5 <span class="ot">&lt;-</span> <span class="fu">knn</span>(X_train, X_test, y_train, <span class="at">k =</span> <span class="dv">5</span>)</span>
-<span id="cb4-17"><a href="#cb4-17" aria-hidden="true" tabindex="-1"></a>pred_k7 <span class="ot">&lt;-</span> <span class="fu">knn</span>(X_train, X_test, y_train, <span class="at">k =</span> <span class="dv">7</span>)</span>
-<span id="cb4-18"><a href="#cb4-18" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-19"><a href="#cb4-19" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(pred_k1 <span class="sc">==</span> y_test)    <span class="co"># 0.9111111</span></span>
-<span id="cb4-20"><a href="#cb4-20" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(pred_k3 <span class="sc">==</span> y_test)    <span class="co"># 0.9111111</span></span>
-<span id="cb4-21"><a href="#cb4-21" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(pred_k5 <span class="sc">==</span> y_test)    <span class="co"># 0.9111111</span></span>
-<span id="cb4-22"><a href="#cb4-22" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(pred_k7 <span class="sc">==</span> y_test)    <span class="co"># 0.9333333</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="sourceCode cell-code" id="cb14"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb14-1"><a href="#cb14-1" aria-hidden="true" tabindex="-1"></a>n <span class="ot">&lt;-</span> <span class="fu">nrow</span>(iris)</span>
+<span id="cb14-2"><a href="#cb14-2" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-3"><a href="#cb14-3" aria-hidden="true" tabindex="-1"></a><span class="fu">set.seed</span>(<span class="dv">101</span>)</span>
+<span id="cb14-4"><a href="#cb14-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-5"><a href="#cb14-5" aria-hidden="true" tabindex="-1"></a>train_ids <span class="ot">&lt;-</span> <span class="fu">sample</span>(<span class="dv">1</span><span class="sc">:</span>n, <span class="at">size =</span> <span class="dv">105</span>)    <span class="co"># 150 * 0.7 = 105</span></span>
+<span id="cb14-6"><a href="#cb14-6" aria-hidden="true" tabindex="-1"></a>test_ids <span class="ot">&lt;-</span> <span class="fu">setdiff</span>(<span class="dv">1</span><span class="sc">:</span>n, train_ids)</span>
+<span id="cb14-7"><a href="#cb14-7" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-8"><a href="#cb14-8" aria-hidden="true" tabindex="-1"></a>X_train <span class="ot">&lt;-</span> iris[train_ids, <span class="sc">-</span><span class="dv">5</span>]</span>
+<span id="cb14-9"><a href="#cb14-9" aria-hidden="true" tabindex="-1"></a>X_test <span class="ot">&lt;-</span> iris[test_ids, <span class="sc">-</span><span class="dv">5</span>]</span>
+<span id="cb14-10"><a href="#cb14-10" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-11"><a href="#cb14-11" aria-hidden="true" tabindex="-1"></a>y_train <span class="ot">&lt;-</span> iris<span class="sc">$</span>Species[train_ids]</span>
+<span id="cb14-12"><a href="#cb14-12" aria-hidden="true" tabindex="-1"></a>y_test <span class="ot">&lt;-</span> iris<span class="sc">$</span>Species[test_ids]</span>
+<span id="cb14-13"><a href="#cb14-13" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-14"><a href="#cb14-14" aria-hidden="true" tabindex="-1"></a>pred_k1 <span class="ot">&lt;-</span> <span class="fu">knn</span>(X_train, X_test, y_train, <span class="at">k =</span> <span class="dv">1</span>)</span>
+<span id="cb14-15"><a href="#cb14-15" aria-hidden="true" tabindex="-1"></a>pred_k3 <span class="ot">&lt;-</span> <span class="fu">knn</span>(X_train, X_test, y_train, <span class="at">k =</span> <span class="dv">3</span>)</span>
+<span id="cb14-16"><a href="#cb14-16" aria-hidden="true" tabindex="-1"></a>pred_k5 <span class="ot">&lt;-</span> <span class="fu">knn</span>(X_train, X_test, y_train, <span class="at">k =</span> <span class="dv">5</span>)</span>
+<span id="cb14-17"><a href="#cb14-17" aria-hidden="true" tabindex="-1"></a>pred_k7 <span class="ot">&lt;-</span> <span class="fu">knn</span>(X_train, X_test, y_train, <span class="at">k =</span> <span class="dv">7</span>)</span>
+<span id="cb14-18"><a href="#cb14-18" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb14-19"><a href="#cb14-19" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(pred_k1 <span class="sc">==</span> y_test)    <span class="co"># 0.9111111</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.9111111</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb16"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb16-1"><a href="#cb16-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(pred_k3 <span class="sc">==</span> y_test)    <span class="co"># 0.9111111</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.9111111</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb18"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb18-1"><a href="#cb18-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(pred_k5 <span class="sc">==</span> y_test)    <span class="co"># 0.9111111</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.9111111</code></pre>
+</div>
+<div class="sourceCode cell-code" id="cb20"><pre class="sourceCode r code-with-copy"><code class="sourceCode r"><span id="cb20-1"><a href="#cb20-1" aria-hidden="true" tabindex="-1"></a><span class="fu">mean</span>(pred_k7 <span class="sc">==</span> y_test)    <span class="co"># 0.9333333</span></span></code><button title="Copy to Clipboard" class="code-copy-button"><i class="bi"></i></button></pre></div>
+<div class="cell-output cell-output-stdout">
+<pre><code>[1] 0.9333333</code></pre>
+</div>
 </div>
 </div>
 </div>
@@ -945,13 +970,13 @@ window.document.addEventListener("DOMContentLoaded", function (event) {
 </script>
 <nav class="page-navigation">
   <div class="nav-page nav-page-previous">
-      <a href="./ls8_regression.html" class="pagination-link" aria-label="Lesson 8A: Multiple Linear Regression">
-        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-title">Lesson 8A: Multiple Linear Regression</span></span>
+      <a href="./ls8_regression.html" class="pagination-link" aria-label="8A: Multiple Linear Regression">
+        <i class="bi bi-arrow-left-short"></i> <span class="nav-page-text"><span class="chapter-title">8A: Multiple Linear Regression</span></span>
       </a>          
   </div>
   <div class="nav-page nav-page-next">
-      <a href="./ls10_kmeans.html" class="pagination-link" aria-label="Lesson 10: k-Means Clustering">
-        <span class="nav-page-text"><span class="chapter-title">Lesson 10: k-Means Clustering</span></span> <i class="bi bi-arrow-right-short"></i>
+      <a href="./ls10_kmeans.html" class="pagination-link" aria-label="10: k-Means Clustering">
+        <span class="nav-page-text"><span class="chapter-title">10: k-Means Clustering</span></span> <i class="bi bi-arrow-right-short"></i>
       </a>
   </div>
 </nav>

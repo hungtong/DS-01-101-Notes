@@ -1,51 +1,48 @@
 ---
-title: "Lesson 7: Data Cleaning"
-subtitle: "DS 01-101: In-Depth Introduction to Data Science (Spring 2026)"
-author: "Hung Tong"
-institute: "Rowan University"
-editor: visual
 toc: true
 toc-depth: 3
 echo: true
-eval: false
-code-overflow: wrap
+eval: true
+output: true
 format: 
   html:
     self-contained: false
 ---
 
+# 7: Data Cleaning
+
 ## Readings
 
 From **R for Data Science** by Drs. Hadley Wickham, Garrett Grolemund, and Mine Çetinkaya-Rundel:
 
--   [Missing Values](https://r4ds.hadley.nz/missing-values.html)
+- [Missing Values](https://r4ds.hadley.nz/missing-values.html)
 
 ## Topics
 
--   Data cleaning
--   Duplicate observations
--   Missing values
--   Inconsistent formats
+- Data cleaning
+- Duplicate observations
+- Missing values
+- Inconsistent formats
 
 ## Data cleaning
 
 ![](https://github.com/hungtong/DS-01-101/blob/main/image/7_dirty_Data.png?raw=true){fig-align="center" width="382"}
 
--   **Data cleaning** refers to the process of preparing "dirty" or "messy" data for further exploration and modeling. It is often the most time-consuming step in a data science project.
+- **Data cleaning** refers to the process of preparing "dirty" or "messy" data for further exploration and modeling. It is often the most time-consuming step in a data science project.
 
--   Although data cleaning is open-ended in nature, it generally involves handling the following issues:
+- Although data cleaning is open-ended in nature, it generally involves handling the following issues:
 
-    -   Duplicate observations
+  - Duplicate observations
 
-    -   Outliers due to errors
+  - Outliers due to errors
 
-    -   Missing values
+  - Missing values
 
-    -   Inconsistent formats
+  - Inconsistent formats
 
 ## Duplicate observations
 
--   Duplicate observations can lead to biased results, so they should be identified and discarded.
+- Duplicate observations can lead to biased results, so they should be identified and discarded.
 
 ```{r}
 
@@ -57,7 +54,7 @@ df <- data.frame(
 )
 ```
 
--   The `duplicated()` function in base R can be used to identify observations that already appear earlier.
+- The `duplicated()` function in base R can be used to identify observations that already appear earlier.
 
 ```{r}
 
@@ -74,7 +71,7 @@ df[duplicated(df), ]
 df[!duplicated(df), ] 
 ```
 
--   The `distinct()` function in `dplyr` is also a convenient function to discard duplicate observations.
+- The `distinct()` function in `dplyr` is also a convenient function to discard duplicate observations.
 
 ```{r}
 #| message: false
@@ -86,9 +83,9 @@ df |> distinct()
 
 ## Outliers due to errors
 
--   Outliers can be extreme but valid values but they can also be due to errors. In the latter case, we want to identify and remove them.
+- Outliers can be extreme but valid values but they can also be due to errors. In the latter case, we want to identify and remove them.
 
--   Consider data on sale price in millions of dollars and size in thousands of sq. ft. of some properties.
+- Consider data on sale price in millions of dollars and size in thousands of sq. ft. of some properties.
 
 ```{r}
 #| eval: true
@@ -99,7 +96,7 @@ properties <- data.frame(
 )
 ```
 
--   The data set has some unusual small properties. To remove them, we can do the following:
+- The data set has some unusual small properties. To remove them, we can do the following:
 
 ```{r}
 #| eval: true
@@ -109,15 +106,15 @@ properties <- properties[properties >= 100, ]
 
 ## Missing values
 
--   Missing values refer to data that was not recorded, unavailable, or unknown during data collection or entry. In R, missing values are represented as `NA`.
+- Missing values refer to data that was not recorded, unavailable, or unknown during data collection or entry. In R, missing values are represented as `NA`.
 
--   There are two common approaches to handling missing values:
+- There are two common approaches to handling missing values:
 
-    -   **Listwise deletion** removes observations with missing values.
+  - **Listwise deletion** removes observations with missing values.
 
-    -   **Imputation** replaces missing values with new values. For example, mean imputation replaces missing values in a column by the mean of observed values in that column.
+  - **Imputation** replaces missing values with new values. For example, mean imputation replaces missing values in a column by the mean of observed values in that column.
 
--   The `pima` data set, originated from the National Institute of Diabetes and Digestive and Kidney Diseases, consists of 768 female patients of Pima Indian heritage, all aged at least $21$ and living near Phoenix, Arizona, USA. Among these patients, 268 were diagnosed with diabetes. Several medical variables were measured for these patients.
+- The `pima` data set, originated from the National Institute of Diabetes and Digestive and Kidney Diseases, consists of 768 female patients of Pima Indian heritage, all aged at least $21$ and living near Phoenix, Arizona, USA. Among these patients, 268 were diagnosed with diabetes. Several medical variables were measured for these patients.
 
 ![From Şafak Selim Sofioğlu](https://github.com/hungtong/DS-01-101/blob/main/image/7_pima.png?raw=true){fig-align="center" width="386"}
 
@@ -133,7 +130,7 @@ pima <- as_tibble(pima)
 glimpse(pima)
 ```
 
--   `is.na()` is a useful function to identify missing values in a vector.
+- `is.na()` is a useful function to identify missing values in a vector.
 
 ```{r}
 
@@ -153,7 +150,7 @@ pima$Insulin[!is.na(pima$Insulin)]
 mean(pima$Insulin[!is.na(pima$Insulin)])   
 ```
 
--   `complete.cases()` allows us to quickly identify observations without missing values in a data frame.
+- `complete.cases()` allows us to quickly identify observations without missing values in a data frame.
 
 ```{r}
 
@@ -167,7 +164,7 @@ sum(complete.cases(pima))
 pima[complete.cases(pima), ]  
 ```
 
--   If our interest is to identify missing values, we can pair `complete.cases()` with the not `!` operator.
+- If our interest is to identify missing values, we can pair `complete.cases()` with the not `!` operator.
 
 ```{r}
 
@@ -181,14 +178,14 @@ sum(!complete.cases(pima))
 pima[!complete.cases(pima), ]
 ```
 
--   `na.omit()` removes rows with missing values.
+- `na.omit()` removes rows with missing values.
 
 ```{r}
 
 na.omit(pima)
 ```
 
--   `drop_na()` is a more flexible function to remove rows with missing values
+- `drop_na()` is a more flexible function to remove rows with missing values
 
 ```{r}
 
@@ -202,7 +199,7 @@ pima |> drop_na(BMI)
 pima |> drop_na(BMI, SkinThickness)
 ```
 
--   Mean imputation can be done as follow
+- Mean imputation can be done as follow
 
 ```{r}
 
@@ -215,21 +212,21 @@ pima$Insulin[is.na(pima$Insulin)] <- mean(pima$Insulin, na.rm = TRUE)
 
 ## Inconsistent Format
 
--   Inconsistent formats commonly occur with categorical and date/time variables.
+- Inconsistent formats commonly occur with categorical and date/time variables.
 
--   The `tips` data set contains information about restaurant bills, tips, and customers. Each observation represents a single dining party.
+- The `tips` data set contains information about restaurant bills, tips, and customers. Each observation represents a single dining party.
 
--   `tota_bill` - Total bill amount (in dollars) for the meal, before the tip
+- `tota_bill` - Total bill amount (in dollars) for the meal, before the tip
 
--   `tip` - Tip amount (in dollars) left by the customer
+- `tip` - Tip amount (in dollars) left by the customer
 
--   `sex` - Gender of the person paying the bill.
+- `sex` - Gender of the person paying the bill.
 
--   `day` - Day of the week when the meal occurred.
+- `day` - Day of the week when the meal occurred.
 
--   `time`- Time of day the meal took place: `1` for lunch and `2` for dinner
+- `time`- Time of day the meal took place: `1` for lunch and `2` for dinner
 
--   `size` - Number of people in the dining party.
+- `size` - Number of people in the dining party.
 
 <!-- ![From Adobe Stock](https://github.com/hungtong/DS-01-101/blob/main/image/7_tips.png?raw=true){fig-align="center" width="239"} -->
 
@@ -241,7 +238,7 @@ load(url('https://github.com/hungtong/DS-01-101/raw/refs/heads/main/dataset/tips
 glimpse(tips)
 ```
 
--   The categories of `sex` and `day` are not consistent. To fix `sex`, we can do the following:
+- The categories of `sex` and `day` are not consistent. To fix `sex`, we can do the following:
 
 ```{r}
 #| eval: true

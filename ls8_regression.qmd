@@ -1,91 +1,84 @@
 ---
-title: "Lesson 8A: Multiple Linear Regression"
-subtitle: "DS 01-101: In-Depth Introduction to Data Science (Spring 2026)"
-author: "Hung Tong"
-institute: "Rowan University"
-editor: visual
 toc: true
 toc-depth: 3
 echo: true
-eval: false
-code-overflow: wrap
+eval: true
+output: true
 format: 
   html:
     self-contained: false
 ---
 
+# 8A: Multiple Linear Regression
+
 ## Readings
 
 From **An Introduction to Statistical Learning with Applications in R** by Drs. Gareth James, Daniela Witten, Trevor Hastie, and Rob Tibshirani:
 
--   Introduction
+- Introduction
 
--   Statistical Learning
+- Statistical Learning
 
--   Linear Regression
+- Linear Regression
 
 The book is freely available at https://www.statlearning.com/
 
 Also, check out the following videos:
 
--   [Statistical Learning: 1.1 Opening Remarks - Drs. Trevor Hastie and Rob Tibshirani](https://youtu.be/LvySJGj-88U?si=bCpk45qvFUK3U0pJ)
+- [Statistical Learning: 1.1 Opening Remarks - Drs. Trevor Hastie and Rob Tibshirani](https://youtu.be/LvySJGj-88U?si=bCpk45qvFUK3U0pJ)
 
--   [What is Machine Learning? - Dr. Sebastian Raschka](https://youtu.be/z7RT6aAt_10?si=Gch7GXpR_qK3sEPz)
+- [What is Machine Learning? - Dr. Sebastian Raschka](https://youtu.be/z7RT6aAt_10?si=Gch7GXpR_qK3sEPz)
 
 ## Topics
 
--   Introduction to statistical learning
+- Introduction to statistical learning
 
--   Supervised and unsupervised learning
+- Supervised and unsupervised learning
 
--   Linear regression
+- Linear regression
 
 ## Statistical learning and machine learning
 
--   **Statistical learning** and **machine learning** refer to a set of computational tools for modeling data and gaining insights from data.
+- **Statistical learning** and **machine learning** refer to a set of computational tools for modeling data and gaining insights from data.
 
--   Generally speaking, **statistical learning** is considered a subfield of statistics, while **machine learning** is a subfield of computer science.
+- Generally speaking, **statistical learning** is considered a subfield of statistics, while **machine learning** is a subfield of computer science.
 
--   Traditionally, statisticians focus on understanding relationships and making inference, with an emphasis on mathematical properties and interpretability. On the other hand, computer scientists, focus on prediction and performance with large data.
+- Traditionally, statisticians focus on understanding relationships and making inference, with an emphasis on mathematical properties and interpretability. On the other hand, computer scientists, focus on prediction and performance with large data.
 
--   Regardless, statistical learning and machine learning have a significant overlap. Both requires knowledge of mathematics and programming.
+- Regardless, statistical learning and machine learning have a significant overlap. Both requires knowledge of mathematics and programming.
 
--   In this course, we will use statistical learning and machine learning intergeably.
+- In this course, we will use statistical learning and machine learning intergeably.
 
 ## Supervised and unsupervised learning
 
--   Main tasks in statistical learning include:
+- Main tasks in statistical learning include:
 
-    -   **Regression:** Predict an outcome given some predictor variables
-    -   **Classification:** Assign data points to pre-defined groups
-    -   **Clustering:** Group similar data points together
-    -   **Dimension reduction:** Find a lower-dimensional representation to visualize data or identify important variables
+  - **Regression:** Predict an outcome given some predictor variables
+  - **Classification:** Assign data points to pre-defined groups
+  - **Clustering:** Group similar data points together
+  - **Dimension reduction:** Find a lower-dimensional representation to visualize data or identify important variables
 
--   In the above, regression and classification are considered **supervised learning**, in which we already have some examples to train the model.
+- In the above, regression and classification are considered **supervised learning**, in which we already have some examples to train the model.
 
--   Clustering and dimension reduction are considered **unsupervised learning**, in which we do not have any examples to train the model.
+- Clustering and dimension reduction are considered **unsupervised learning**, in which we do not have any examples to train the model.
 
 ## Multiple Linear Regression
 
--   Consider a **response** $Y$ and $p$ **predictors** $X_1, X_2, \dots, X_p$. The **multiple linear regression** model approximates the relationship between the response and predictors variable as follows:
+- Consider a **response** $Y$ and $p$ **predictors** $X_1, X_2, \dots, X_p$. The **multiple linear regression** model approximates the relationship between the response and predictors variable as follows:
 
-$$
-Y = \beta_0 + \beta_1 X_1 + \beta_2 X_2 + \dots + \beta_p X_p + \epsilon,
-$$
+$$Y = \beta_0 + \beta_1 X_1 + \beta_2 X_2 + \dots + \beta_p X_p + \epsilon,$$
 
--   In the above, $\beta_0$ is the intercept, $\beta_1, \beta_2, \dots, \beta_p$ are coefficients, and $\epsilon$ is the unexplained random error.
+- In the above, $\beta_0$ is the intercept, $\beta_1, \beta_2, \dots, \beta_p$ are coefficients, and $\epsilon$ is the unexplained random error.
 
--   The unknown intercept $\beta_0$ and coefficients $\beta_1, \beta_2, \dots, \beta_p$ can be estimated by the **method of least squares**.
+- The unknown intercept $\beta_0$ and coefficients $\beta_1, \beta_2, \dots, \beta_p$ can be estimated by the **method of least squares**.
 
-$$
-\sum_{i = 1}^n (y_i - \beta_0 - \beta_1 x_{i1} - \beta_2 x_{i2} - \dots - \beta_p x_{ip})^2
-$$
+$$\sum_{i = 1}^n (y_i - \beta_0 - \beta_1 x_{i1} - \beta_2 x_{i2} - \dots - \beta_p x_{ip})^2$$
 
--   Geometrically, we look for a plane that minimizes the sum of the squared vertical distances between each observation and the plane.
+- Geometrically, we look for a plane that minimizes the sum of the squared vertical distances between each observation and the plane.
 
 ![From An Introduction to Statistical Learning](https://github.com/hungtong/DS-01-101/blob/main/image/8_projection.png?raw=true){fig-align="center" width="318"}
 
--   The `Advertising` is available from <https://www.statlearning.com/resources-second-edition>. It also consists of sales of that product in 200 different markets. It also includes advertising budgets in thousand dollars for the product in each of those markets for three different media: TV, radio, and newspapers.
+- The `Advertising` is available from <https://www.statlearning.com/resources-second-edition>. It also consists of sales of that product in 200 different markets. It also includes advertising budgets in thousand dollars for the product in each of those markets for three different media: TV, radio, and newspapers.
 
 ![](https://github.com/hungtong/DS-01-101/blob/main/image/8_advertising.png?raw=true){fig-align="center"}
 
@@ -97,7 +90,7 @@ load(url('https://github.com/hungtong/DS-01-101/raw/refs/heads/main/dataset/Adve
 head(Advertising)
 ```
 
--   Fitting the multiple linear regression to the data set, we obtain
+- Fitting the multiple linear regression to the data set, we obtain
 
 ```{r}
 #| eval: true
@@ -106,7 +99,7 @@ mod <- lm(sales ~ TV + radio + newspaper, data = Advertising)
 summary(mod)
 ```
 
--   The **coefficient estimate** tells us the estimated change in the response variable for a one-unit increase in the predictor variable while [holding other predictors constant]{.underline}.
+- The **coefficient estimate** tells us the estimated change in the response variable for a one-unit increase in the predictor variable while [holding other predictors constant]{.underline}.
 
 ```{r}
 
@@ -119,16 +112,16 @@ summary(mod)
 # Coefficient newspaper = -0.001. For fixed values of TV and radio, for additional thousand dollars spent on newspaper, the sales decrease by -0.0001 * x 1000 = 1 dollar. (recall that the correlation between sales and newspaper is pretty low)
 ```
 
--   The **standard errors of the coefficients** tell us the average amount their estimates differ from the actual values. Thus, smaller standard errors mean more accurate estimates.
+- The **standard errors of the coefficients** tell us the average amount their estimates differ from the actual values. Thus, smaller standard errors mean more accurate estimates.
 
--   A small **p-value**, such as less than a significance level $\alpha = 0.05$, indicates that there is statistically significant evidence of a substantial association between the predictor and the response.
+- A small **p-value**, such as less than a significance level $\alpha = 0.05$, indicates that there is statistically significant evidence of a substantial association between the predictor and the response.
 
 ```{r}
 
 # The p-values for TV and radio are pretty small (2e-16 which is much smaller than 0.05), so they seem to be more useful predictors. On the other hand, the p-value for newspaper is 0.86, which is very large, so newspaper does not seem to be very useful.
 ```
 
--   The **residual standard error** is the average amount of the response deviates from the best regression. It is considered a measure of the **goodness of fit**. A smaller residual standard error is better, but since it is measured in the units of the response, it is not always clear what makes a good value.
+- The **residual standard error** is the average amount of the response deviates from the best regression. It is considered a measure of the **goodness of fit**. A smaller residual standard error is better, but since it is measured in the units of the response, it is not always clear what makes a good value.
 
 ```{r}
 
@@ -137,7 +130,7 @@ summary(mod)
 
 ![](https://github.com/hungtong/DS-01-101/blob/main/image/8_pop_regr_line.png?raw=true){fig-align="center" width="534"}
 
--   Another measure of the goodness of fit is the **multiple** $R^2$ which accounts for the proportion of variability in the response that can be explained the multiple linear regression model. However, including more predictors always increase the multiple $R^2$, regardless of whether a predictor is "useful" or not. The **adjusted** $R^2$ is a corrected version that addresses such an issue.
+- Another measure of the goodness of fit is the **multiple** $R^2$ which accounts for the proportion of variability in the response that can be explained the multiple linear regression model. However, including more predictors always increase the multiple $R^2$, regardless of whether a predictor is "useful" or not. The **adjusted** $R^2$ is a corrected version that addresses such an issue.
 
 ```{r}
 
@@ -168,7 +161,7 @@ summary(mod)
 
 ## Prediction and predictive performance
 
--   **Fitted values** are the predicted values for the observations that were used to build the model.
+- **Fitted values** are the predicted values for the observations that were used to build the model.
 
 ```{r}
 #| output: false
@@ -178,7 +171,7 @@ mod <- lm(sales ~ TV + radio + newspaper, data = Advertising)
 fitted.values(mod)
 ```
 
--   **Predicted values** are the model’s predictions for new observations (data not used to fit the model).
+- **Predicted values** are the model’s predictions for new observations (data not used to fit the model).
 
 ```{r}
 #| output: false
@@ -192,7 +185,7 @@ new_data <- data.frame(
 predict(mod, new_data)
 ```
 
--   A **residual** is the difference between the observed value and the fitted/predicted value.
+- A **residual** is the difference between the observed value and the fitted/predicted value.
 
 ```{r}
 #| output: false
@@ -203,11 +196,9 @@ y_hat <- fitted.values(mod)
 y - y_hat
 ```
 
--   The **root mean squared error (RMSE)** quantifies how far the fitted/predicted values are from the observed values on average. A smaller error means better accurary. This is a measure of **predictive performance**.
+- The **root mean squared error (RMSE)** quantifies how far the fitted/predicted values are from the observed values on average. A smaller error means better accurary. This is a measure of **predictive performance**.
 
-$$
-\text{RMSE} = \sqrt{\dfrac{1}{n} \sum_{i = 1}^n (y_i - \hat{y}_i)^2}
-$$
+$$\text{RMSE} = \sqrt{\dfrac{1}{n} \sum_{i = 1}^n (y_i - \hat{y}_i)^2}$$
 
 ```{r}
 
@@ -215,11 +206,11 @@ rmse <- sqrt( mean((y - y_hat)^2) )
 rmse
 ```
 
--   In practice, fitting a model to the entire data set and evaluating how well the model predicts those same observations is not very useful, because we already know the outcomes for those observations.
+- In practice, fitting a model to the entire data set and evaluating how well the model predicts those same observations is not very useful, because we already know the outcomes for those observations.
 
--   We are more interested in seeing how the model predicts outcomes for new observations that were not used to fit the model.
+- We are more interested in seeing how the model predicts outcomes for new observations that were not used to fit the model.
 
--   For this reason, we typically split the data into a **training set** and a **validation (test) set**. The model is fit using the training set, and predictive performance is evaluated on the test set. This gives a more realistic measure of how well the model will perform on new data.
+- For this reason, we typically split the data into a **training set** and a **validation (test) set**. The model is fit using the training set, and predictive performance is evaluated on the test set. This gives a more realistic measure of how well the model will perform on new data.
 
 ![From An Introduction to Statistical Learning](https://github.com/hungtong/DS-01-101/blob/main/image/8_validation.png?raw=true){fig-align="center"}
 
@@ -254,7 +245,7 @@ pred <- predict(mod, test_data[, c('TV', 'radio', 'newspaper')])
   sqrt()
 ```
 
--   The validation error can depend on which observations happen to be placed in the validation set. To address this issue, we use $k$-fold **cross-validation**, where we repeatedly split the data into training and validation sets and average the prediction error across these splits. This gives a more reliable estimate of the model’s test error.
+- The validation error can depend on which observations happen to be placed in the validation set. To address this issue, we use $k$-fold **cross-validation**, where we repeatedly split the data into training and validation sets and average the prediction error across these splits. This gives a more reliable estimate of the model’s test error.
 
 ![From An Introduction to Statistical Learning](https://github.com/hungtong/DS-01-101/blob/main/image/8_5_fold_CV.png?raw=true){fig-align="center"}
 

@@ -4,6 +4,9 @@ toc-depth: 3
 echo: true
 eval: true
 output: true
+format: 
+  html:
+    self-contained: false
 ---
 
 # 4C: Behavioral Survey from the Centers for Disease Control and Prevention (CDC)

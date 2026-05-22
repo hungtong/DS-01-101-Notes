@@ -1,18 +1,15 @@
 ---
-title: "Lesson 10: k-Means Clustering"
-subtitle: "DS 01-101: In-Depth Introduction to Data Science (Spring 2026)"
-author: "Hung Tong"
-institute: "Rowan University"
-editor: visual
 toc: true
 toc-depth: 3
 echo: true
 eval: true
-code-overflow: wrap
+output: true
 format: 
   html:
-    self-contained: true
+    self-contained: false
 ---
+
+# 10: k-Means Clustering
 
 ## Readings
 
@@ -209,5 +206,4 @@ plot(sw5)
 
 # k = 2 seems to be optimal according to the average Silhouette width
 ```
-
 :::

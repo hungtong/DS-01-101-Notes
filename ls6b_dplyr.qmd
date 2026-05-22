@@ -1,18 +1,15 @@
 ---
-title: "Lesson 6B: Using Data Manipulation to Understand Mammalian Sleep"
-subtitle: "DS 01-101: In-Depth Introduction to Data Science (Spring 2026)"
-author: "Hung Tong"
-institute: "Rowan University"
-editor: visual
 toc: true
 toc-depth: 3
 echo: true
-eval: false
-code-overflow: wrap
+eval: true
+output: true
 format: 
   html:
     self-contained: false
 ---
+
+# 6B: Using Data Manipulation to Understand Mammalian Sleep
 
 ![From Freepik](https://github.com/hungtong/DS-01-101/blob/main/image/6_mammal_sleep.png?raw=true){fig-align="center" width="278"}
 

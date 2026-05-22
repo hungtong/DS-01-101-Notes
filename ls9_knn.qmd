@@ -1,18 +1,15 @@
 ---
-title: "Lesson 8A: k-Nearest Neighbors Classification"
-subtitle: "DS 01-101: In-Depth Introduction to Data Science (Spring 2026)"
-author: "Hung Tong"
-institute: "Rowan University"
-editor: visual
 toc: true
 toc-depth: 3
 echo: true
-eval: false
-code-overflow: wrap
+eval: true
+output: true
 format: 
   html:
     self-contained: false
 ---
+
+# 9: k-Nearest Neighbors Classification
 
 ## Readings
 
@@ -156,5 +153,4 @@ mean(pred_k3 == y_test)    # 0.9111111
 mean(pred_k5 == y_test)    # 0.9111111
 mean(pred_k7 == y_test)    # 0.9333333
 ```
-
 :::

@@ -1,72 +1,69 @@
 ---
-title: "Lesson 6A: Data Manipulation with dplyr"
-subtitle: "DS 01-101: In-Depth Introduction to Data Science (Spring 2026)"
-author: "Hung Tong"
-institute: "Rowan University"
-editor: visual
 toc: true
 toc-depth: 3
 echo: true
-eval: false
-code-overflow: wrap
+eval: true
+output: true
 format: 
   html:
     self-contained: false
 ---
 
+# 6A: Data Manipulation with dplyr
+
 ## Readings
 
 From **R for Data Science** by Drs. Hadley Wickham, Garrett Grolemund, and Mine Çetinkaya-Rundel:
 
--   [Data Transformation](https://r4ds.hadley.nz/data-transform.html)
+- [Data Transformation](https://r4ds.hadley.nz/data-transform.html)
 
 From **Tidy Hurricanes: Analyzing Tropical Storms with Tidyverse Tools** by Dr. Hadley Wickham:
 
--   [Data Manipulation with dplyr](https://www.gastonsanchez.com/R-tidy-hurricanes/2-02-intro-dplyr.html)
+- [Data Manipulation with dplyr](https://www.gastonsanchez.com/R-tidy-hurricanes/2-02-intro-dplyr.html)
 
--   [The Pipe Operators](https://www.gastonsanchez.com/R-tidy-hurricanes/2-03-intro-pipes.html)
+- [The Pipe Operators](https://www.gastonsanchez.com/R-tidy-hurricanes/2-03-intro-pipes.html)
 
 From **Stat 331/531 Statistical Computing with R** by Dr. Emily Robinson:
 
--   [Data Cleaning and Manipulation](https://earobinson95.github.io/stat331-calpoly-text/03-data-cleaning-and-manipulation.html)
+- [Data Cleaning and Manipulation](https://earobinson95.github.io/stat331-calpoly-text/03-data-cleaning-and-manipulation.html)
 
 ## Topics
 
--   `dplyr` and the grammar of data manipulation
+- `dplyr` and the grammar of data manipulation
 
--   The pipe `%>%` and `|>` operators
+- The pipe `%>%` and `|>` operators
 
 ## `dplyr` and the grammar of data manipulation
 
 ![](https://github.com/hungtong/DS-01-101/blob/main/image/6_dplyr_logo.png?raw=true){fig-align="center" width="226"}
 
--   **Data wrangling**, also known as **data munging**, is the process of cleaning, transforming, and manipulating data so that the data are usable for visualization, analysis, and modeling.
+- **Data wrangling**, also known as **data munging**, is the process of cleaning, transforming, and manipulating data so that the data are usable for visualization, analysis, and modeling.
 
--   Much of data wrangling involves subsetting, e.g., removing unwanted rows and/or columns, modifying columns, summarizing data by groups.
+- Much of data wrangling involves subsetting, e.g., removing unwanted rows and/or columns, modifying columns, summarizing data by groups.
 
--   **dplyr** (dee-ply-er, "d" for data and "plyr" for pliers or tools), is a popular R package in the `tidyverse` that implements the **grammar of data manipulation**. It includes the following verbs:
+- **dplyr** (dee-ply-er, "d" for data and "plyr" for pliers or tools), is a popular R package in the `tidyverse` that implements the **grammar of data manipulation**. It includes the following verbs:
 
-    -   `slice()` to subset rows using their positions
+  - `slice()` to subset rows using their positions
 
-    -   `filter()` to keep rows that match a condition
+  - `filter()` to keep rows that match a condition
 
-    -   `select()` to keep or drop columns
+  - `select()` to keep or drop columns
 
-    -   `mutate()` to modify existing variables or add new variables
+  - `mutate()` to modify existing variables or add new variables
 
-    -   `arrange()` to reorder rows using column names
+  - `arrange()` to reorder rows using column names
 
-    -   `summarize()` to reduce variables to values
+  - `summarize()` to reduce variables to values
 
-    -   `group_by()` to perform grouped (aggregated) operations
+  - `group_by()` to perform grouped (aggregated) operations
 
--   Note that these functions never modify the original data set unless we choose to do so. In addition, extracting a variable using the dollar `$` operator is not necessary.
+- Note that these functions never modify the original data set unless we choose to do so. In addition, extracting a variable using the dollar `$` operator is not necessary.
 
 ## `classmates` data set
 
 ![From Icon Scout](https://github.com/hungtong/DS-01-101/blob/main/image/6_classmates.png?raw=true){fig-align="center" width="329"}
 
--   For this lesson, we will work with the following small data set:
+- For this lesson, we will work with the following small data set:
 
 ```{r}
 #| message: false
@@ -92,11 +89,11 @@ classmates <- tibble(
 classmates
 ```
 
--   Note that `classmates` has no real references!
+- Note that `classmates` has no real references!
 
 ## `slice()` to subset rows
 
--   `slice()` allows us to select rows based on index position.
+- `slice()` allows us to select rows based on index position.
 
 ```{r}
 
@@ -113,7 +110,7 @@ slice(classmates, 5, 11, 9)
 slice(classmates, 2:6)
 ```
 
--   Recall that negative indexing means "all except".
+- Recall that negative indexing means "all except".
 
 ```{r}
 
@@ -130,7 +127,7 @@ slice(classmates, -5, -11, -9)
 slice(classmates, -(2:6))
 ```
 
--   `slice_head()` allows us to select the first few rows by specifying the number `n` or the proportion `prop`.
+- `slice_head()` allows us to select the first few rows by specifying the number `n` or the proportion `prop`.
 
 ```{r}
 #| eval: false
@@ -145,7 +142,7 @@ slice_head(classmates, n = 2)
 slice_head(classmates, prop = 0.3)
 ```
 
--   `slice_tail()` is for the last few rows.
+- `slice_tail()` is for the last few rows.
 
 ```{r}
 #| eval: false
@@ -160,7 +157,7 @@ slice_tail(classmates, n = 4)
 slice_tail(classmates, prop = 0.3)
 ```
 
--   `slice_sample()` randomly selects rows.
+- `slice_sample()` randomly selects rows.
 
 ```{r}
 #| eval: false
@@ -181,7 +178,7 @@ slice_sample(classmates, n = 12)
 slice_sample(classmates, prop = 0.8)
 ```
 
--   `slice_min()` selects rows with the smallest of a variable.
+- `slice_min()` selects rows with the smallest of a variable.
 
 ```{r}
 #| eval: false
@@ -199,7 +196,7 @@ slice_min(classmates, weight, n = 12)
 slice_min(classmates, weight, prop = 0.5)
 ```
 
--   `slice_max()` selects rows with the largest of a variable.
+- `slice_max()` selects rows with the largest of a variable.
 
 ```{r}
 #| eval: false
@@ -315,7 +312,7 @@ slice_sample(classmates, prop = 2/3)
 
 ## `filter()` to select rows with conditions
 
--   `filter()` allows us to subset rows that satisfy some conditions.
+- `filter()` allows us to subset rows that satisfy some conditions.
 
 ```{r}
 
@@ -380,7 +377,7 @@ filter(classmates, major == 'Math', gender == 'female')
 
 ## `select()` to subset columns (variables)
 
--   `select()` allows us to select columns (variables) by names.
+- `select()` allows us to select columns (variables) by names.
 
 ```{r}
 #| eval: false
@@ -395,7 +392,7 @@ select(classmates, name, gender, major)
 select(classmates, height:major)
 ```
 
--   Although less common, it is also possible to select by index positions.
+- Although less common, it is also possible to select by index positions.
 
 ```{r}
 #| eval: false
@@ -410,7 +407,7 @@ select(classmates, 1, 2, 6)
 select(classmates, 3:6)
 ```
 
--   Recall that negative indexing means "all except".
+- Recall that negative indexing means "all except".
 
 ```{r}
 #| eval: false
@@ -482,11 +479,11 @@ select(classmates, -name, -height, -weight, -age)
 
 ## `mutate()` to transform, add, or delete variables
 
--   `mutate()` allows us perform do the following:
-    -   Transform existing columns (variables)
-    -   Add new columns (variables)
-    -   Delete existing columns (variables)
--   The most common use of `mutate()` is to transform variable(s).
+- `mutate()` allows us perform do the following:
+  - Transform existing columns (variables)
+  - Add new columns (variables)
+  - Delete existing columns (variables)
+- The most common use of `mutate()` is to transform variable(s).
 
 ```{r}
 #| eval: false
@@ -501,7 +498,7 @@ mutate(classmates, weight = weight * 0.454)
 mutate(classmates, height = height * 30.48, weight = weight * 0.454)
 ```
 
--   Note that `mutate()` does not modify the original data unless we choose to do so.
+- Note that `mutate()` does not modify the original data unless we choose to do so.
 
 ```{r}
 #| eval: false
@@ -509,7 +506,7 @@ mutate(classmates, height = height * 30.48, weight = weight * 0.454)
 classmates <- mutate(classmates, height = height * 30.48)
 ```
 
--   `mutate()` also allows us to add new variables.
+- `mutate()` also allows us to add new variables.
 
 ```{r}
 #| eval: false
@@ -521,7 +518,7 @@ mutate(classmates, height_cm = height * 30.48)
 mutate(classmates, height_cm = height * 30.48, weight_kg = weight * 0.454)
 ```
 
--   `mutate()` can be used to delete variables.
+- `mutate()` can be used to delete variables.
 
 ```{r}
 #| eval: false
@@ -534,9 +531,9 @@ mutate(classmates, height_cm = NULL, weight_kg = NULL)
 
 Use `mutate()` to add the following variables the `classmates` data set:
 
--   `height_in` gives height in inches (note that 1 foot = 12 inches)
+- `height_in` gives height in inches (note that 1 foot = 12 inches)
 
--   `can_drink` shows TRUE if a classmate is at least 21 and FALSE otherwise
+- `can_drink` shows TRUE if a classmate is at least 21 and FALSE otherwise
 
 ::: {.callout-tip collapse="true"}
 ## Answer
@@ -549,7 +546,7 @@ mutate(classmates, height_in = height * 12, can_drink = age > 21)
 
 ## `arrange()` to order rows
 
--   `arrange()` allows us to order rows according to selected variables. Note that the order of variables matters.
+- `arrange()` allows us to order rows according to selected variables. Note that the order of variables matters.
 
 ```{r}
 #| eval: false
@@ -570,7 +567,7 @@ arrange(classmates, age)
 arrange(classmates, age, gender)
 ```
 
--   By default, `arrange()` sorts rows in increasing order. To arrange rows in descending order, we need to use `desc()`.
+- By default, `arrange()` sorts rows in increasing order. To arrange rows in descending order, we need to use `desc()`.
 
 ```{r}
 
@@ -623,9 +620,9 @@ arrange(classmates, desc(major), desc(age))
 
 ## `summarize()` to summarize values
 
--   `summarize()` allows us to build a summary table. Note that extracting a variable using the dollar `$` operator is not necessary within `summarize()`.
+- `summarize()` allows us to build a summary table. Note that extracting a variable using the dollar `$` operator is not necessary within `summarize()`.
 
--   `summarize()` is most powerful when paired with `group_by()` to build summary tables for different groups.
+- `summarize()` is most powerful when paired with `group_by()` to build summary tables for different groups.
 
 ```{r}
 #| eval: true
@@ -668,7 +665,7 @@ summarize(
 
 ## `group_by()` to divide a data set by variables
 
--   `group_by()` allows us to quickly divide a data set into subgroups.
+- `group_by()` allows us to quickly divide a data set into subgroups.
 
 ```{r}
 #| eval: false
@@ -683,7 +680,7 @@ group_by(classmates, major)
 group_by(classmates, gender, major)
 ```
 
--   Pairing `group_by()` with `summarize()` is a convenient way to obtain summary statistics for each group.
+- Pairing `group_by()` with `summarize()` is a convenient way to obtain summary statistics for each group.
 
 ```{r}
 #| eval: false
@@ -746,14 +743,14 @@ summarize(
 
 ![](https://github.com/hungtong/DS-01-101/blob/main/image/6_magrittr.png?raw=true){fig-align="center" width="552"}
 
--   In practice, data wrangling usually involves a combination of `slice()`, `filter()`, `select()`, `mutate()`, `summarize()`, `group_by()`, and other functions. Step-by-step computations can create extra variables or less human-readable code.
+- In practice, data wrangling usually involves a combination of `slice()`, `filter()`, `select()`, `mutate()`, `summarize()`, `group_by()`, and other functions. Step-by-step computations can create extra variables or less human-readable code.
 
--   The **pipe operators** aim to address step-by-step computations in a forward manner. There are two pipe operators with the same functionality:
+- The **pipe operators** aim to address step-by-step computations in a forward manner. There are two pipe operators with the same functionality:
 
-    -   `%>%` from the **magrittr** (muh-GREET-er) package
-    -   `|>` from base R
+  - `%>%` from the **magrittr** (muh-GREET-er) package
+  - `|>` from base R
 
--   In their most basic use, the pipe operators allow us to call a function with at least 2 arguments `f(x, y)` by `x |> f(y)`.
+- In their most basic use, the pipe operators allow us to call a function with at least 2 arguments `f(x, y)` by `x |> f(y)`.
 
 ```{r}
 #| eval: false
@@ -793,7 +790,7 @@ classmates |> group_by(gender)
 
 ```
 
--   However, the pipe operators are most powerful with step-by-step computations.
+- However, the pipe operators are most powerful with step-by-step computations.
 
 ```{r}
 #| eval: false

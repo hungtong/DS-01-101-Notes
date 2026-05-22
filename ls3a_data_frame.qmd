@@ -4,6 +4,9 @@ toc-depth: 3
 echo: true
 eval: true
 output: true
+format: 
+  html:
+    self-contained: false
 ---
 
 # 3A: Data Frame
