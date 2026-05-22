@@ -16,7 +16,7 @@ format:
 
 ![From Freepik](https://github.com/hungtong/DS-01-101/blob/main/image/6_mammal_sleep.png?raw=true){fig-align="center" width="278"}
 
--   The `msleep` data set is an updated and expanded version of the mammals sleep data set. It is available in `ggplot2`. Updated sleep times and weights were taken from V. M. Savage and G. B. West. A quantitative, theoretical framework for understanding mammalian sleep. Proceedings of the National Academy of Sciences, 104 (3):1051-1056, 2007.
+- The `msleep` data set is an updated and expanded version of the mammals sleep data set. It is available in `ggplot2`. Updated sleep times and weights were taken from V. M. Savage and G. B. West. A quantitative, theoretical framework for understanding mammalian sleep. Proceedings of the National Academy of Sciences, 104 (3):1051-1056, 2007.
 
 ```{r}
 #| message: false
@@ -28,41 +28,41 @@ library(tidyverse)
 glimpse(msleep)
 ```
 
--   The data set has 83 observations and 11 variables:
+- The data set has 83 observations and 11 variables:
 
-    -   name - common name
-    -   genus - taxonomic rank in biological classification
-    -   vore - carnivore, omnivore or herbivore?
-    -   order - specific levels in biological taxonomy
-    -   conservation - the conservation status of the animal
-    -   sleep_total - total amount of sleep, in hours
-    -   sleep_rem - rem sleep, in hours
-    -   sleep_cycle - length of sleep cycle, in hours
-    -   awake - amount of time spent awake, in hours
-    -   brainwt - brain weight in kilograms
-    -   bodywt - body weight in kilograms
+  - name - common name
+  - genus - taxonomic rank in biological classification
+  - vore - carnivore, omnivore or herbivore?
+  - order - specific levels in biological taxonomy
+  - conservation - the conservation status of the animal
+  - sleep_total - total amount of sleep, in hours
+  - sleep_rem - rem sleep, in hours
+  - sleep_cycle - length of sleep cycle, in hours
+  - awake - amount of time spent awake, in hours
+  - brainwt - brain weight in kilograms
+  - bodywt - body weight in kilograms
 
--   Broad types of diets in animals are:
+- Broad types of diets in animals are:
 
 ![From Science Notes](https://github.com/hungtong/DS-01-101/blob/main/image/6_animal_type.png?raw=true){fig-align="center" width="445"}
 
--   Conservation statuses include:
+- Conservation statuses include:
 
 ![From Reclaimed Earth](https://github.com/hungtong/DS-01-101/blob/main/image/6_conservation.png?raw=true){fig-align="center" width="417"}
 
--   In this lesson, we will use **dplyr for data manipulation to better under mammalian sleep. Recall that `dplyr` implements the following verbs from the** grammar of data manipulation\*\*:
+- In this lesson, we will use **dplyr for data manipulation to better under mammalian sleep. Recall that `dplyr` implements the following verbs from the** grammar of data manipulation\*\*:
 
-    -   `slice()` to subset rows using their positions
-    -   `filter()` to keep rows that match a condition
-    -   `select()` to keep or drop columns
-    -   `mutate()` to modify existing variables or add new variables
-    -   `arrange()` to reorder rows using column names
-    -   `summarize()` to reduce variables to values
-    -   `group_by()` to perform grouped (aggregated) operations
+  - `slice()` to subset rows using their positions
+  - `filter()` to keep rows that match a condition
+  - `select()` to keep or drop columns
+  - `mutate()` to modify existing variables or add new variables
+  - `arrange()` to reorder rows using column names
+  - `summarize()` to reduce variables to values
+  - `group_by()` to perform grouped (aggregated) operations
 
--   The **pipe operators** `%>%` from the `magrittr` (muh-GREET-er) package or `|>` from base R are useful for step-by-step computations in a forward manner.
+- The **pipe operators** `%>%` from the `magrittr` (muh-GREET-er) package or `|>` from base R are useful for step-by-step computations in a forward manner.
 
--   The hands-on activities below are adapted from the [Exercises: Introduction to dplyr](https://sjspielman.github.io/datascience_for_biologists/exercises/dplyr.html) developed by Stephanie J Spielman.
+- The hands-on activities below are adapted from the [Exercises: Introduction to dplyr](https://sjspielman.github.io/datascience_for_biologists/exercises/dplyr.html) developed by Stephanie J Spielman.
 
 ## First Part
 
@@ -251,13 +251,13 @@ The code creates a new column named `class` with only one value `Mammalia`.
 
 Create the following columns:
 
--   `bodywt_g` which contains the body weight but in grams instead of kg
+- `bodywt_g` which contains the body weight but in grams instead of kg
 
--   `log_bodywt` that gives the natural logarithm of the body weight
+- `log_bodywt` that gives the natural logarithm of the body weight
 
--   `percent_day_awake` that gives the percentage of the day that each species spends awake
+- `percent_day_awake` that gives the percentage of the day that each species spends awake
 
--   `sleep_awake_ratio` that has the ratio of total time spent asleep to total time spent awake Then, subset `msleep` to only these new columns.
+- `sleep_awake_ratio` that has the ratio of total time spent asleep to total time spent awake Then, subset `msleep` to only these new columns.
 
 ::: {.callout-tip collapse="true"}
 ## Answer

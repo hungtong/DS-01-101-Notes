@@ -33,6 +33,9 @@ book:
     - part: "Introduction to Statistical and Machine Learning"
       chapters:
           - ls8_regression.qmd
+          - ls9_knn.qmd
+          - ls10_kmeans.qmd
+          - ls11_pca.qmd
         
     # - summary.qmd
     # - references.qmd
