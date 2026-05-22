@@ -47,7 +47,7 @@ glimpse(msleep)
 
 ![From Reclaimed Earth](https://github.com/hungtong/DS-01-101/blob/main/image/6_conservation.png?raw=true){fig-align="center" width="417"}
 
-- In this lesson, we will use **dplyr for data manipulation to better under mammalian sleep. Recall that `dplyr` implements the following verbs from the** grammar of data manipulation\*\*:
+- In this lesson, we will use `dplyr` for data manipulation to better under mammalian sleep. Recall that `dplyr` implements the following verbs from the grammar of data manipulation\*\*:
 
   - `slice()` to subset rows using their positions
   - `filter()` to keep rows that match a condition

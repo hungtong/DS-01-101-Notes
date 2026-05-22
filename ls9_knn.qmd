@@ -92,6 +92,7 @@ cbind(new_households, pred_k1, pred_k3, pred_k5, pred_k7)
 - In practice, to choose $k$, we typically split the data into a **training set** and a **validation (test) set**. We then try several different values of $k$, for each of which we train the model, predict the labels of the validation (test) data, and compute the accuracy. The value of $k$ that gives the highest accuracy on the validation set is typically chosen as the best one.
 
 ```{r}
+#| eval: false
 
 n <- nrow(mowers)
 
@@ -129,6 +130,7 @@ Which value of $k$ gives the highest test accuracy?
 ## Answer
 
 ```{r}
+#| eval: false
 
 n <- nrow(iris)
 

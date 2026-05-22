@@ -9,7 +9,7 @@ format:
     self-contained: false
 ---
 
-# 8A: Multiple Linear Regression
+# 8: Multiple Linear Regression
 
 ## Readings
 
